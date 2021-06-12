@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "hexlet-code"
+version = "0.1.0"
+description = ""
+authors = ["berezin <isbushcar@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Django = "^3.2.3"
+django-bootstrap4 = "^3.0.1"
+
+[tool.poetry.dev-dependencies]
+# wemake-python-styleguide = "^0.15.2"
+pytest = "^6.2.4"
+pytest-cov = "^2.12.0"
+python-dotenv = "^0.17.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
