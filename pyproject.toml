@@ -8,6 +8,7 @@ authors = ["berezin <isbushcar@gmail.com>"]
 python = "^3.8"
 Django = "^3.2.3"
 django-bootstrap4 = "^3.0.1"
+python-dotenv = "^0.17.1"
 
 [tool.poetry.dev-dependencies]
 # wemake-python-styleguide = "^0.15.2"
