@@ -203,6 +203,14 @@ python-versions = "*"
 cli = ["click (>=5.0)"]
 
 [[package]]
+name = "python-gettext"
+version = "4.0"
+description = "Python Gettext po to mo file compiler."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "pytz"
 version = "2021.1"
 description = "World timezone definitions, modern and historical"
@@ -248,7 +256,7 @@ brotli = ["brotli"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "99df795054853a09b8f789eee77279c1d4becb551c0956f7d851e1fa9a1b147e"
+content-hash = "a9c7f0cf16aee7f22b5795f0d19faefe5ffcb9221a9cf8e18ee40389691f59cc"
 
 [metadata.files]
 asgiref = [
@@ -368,6 +376,9 @@ pytest-cov = [
 python-dotenv = [
     {file = "python-dotenv-0.17.1.tar.gz", hash = "sha256:b1ae5e9643d5ed987fc57cc2583021e38db531946518130777734f9589b3141f"},
     {file = "python_dotenv-0.17.1-py2.py3-none-any.whl", hash = "sha256:00aa34e92d992e9f8383730816359647f358f4a3be1ba45e5a5cefd27ee91544"},
+]
+python-gettext = [
+    {file = "python-gettext-4.0.tar.gz", hash = "sha256:626b501a51ac892fc3460cf550e60dca121f544eaa46eb69c90ce4682fc7ec02"},
 ]
 pytz = [
     {file = "pytz-2021.1-py2.py3-none-any.whl", hash = "sha256:eb10ce3e7736052ed3623d49975ce333bcd712c7bb19a58b9e2089d4057d0798"},
