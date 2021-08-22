@@ -23,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
+DEBUG = os.environ.get('DEBUG', 'False')
 
-ALLOWED_HOSTS = ['fierce-beyond-80531.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['fierce-beyond-80531.herokuapp.com', '127.0.0.1', 'testserver']
 
 
 # Application definition
@@ -81,8 +81,12 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.environ.get('ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': BASE_DIR / os.environ.get('DATABASE_NAME', 'db.sqlite3'),
+        'HOST': os.getenv('PSQL_HOST', ''),
+        'USER': os.getenv('PSQL_USER', ''),
+        'PASSWORD': os.getenv('PSQL_PASSWORD', ''),
+        'PORT': '5432',
     }
 }
 
@@ -139,3 +143,5 @@ BACKEND = 'django.template.backends.django.DjangoTemplates'
 LOCALE_PATHS = (
     "locale",
 )
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

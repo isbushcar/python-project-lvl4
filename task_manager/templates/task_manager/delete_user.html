@@ -1,0 +1,17 @@
+{% extends "task_manager/base_generic.html" %}
+<!DOCTYPE html>
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="en">
+{% block content %}
+    <h1 class="my-4">{% trans "DeleteUser" %}</h1>
+    {% if user.id == request.user.id %}
+        <form method="post">{% csrf_token %}
+            <p>Are you sure you want to delete "{{ object }}"?</p>
+            <button type="submit" value="Confirm">{% trans "DeleteUserButton" %}</button>
+        </form>
+    {% else %}
+        <h4 class="my-4">{% trans "NotEnoughRights" %}</h4>
+    {% endif %}
+{% endblock content %}
+</html>

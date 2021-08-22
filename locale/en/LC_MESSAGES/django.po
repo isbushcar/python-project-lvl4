@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-19 20:53+1000\n"
+"POT-Creation-Date: 2021-08-21 07:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,121 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: task_manager/templates/task_manager/index.html:54
-msgid "BodyText"
-msgstr "DJANGO"
+#: task_manager/forms.py:9 task_manager/forms.py:24
+msgid "First name"
+msgstr "First name"
+
+#: task_manager/forms.py:10 task_manager/forms.py:25
+msgid "Last name"
+msgstr "Last name"
+
+#: task_manager/templates/task_manager/base_generic.html:7
+#: task_manager/templates/task_manager/base_generic.html:17
+#: task_manager/templates/task_manager/index.html:7
+msgid "TaskManagerTitle"
+msgstr "Task Manager"
+
+#: task_manager/templates/task_manager/base_generic.html:24
+msgid "UsersNavBar"
+msgstr "Users"
+
+#: task_manager/templates/task_manager/base_generic.html:30
+msgid "LogOutNavBar"
+msgstr "Logout"
+
+#: task_manager/templates/task_manager/base_generic.html:36
+msgid "LogInNavBar"
+msgstr "Login"
+
+#: task_manager/templates/task_manager/base_generic.html:39
+msgid "RegisterNavBar"
+msgstr "Registration"
+
+#: task_manager/templates/task_manager/create_user.html:7
+msgid "Registration"
+msgstr "Registration"
+
+#: task_manager/templates/task_manager/create_user.html:11
+msgid "SignUpButton"
+msgstr "Sign up"
+
+#: task_manager/templates/task_manager/delete_user.html:7
+msgid "DeleteUser"
+msgstr "Delete user"
+
+#: task_manager/templates/task_manager/delete_user.html:11
+msgid "DeleteUserButton"
+msgstr "Delete"
+
+#: task_manager/templates/task_manager/delete_user.html:14
+#: task_manager/templates/task_manager/update_user.html:15
+msgid "NotEnoughRights"
+msgstr "Sorry, you don't have access to this page"
+
+#: task_manager/templates/task_manager/login.html:8
+msgid "LoginTitle"
+msgstr "Login"
+
+#: task_manager/templates/task_manager/login.html:11
+msgid "AlreadyInMessage"
+msgstr "You are logged in already"
+
+#: task_manager/templates/task_manager/login.html:17
+msgid "LoginErrorMessage"
+msgstr "Please check your username and password"
+
+#: task_manager/templates/task_manager/login.html:32
+msgid "LoginButton"
+msgstr "Login"
+
+#: task_manager/templates/task_manager/update_user.html:7
+msgid "UpdateUser"
+msgstr "Update user"
+
+#: task_manager/templates/task_manager/update_user.html:12
+msgid "UpdateUserButton"
+msgstr "Update"
+
+#: task_manager/templates/task_manager/users.html:7
+msgid "UsersTitle"
+msgstr "Users"
+
+#: task_manager/templates/task_manager/users.html:12
+msgid "UserName"
+msgstr "Username"
+
+#: task_manager/templates/task_manager/users.html:13
+msgid "FullName"
+msgstr "Full name"
+
+#: task_manager/templates/task_manager/users.html:14
+msgid "CreationDate"
+msgstr "Creation date"
+
+#: task_manager/templates/task_manager/users.html:25
+msgid "Edit"
+msgstr "Edit"
+
+#: task_manager/templates/task_manager/users.html:27
+msgid "Delete"
+msgstr "Delete"
+
+#: task_manager/views.py:45
+msgid "UserCreatedMessage"
+msgstr "User successfully created"
+
+#: task_manager/views.py:55
+msgid "UserUpdatedMessage"
+msgstr "User successfully updated"
+
+#: task_manager/views.py:64
+msgid "UserDeletedMessage"
+msgstr "User successfully deleted"
+
+#: task_manager/views.py:72
+msgid "UserLoggedInMessage"
+msgstr "You logged in"
+
+#: task_manager/views.py:79
+msgid "UserLoggedOutMessage"
+msgstr "You logged out"

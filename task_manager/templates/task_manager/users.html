@@ -1,0 +1,34 @@
+{% extends "task_manager/base_generic.html" %}
+<!DOCTYPE html>
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="en">
+{% block content %}
+    <h1 class="my-4">{% trans "UsersTitle" %}</h1>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">{% trans "UserName" %}</th>
+            <th scope="col">{% trans "FullName" %}</th>
+            <th scope="col">{% trans "CreationDate" %}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users_list %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.first_name }} {{ user.last_name }}</td>
+                <td>{{ user.date_joined }}</td>
+                <td>
+                    <a href="/users/{{ user.id }}/update/">{% trans "Edit" %}</a>
+                    <br>
+                    <a href="/users/{{ user.id }}/delete/">{% trans "Delete" %}</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
+</html>

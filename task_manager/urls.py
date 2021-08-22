@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 from django.views.generic import TemplateView
+from django.contrib.auth.views import LoginView
 from task_manager import views
 
 urlpatterns = [
@@ -25,5 +26,11 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    path('', views.IndexView.as_view()),
+    path('', views.IndexView.as_view(), name='main_page'),
+    path('users/', views.UsersView.as_view(), name='users_list'),
+    path('users/create/', views.CreateUserView.as_view()),
+    path('users/<int:pk>/update/', views.UpdateUserView.as_view()),
+    path('users/<int:pk>/delete/', views.DeleteUserView.as_view(), name='delete_user'),
+    path('login/', views.UserLoginView.as_view(), name='login'),
+    path('logout/', views.UserLogoutView.as_view()),
 )

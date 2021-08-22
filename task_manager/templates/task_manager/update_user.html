@@ -1,0 +1,18 @@
+{% extends "task_manager/base_generic.html" %}
+<!DOCTYPE html>
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="en">
+{% block content %}
+    <h1 class="my-4">{% trans "UpdateUser" %}</h1>
+    {% if user.id == request.user.id %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">{% trans "UpdateUserButton" %}</button>
+        </form>
+    {% else %}
+        <h4 class="my-4">{% trans "NotEnoughRights" %}</h4>
+    {% endif %}
+{% endblock content %}
+</html>
