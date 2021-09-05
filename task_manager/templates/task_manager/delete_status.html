@@ -4,10 +4,10 @@
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="en">
 {% block content %}
-    <h1 class="my-4">{% trans "DeleteUser" %}</h1>
+    <h1 class="my-4">{% trans "DeleteStatus" %}</h1>
     {% if user.id == request.user.id or request.user.is_superuser %}
         <form method="post">{% csrf_token %}
-            <p>{% trans "DeleteConfirmationQuestion" %} "{{ object }}"?</p>
+            <p>{% trans "DeleteConfirmationQuestion" %} "{{ object.name }}"?</p>
             <button type="submit" value="Confirm">{% trans "Delete" %}</button>
         </form>
     {% else %}

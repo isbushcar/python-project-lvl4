@@ -1,0 +1,26 @@
+[
+  {
+    "model": "task_manager.status",
+    "pk": 1,
+    "fields": {
+      "name": "Status 1",
+      "creation_date": "2021-09-05T05:22:39.571Z"
+    }
+  },
+  {
+    "model": "task_manager.status",
+    "pk": 2,
+    "fields": {
+      "name": "Status 2",
+      "creation_date": "2021-09-05T05:22:48.999Z"
+    }
+  },
+  {
+    "model": "task_manager.status",
+    "pk": 3,
+    "fields": {
+      "name": "Status 3",
+      "creation_date": "2021-09-05T05:22:59.627Z"
+    }
+  }
+]

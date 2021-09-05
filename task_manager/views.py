@@ -1,18 +1,16 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView, LogoutView
+from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.template import loader
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 from django.views import generic, View
 
-from django.http import HttpResponse
-from django.contrib.auth import get_user_model
-from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
-from django.contrib import messages
-from django.utils.translation import gettext, gettext_lazy as _
-
-from task_manager.forms import CreateUserForm, DeleteUserForm, UpdateUserForm
+from task_manager.forms import CreateUserForm, UpdateUserForm, CreateStatusForm, UpdateStatusForm
+from task_manager.models import Status
 
 
 class IndexView(View):
@@ -24,6 +22,8 @@ class IndexView(View):
         }
         return HttpResponse(template.render(context, request))
 
+
+# --------------- Users Views ---------------
 
 class UsersView(generic.ListView):
     template_name = 'task_manager/users.html'
@@ -114,3 +114,60 @@ class UserLogoutView(LogoutView):
     def get_next_page(self):
         messages.add_message(self.request, messages.INFO, _('UserLoggedOutMessage'))
         return reverse_lazy('main_page')
+
+
+# --------------- Statuses Views ---------------
+
+class StatusesView(LoginRequiredMixin, generic.ListView):
+    template_name = 'task_manager/statuses.html'
+    context_object_name = 'statuses_list'
+    permission_denied_message = _('NeedToLogInFirst')
+
+    def get_queryset(self):
+        model = Status
+        return model.objects.all()
+
+    def get_login_url(self):
+        messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
+        return reverse_lazy('login')
+
+
+class UpdateStatusView(LoginRequiredMixin, generic.UpdateView):
+    form_class = UpdateStatusForm
+    template_name = 'task_manager/update_status.html'
+    model = Status
+
+    def get_login_url(self):
+        messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
+        return reverse_lazy('login')
+
+    def get_success_url(self):
+        messages.add_message(self.request, messages.INFO, _('StatusUpdatedMessage'))
+        return reverse_lazy('statuses')
+
+
+class CreateStatusView(LoginRequiredMixin, generic.CreateView):
+    form_class = CreateStatusForm
+    template_name = 'task_manager/create_status.html'
+    model = Status
+
+    def get_login_url(self):
+        messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
+        return reverse_lazy('login')
+
+    def get_success_url(self):
+        messages.add_message(self.request, messages.INFO, _('StatusCreatedMessage'))
+        return reverse_lazy('statuses')
+
+
+class DeleteStatusView(LoginRequiredMixin, generic.DeleteView):
+    template_name = 'task_manager/delete_status.html'
+    model = Status
+
+    def get_login_url(self):
+        messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
+        return reverse_lazy('login')
+
+    def get_success_url(self):
+        messages.add_message(self.request, messages.INFO, _('StatusDeletedMessage'))
+        return reverse_lazy('statuses')

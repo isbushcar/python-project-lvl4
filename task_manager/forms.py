@@ -4,6 +4,8 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.utils.translation import gettext, gettext_lazy as _
 
+from task_manager.models import Status
+
 
 class CreateUserForm(UserCreationForm):
     first_name = forms.CharField(label=_("First name"),)
@@ -14,12 +16,6 @@ class CreateUserForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'password1', 'password2')
 
 
-class DeleteUserForm(forms.Form):
-
-    class Meta:
-        model = User
-
-
 class UpdateUserForm(ModelForm):
     first_name = forms.CharField(label=_("First name"),)
     last_name = forms.CharField(label=_("Last name"),)
@@ -28,8 +24,24 @@ class UpdateUserForm(ModelForm):
         model = User
         fields = ('username', 'first_name', 'last_name')
 
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        if commit:
-            user.save()
-        return user
+
+class CreateStatusForm(ModelForm):
+    name = forms.CharField(
+        label=_("StatusName"),
+        error_messages={'unique': _("StatusAlreadyExists")}
+    )
+
+    class Meta:
+        model = Status
+        fields = ('name', )
+
+
+class UpdateStatusForm(ModelForm):
+    name = forms.CharField(
+        label=_("StatusName"),
+        error_messages={'unique': _("StatusAlreadyExists")}
+    )
+
+    class Meta:
+        model = Status
+        fields = ('name', )

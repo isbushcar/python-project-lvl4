@@ -15,10 +15,8 @@ Including another URLconf
 """
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import path
 
-from django.views.generic import TemplateView
-from django.contrib.auth.views import LoginView
 from task_manager import views
 
 urlpatterns = [
@@ -33,4 +31,8 @@ urlpatterns += i18n_patterns(
     path('users/<int:pk>/delete/', views.DeleteUserView.as_view(), name='delete_user'),
     path('login/', views.UserLoginView.as_view(), name='login'),
     path('logout/', views.UserLogoutView.as_view()),
+    path('statuses/', views.StatusesView.as_view(), name='statuses'),
+    path('statuses/create/', views.CreateStatusView.as_view()),
+    path('statuses/<int:pk>/update/', views.UpdateStatusView.as_view()),
+    path('statuses/<int:pk>/delete/', views.DeleteStatusView.as_view()),
 )

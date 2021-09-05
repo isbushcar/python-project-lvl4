@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-05 12:02+1000\n"
+"POT-Creation-Date: 2021-09-05 07:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,13 +20,21 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: task_manager/forms.py:9 task_manager/forms.py:24
+#: task_manager/forms.py:11 task_manager/forms.py:20
 msgid "First name"
 msgstr "Имя"
 
-#: task_manager/forms.py:10 task_manager/forms.py:25
+#: task_manager/forms.py:12 task_manager/forms.py:21
 msgid "Last name"
 msgstr "Фамилия"
+
+#: task_manager/forms.py:30 task_manager/forms.py:41
+msgid "StatusName"
+msgstr "Имя"
+
+#: task_manager/forms.py:31 task_manager/forms.py:42
+msgid "StatusAlreadyExists"
+msgstr "Статус уже существует"
 
 #: task_manager/templates/task_manager/base_generic.html:7
 #: task_manager/templates/task_manager/base_generic.html:23
@@ -38,17 +46,30 @@ msgstr "Менеджер задач"
 msgid "UsersNavBar"
 msgstr "Пользователи"
 
-#: task_manager/templates/task_manager/base_generic.html:36
+#: task_manager/templates/task_manager/base_generic.html:33
+msgid "StatusesNavBar"
+msgstr "Статусы"
+
+#: task_manager/templates/task_manager/base_generic.html:39
 msgid "LogOutNavBar"
 msgstr "Выход"
 
-#: task_manager/templates/task_manager/base_generic.html:42
+#: task_manager/templates/task_manager/base_generic.html:45
 msgid "LogInNavBar"
 msgstr "Вход"
 
-#: task_manager/templates/task_manager/base_generic.html:45
+#: task_manager/templates/task_manager/base_generic.html:48
 msgid "RegisterNavBar"
 msgstr "Регистрация"
+
+#: task_manager/templates/task_manager/create_status.html:7
+msgid "CreateStatus"
+msgstr "Создать статус"
+
+#: task_manager/templates/task_manager/create_status.html:11
+#: task_manager/templates/task_manager/statuses.html:9
+msgid "Create"
+msgstr "Создать статус"
 
 #: task_manager/templates/task_manager/create_user.html:7
 msgid "Registration"
@@ -58,18 +79,33 @@ msgstr "Регистрация"
 msgid "SignUpButton"
 msgstr "Зарегистрироваться"
 
-#: task_manager/templates/task_manager/delete_user.html:7
-msgid "DeleteUser"
-msgstr "Удалить пользователя"
+#: task_manager/templates/task_manager/delete_status.html:7
+msgid "DeleteStatus"
+msgstr "Удалить статус"
 
+#: task_manager/templates/task_manager/delete_status.html:10
+#: task_manager/templates/task_manager/delete_user.html:10
+msgid "DeleteConfirmationQuestion"
+msgstr "Вы уверены, что хотите удалить"
+
+#: task_manager/templates/task_manager/delete_status.html:11
 #: task_manager/templates/task_manager/delete_user.html:11
-msgid "DeleteUserButton"
+#: task_manager/templates/task_manager/statuses.html:27
+#: task_manager/templates/task_manager/users.html:27
+msgid "Delete"
 msgstr "Удалить"
 
+#: task_manager/templates/task_manager/delete_status.html:14
 #: task_manager/templates/task_manager/delete_user.html:14
+#: task_manager/templates/task_manager/statuses.html:34
+#: task_manager/templates/task_manager/update_status.html:15
 #: task_manager/templates/task_manager/update_user.html:15
 msgid "NotEnoughRights"
 msgstr "Извините, у вас недостаточно прав для просмотра этой страницы"
+
+#: task_manager/templates/task_manager/delete_user.html:7
+msgid "DeleteUser"
+msgstr "Удалить пользователя"
 
 #: task_manager/templates/task_manager/login.html:8
 msgid "LoginTitle"
@@ -88,9 +124,35 @@ msgstr "Пожалуйста, проверьте введенные данные
 msgid "LoginButton"
 msgstr "Войти"
 
+#: task_manager/templates/task_manager/statuses.html:7
+msgid "StatusesTitle"
+msgstr "Статусы"
+
+#: task_manager/templates/task_manager/statuses.html:14
+msgid "Name"
+msgstr "Имя"
+
+#: task_manager/templates/task_manager/statuses.html:15
+#: task_manager/templates/task_manager/users.html:14
+msgid "CreationDate"
+msgstr "Дата создания"
+
+#: task_manager/templates/task_manager/statuses.html:25
+#: task_manager/templates/task_manager/users.html:25
+msgid "Edit"
+msgstr "Изменить"
+
+#: task_manager/templates/task_manager/update_status.html:7
+msgid "UpdateStatus"
+msgstr "Изменить статус"
+
+#: task_manager/templates/task_manager/update_status.html:12
+msgid "Update"
+msgstr "Изменить"
+
 #: task_manager/templates/task_manager/update_user.html:7
 msgid "UpdateUser"
-msgstr "Обновить пользователя"
+msgstr "Изменить пользователя"
 
 #: task_manager/templates/task_manager/update_user.html:12
 msgid "UpdateUserButton"
@@ -108,18 +170,6 @@ msgstr "Имя пользователя"
 msgid "FullName"
 msgstr "Полное имя"
 
-#: task_manager/templates/task_manager/users.html:14
-msgid "CreationDate"
-msgstr "Дата создания"
-
-#: task_manager/templates/task_manager/users.html:25
-msgid "Edit"
-msgstr "Изменить"
-
-#: task_manager/templates/task_manager/users.html:27
-msgid "Delete"
-msgstr "Удалить"
-
 #: task_manager/views.py:45
 msgid "UserCreatedMessage"
 msgstr "Пользователь успешно создан"
@@ -129,7 +179,9 @@ msgid "UserUpdatedMessage"
 msgstr "Данные о пользователе успешно обновлены"
 
 #: task_manager/views.py:73 task_manager/views.py:79 task_manager/views.py:94
-#: task_manager/views.py:100
+#: task_manager/views.py:100 task_manager/views.py:124
+#: task_manager/views.py:131 task_manager/views.py:141
+#: task_manager/views.py:155 task_manager/views.py:168
 msgid "NeedToLogInFirst"
 msgstr "Вам нужно сначала войти"
 
@@ -144,3 +196,15 @@ msgstr "Вы вошли"
 #: task_manager/views.py:115
 msgid "UserLoggedOutMessage"
 msgstr "Вы вышли"
+
+#: task_manager/views.py:145
+msgid "StatusUpdatedMessage"
+msgstr "Статус успешно изменен"
+
+#: task_manager/views.py:159
+msgid "StatusCreatedMessage"
+msgstr "Статус успешно создан"
+
+#: task_manager/views.py:172
+msgid "StatusDeletedMessage"
+msgstr "Статус успешно удален"
