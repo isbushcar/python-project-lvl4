@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': os.environ.get('ENGINE', 'django.db.backends.sqlite3'),
-        'NAME': BASE_DIR / os.environ.get('DATABASE_NAME', 'db.sqlite3'),
+        'NAME': os.environ.get('DATABASE_NAME', BASE_DIR /'db.sqlite3'),
         'HOST': os.getenv('PSQL_HOST', ''),
         'USER': os.getenv('PSQL_USER', ''),
         'PASSWORD': os.getenv('PSQL_PASSWORD', ''),
