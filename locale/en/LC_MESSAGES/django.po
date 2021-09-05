@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 07:35+0000\n"
+"POT-Creation-Date: 2021-09-05 12:02+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,24 +27,24 @@ msgid "Last name"
 msgstr "Last name"
 
 #: task_manager/templates/task_manager/base_generic.html:7
-#: task_manager/templates/task_manager/base_generic.html:17
+#: task_manager/templates/task_manager/base_generic.html:23
 #: task_manager/templates/task_manager/index.html:7
 msgid "TaskManagerTitle"
 msgstr "Task Manager"
 
-#: task_manager/templates/task_manager/base_generic.html:24
+#: task_manager/templates/task_manager/base_generic.html:30
 msgid "UsersNavBar"
 msgstr "Users"
 
-#: task_manager/templates/task_manager/base_generic.html:30
+#: task_manager/templates/task_manager/base_generic.html:36
 msgid "LogOutNavBar"
 msgstr "Logout"
 
-#: task_manager/templates/task_manager/base_generic.html:36
+#: task_manager/templates/task_manager/base_generic.html:42
 msgid "LogInNavBar"
 msgstr "Login"
 
-#: task_manager/templates/task_manager/base_generic.html:39
+#: task_manager/templates/task_manager/base_generic.html:45
 msgid "RegisterNavBar"
 msgstr "Registration"
 
@@ -73,7 +73,8 @@ msgstr "Sorry, you don't have access to this page"
 msgid "LoginTitle"
 msgstr "Login"
 
-#: task_manager/templates/task_manager/login.html:11
+#: task_manager/templates/task_manager/login.html:11 task_manager/views.py:50
+#: task_manager/views.py:56
 msgid "AlreadyInMessage"
 msgstr "You are logged in already"
 
@@ -121,18 +122,28 @@ msgstr "Delete"
 msgid "UserCreatedMessage"
 msgstr "User successfully created"
 
-#: task_manager/views.py:55
+#: task_manager/views.py:67
 msgid "UserUpdatedMessage"
 msgstr "User successfully updated"
 
-#: task_manager/views.py:64
+#: task_manager/views.py:73 task_manager/views.py:79 task_manager/views.py:94
+#: task_manager/views.py:100
+msgid "NeedToLogInFirst"
+msgstr ""
+
+#: task_manager/views.py:88
 msgid "UserDeletedMessage"
 msgstr "User successfully deleted"
 
-#: task_manager/views.py:72
+#: task_manager/views.py:108
 msgid "UserLoggedInMessage"
 msgstr "You logged in"
 
-#: task_manager/views.py:79
+#: task_manager/views.py:115
 msgid "UserLoggedOutMessage"
 msgstr "You logged out"
+
+#, fuzzy
+#~| msgid "AlreadyInMessage"
+#~ msgid "AlreadyRegisteredMessage"
+#~ msgstr "You are logged in already"

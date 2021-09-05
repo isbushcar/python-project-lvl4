@@ -45,6 +45,18 @@ class CreateUserView(generic.CreateView):
         messages.add_message(self.request, messages.INFO, _('UserCreatedMessage'))
         return reverse_lazy('login')
 
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            messages.add_message(self.request, messages.INFO, _('AlreadyInMessage'))
+            return redirect(reverse_lazy('users_list'))
+        return super(CreateUserView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            messages.add_message(self.request, messages.INFO, _('AlreadyInMessage'))
+            return redirect(reverse_lazy('users_list'))
+        return super(CreateUserView, self).post(request, *args, **kwargs)
+
 
 class UpdateUserView(generic.UpdateView):
     form_class = UpdateUserForm
@@ -61,10 +73,11 @@ class UpdateUserView(generic.UpdateView):
         messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
         return redirect(reverse_lazy('users_list'))
 
-    # def post(self, request, *args, **kwargs):
-    #     if self.request.user.is_authenticated:
-    #         if self.request.user.id ==
-
+    def post(self, request, *args, **kwargs):
+        if self.request.user.id == self.kwargs['pk'] or self.request.user.is_superuser:
+            return super(UpdateUserView, self).post( request, *args, **kwargs)
+        messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
+        return redirect(reverse_lazy('users_list'))
 
 
 class DeleteUserView(generic.DeleteView):
@@ -78,6 +91,12 @@ class DeleteUserView(generic.DeleteView):
     def get(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
             return super(DeleteUserView, self).get(request, *args, **kwargs)
+        messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
+        return redirect(reverse_lazy('users_list'))
+
+    def post(self, request, *args, **kwargs):
+        if self.request.user.id == self.kwargs['pk'] or self.request.user.is_superuser:
+            return super(DeleteUserView, self).post(request, *args, **kwargs)
         messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
         return redirect(reverse_lazy('users_list'))
 

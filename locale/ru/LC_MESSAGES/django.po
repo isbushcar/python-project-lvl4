@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 07:35+0000\n"
+"POT-Creation-Date: 2021-09-05 12:02+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,24 +29,24 @@ msgid "Last name"
 msgstr "Фамилия"
 
 #: task_manager/templates/task_manager/base_generic.html:7
-#: task_manager/templates/task_manager/base_generic.html:17
+#: task_manager/templates/task_manager/base_generic.html:23
 #: task_manager/templates/task_manager/index.html:7
 msgid "TaskManagerTitle"
 msgstr "Менеджер задач"
 
-#: task_manager/templates/task_manager/base_generic.html:24
+#: task_manager/templates/task_manager/base_generic.html:30
 msgid "UsersNavBar"
 msgstr "Пользователи"
 
-#: task_manager/templates/task_manager/base_generic.html:30
+#: task_manager/templates/task_manager/base_generic.html:36
 msgid "LogOutNavBar"
 msgstr "Выход"
 
-#: task_manager/templates/task_manager/base_generic.html:36
+#: task_manager/templates/task_manager/base_generic.html:42
 msgid "LogInNavBar"
 msgstr "Вход"
 
-#: task_manager/templates/task_manager/base_generic.html:39
+#: task_manager/templates/task_manager/base_generic.html:45
 msgid "RegisterNavBar"
 msgstr "Регистрация"
 
@@ -75,7 +75,8 @@ msgstr "Извините, у вас недостаточно прав для п�
 msgid "LoginTitle"
 msgstr "Войти"
 
-#: task_manager/templates/task_manager/login.html:11
+#: task_manager/templates/task_manager/login.html:11 task_manager/views.py:50
+#: task_manager/views.py:56
 msgid "AlreadyInMessage"
 msgstr "Вы уже вошли"
 
@@ -123,18 +124,23 @@ msgstr "Удалить"
 msgid "UserCreatedMessage"
 msgstr "Пользователь успешно создан"
 
-#: task_manager/views.py:55
+#: task_manager/views.py:67
 msgid "UserUpdatedMessage"
 msgstr "Данные о пользователе успешно обновлены"
 
-#: task_manager/views.py:64
+#: task_manager/views.py:73 task_manager/views.py:79 task_manager/views.py:94
+#: task_manager/views.py:100
+msgid "NeedToLogInFirst"
+msgstr "Вам нужно сначала войти"
+
+#: task_manager/views.py:88
 msgid "UserDeletedMessage"
 msgstr "Пользователь успешно удален"
 
-#: task_manager/views.py:72
+#: task_manager/views.py:108
 msgid "UserLoggedInMessage"
 msgstr "Вы вошли"
 
-#: task_manager/views.py:79
+#: task_manager/views.py:115
 msgid "UserLoggedOutMessage"
 msgstr "Вы вышли"

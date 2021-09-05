@@ -5,7 +5,7 @@
 <html lang="en">
 {% block content %}
     <h1 class="my-4">{% trans "UpdateUser" %}</h1>
-    {% if user.id == request.user.id %}
+    {% if user.id == request.user.id or request.user.is_superuser %}
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
