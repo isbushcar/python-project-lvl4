@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Login to Heroku Container registry
+    - name: Login to Heroku
       env: 
         HEROKU_API_KEY: ${{ secrets.HEROKU_KEY_LVL4_PROJECT }}
-      run: heroku container:login 
+      run: heroku login 
       
 
     - name: Build and push
