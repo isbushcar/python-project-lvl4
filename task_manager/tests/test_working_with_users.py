@@ -1,20 +1,5 @@
-from django.conf import settings
 from django.test import TestCase
-from django.test import Client
-from django.urls import reverse_lazy
 from django.contrib.auth.models import User
-
-
-class TestBasicFunctionality(TestCase):
-
-    def test_language_using_cookie(self):
-        self.client.cookies.load({settings.LANGUAGE_COOKIE_NAME: 'en'})
-        response = self.client.get('/', follow=True)
-        self.assertContains(response, '<title>Task Manager</title>')
-
-        self.client.cookies.load({settings.LANGUAGE_COOKIE_NAME: 'ru'})
-        response = self.client.get('/', follow=True)
-        self.assertContains(response, '<title>Менеджер задач</title>')
 
 
 class TestSignUpForm(TestCase):
@@ -231,4 +216,3 @@ class TestDeletingUsers(TestCase):
         self.assertEqual(User.objects.all().count(), 4)
         self.client.post('/ru/users/2/delete/')
         self.assertEqual(User.objects.all().count(), 4)
-
