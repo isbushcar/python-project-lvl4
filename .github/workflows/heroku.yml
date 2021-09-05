@@ -13,7 +13,11 @@ jobs:
       env: 
         HEROKU_API_KEY: ${{ secrets.HEROKU_KEY_LVL4_PROJECT }}
       run: heroku container:login 
+      
+
     - name: Build and push
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_KEY_LVL4_PROJECT }}
-      run: git push heroku main
+      run: |
+        heroku git:remote -a ${{ secrets.HEROKU_APP_NAME_LVL4_PROJECT }}
+        git push heroku main
