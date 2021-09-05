@@ -1,4 +1,4 @@
-name: HerokuDeployment
+name: heroku-deployment
 
 on:
   push:
@@ -16,8 +16,4 @@ jobs:
     - name: Build and push
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_KEY_LVL4_PROJECT }}
-      run: heroku container:push -a ${{ secrets.HEROKU_APP_NAME_LVL4_PROJECT }} web 
-    - name: Release
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_KEY_LVL4_PROJECT }}
-      run: heroku container:release -a ${{ secrets.HEROKU_APP_NAME }} web 
+      run: heroku push main
