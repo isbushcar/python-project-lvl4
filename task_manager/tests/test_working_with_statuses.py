@@ -5,6 +5,20 @@ LOGIN_SANSA = ('/ru/login/', {"username": "SansaStark", "password": "aaa12345"})
 CREATE_STATUS = ('/ru/statuses/create/', {"name": "Any_name"})
 
 
+class TestViewingStatus(TestCase):
+    fixtures = ['task_manager/tests/fixtures/users.json']
+
+    def test_viewing_without_being_authorized(self):
+        response = self.client.get('/ru/statuses/', follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Вам нужно сначала войти')
+
+    def test_viewing(self):
+        self.client.post(*LOGIN_SANSA)
+        response = self.client.get('/ru/statuses/')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Создать статус')
+
 class TestAddingStatus(TestCase):
     fixtures = ['task_manager/tests/fixtures/users.json']
 
