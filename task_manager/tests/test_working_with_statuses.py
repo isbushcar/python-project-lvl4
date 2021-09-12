@@ -62,7 +62,7 @@ class TestEditingStatuses(TestCase):
     fixtures = ['task_manager/tests/fixtures/statuses.json', 'task_manager/tests/fixtures/users.json']
 
     def test_changing_status_without_being_authorized(self):
-        response = self.client.post('/ru/statuses/1/update/', {"name": "new_name"}, follow=True)
+        response = self.client.post(reverse('update_status', args=[1]), {"name": "new_name"}, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Вам нужно сначала войти')
         self.assertEqual(Status.objects.filter(id=1)[0].name, 'Status 1')
