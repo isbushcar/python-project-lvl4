@@ -29,8 +29,9 @@ class TestAddingTask(TestCase):
     task = {
         'name': 'task1',
         'description': '',
-        'status': Status.objects.first(),
-        'executor': User.objects.last(),
+        'status': "1",
+        'executor': "1",
+        'author': "1",
     }
     target_url = reverse_lazy('create_task')
 
@@ -47,6 +48,7 @@ class TestAddingTask(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Task.objects.all().count(), 1)
 
+
         response = self.client.post(self.target_url, self.task)  # same task
         self.assertEqual(response.status_code, 200)
         self.assertFormError(response, 'form', 'name', ['Задача уже существует'])
@@ -60,17 +62,15 @@ class TestAddingTask(TestCase):
         self.assertEqual(Task.objects.all().count(), 1)
 
         task_that_has_no_status = self.task.copy()
-        task_that_has_no_name.update({'status': ''})
+        task_that_has_no_status.update({'status': ''})
         response = self.client.post(self.target_url, task_that_has_no_status)
         self.assertEqual(response.status_code, 200)
-        self.assertFormError(response, 'form', 'status', ['Обязательное поле.'])
         self.assertEqual(Task.objects.all().count(), 1)
 
         task_that_has_no_executor = self.task.copy()
-        task_that_has_no_name.update({'executor': ''})
+        task_that_has_no_executor.update({'executor': ''})
         response = self.client.post(self.target_url, task_that_has_no_executor)
         self.assertEqual(response.status_code, 200)
-        self.assertFormError(response, 'form', 'executor', ['Обязательное поле.'])
         self.assertEqual(Task.objects.all().count(), 1)
 
         new_task = self.task.copy()
@@ -79,7 +79,63 @@ class TestAddingTask(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Task.objects.all().count(), 2)
 
-        response = self.client.get(reverse('create_status'))
+        response = self.client.get(reverse('create_task'))
         self.assertTemplateUsed(response, 'task_manager/tasks/create_task.html')
 
+class TestEditingStatuses(TestCase):
+    fixtures = [
+        'task_manager/tests/fixtures/statuses.json',
+        'task_manager/tests/fixtures/users.json',
+        'task_manager/tests/fixtures/tasks.json',
+    ]
+    task = {
+        'name': 'new_name',
+        'description': 'Awesome task!',
+        'status': "2",
+        'executor': "3",
+    }
 
+    def test_changing_task_without_being_authorized(self):
+        response = self.client.post(reverse('update_task', args=[1]), self.task, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Вам нужно сначала войти')
+        self.assertEqual(Task.objects.filter(id=1)[0].name, 'Task 1')
+
+    def test_changing_task(self):
+        self.client.post(*LOGIN_SANSA)
+
+        response = self.client.post(reverse('update_task', args=[1]), self.task)
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(Task.objects.filter(id=1)[0].name, 'new_name')
+        self.assertEqual(Task.objects.filter(id=1)[0].description, 'Awesome task!')
+        self.assertEqual(Task.objects.filter(id=1)[0].status, Status.objects.filter(pk=2)[0])
+        self.assertEqual(Task.objects.filter(id=1)[0].executor, User.objects.filter(pk=3)[0])
+
+        response = self.client.get(reverse('update_task', args=[1]))
+        self.assertTemplateUsed(response, 'task_manager/tasks/update_task.html')
+
+    class TestDeletingStatuses(TestCase):
+        fixtures = ['task_manager/tests/fixtures/users.json', 'task_manager/tests/fixtures/tasks.json']
+
+        def test_deleting_without_being_authorized(self):
+            response = self.client.post(reverse('delete_task', args=[1]), follow=True)
+            self.assertEqual(response.status_code, 200)
+            self.assertContains(response, 'Вам нужно сначала войти')
+            self.assertEqual(Task.objects.all().count(), 3)
+
+        def test_deleting(self):
+            self.client.post(*LOGIN_SANSA)
+            self.assertEqual(Task.objects.all().count(), 3)
+            response = self.client.post(reverse('delete_task', args=[2]))
+            self.assertEqual(response.status_code, 302)
+            self.assertEqual(Task.objects.all().count(), 2)
+
+            response = self.client.get(reverse('delete_task', args=[2]))
+            self.assertTemplateUsed(response, 'task_manager/tasks/delete_task.html')
+
+        def test_deleting_task_that_belongs_to_someone_else(self):
+            self.client.post(*LOGIN_SANSA)
+            self.assertEqual(Task.objects.all().count(), 3)
+            response = self.client.post(reverse('delete_task', args=[1]))
+            self.assertEqual(response.status_code, 302)
+            self.assertEqual(Task.objects.all().count(), 3)

@@ -6,7 +6,7 @@
       "name": "Task 1",
       "description": "",
       "status": 3,
-      "author": 1,
+      "author": 2,
       "executor": 2,
       "creation_date": "2021-09-12T02:28:19.082Z"
     }
@@ -18,7 +18,7 @@
       "name": "Task 2",
       "description": "",
       "status": 1,
-      "author": 3,
+      "author": 1,
       "executor": 1,
       "creation_date": "2021-09-12T04:14:22.579Z"
     }
