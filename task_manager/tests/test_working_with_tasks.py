@@ -1,8 +1,9 @@
-from django.test import TestCase
-from task_manager.models import Status, Task
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
+from django.test import TestCase
 from django.urls import reverse_lazy
+
+from task_manager.models import Status, Task
 
 LOGIN_SANSA = (reverse_lazy('login'), {"username": "SansaStark", "password": "aaa12345"})
 
@@ -47,7 +48,6 @@ class TestAddingTask(TestCase):
         response = self.client.post(self.target_url, self.task)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Task.objects.all().count(), 1)
-
 
         response = self.client.post(self.target_url, self.task)  # same task
         self.assertEqual(response.status_code, 200)
