@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-12 14:19+1000\n"
+"POT-Creation-Date: 2021-09-12 20:20+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,7 +128,6 @@ msgid "LoginButton"
 msgstr "Войти"
 
 #: task_manager/templates/task_manager/statuses/create_status.html:7
-#: task_manager/templates/task_manager/tasks/create_task.html:7
 msgid "CreateStatus"
 msgstr "Создать статус"
 
@@ -183,6 +182,10 @@ msgstr "Изменить статус"
 #: task_manager/templates/task_manager/statuses/update_status.html:11
 msgid "Update"
 msgstr "Изменить"
+
+#: task_manager/templates/task_manager/tasks/create_task.html:7
+msgid "CreateTask"
+msgstr "Создать задачу"
 
 #: task_manager/templates/task_manager/tasks/delete_task.html:7
 msgid "DeleteTask"
