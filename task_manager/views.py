@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -9,8 +9,9 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views import generic, View
 
-from task_manager.forms import CreateUserForm, UpdateUserForm, CreateStatusForm, UpdateStatusForm
-from task_manager.models import Status
+from task_manager.forms import CreateUserForm, UpdateUserForm, CreateStatusForm, CreateTaskForm, UpdateTaskForm
+from task_manager.models import Status, Task
+from task_manager.custom_helper_classes import UserIsOwnerOrAdmin
 
 
 class IndexView(View):
@@ -26,7 +27,7 @@ class IndexView(View):
 # --------------- Users Views ---------------
 
 class UsersView(generic.ListView):
-    template_name = 'task_manager/users.html'
+    template_name = 'task_manager/users/users.html'
     context_object_name = 'users_list'
 
     def get_queryset(self):
@@ -39,7 +40,7 @@ class UsersView(generic.ListView):
 
 class CreateUserView(generic.CreateView):
     form_class = CreateUserForm
-    template_name = 'task_manager/create_user.html'
+    template_name = 'task_manager/users/create_user.html'
 
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, _('UserCreatedMessage'))
@@ -58,47 +59,27 @@ class CreateUserView(generic.CreateView):
         return super(CreateUserView, self).post(request, *args, **kwargs)
 
 
-class UpdateUserView(generic.UpdateView):
+class UpdateUserView(UserIsOwnerOrAdmin, generic.UpdateView):
     form_class = UpdateUserForm
-    template_name = 'task_manager/update_user.html'
+    template_name = 'task_manager/users/update_user.html'
     model = get_user_model()
+    no_access_message = _('YouCantUpdateOtherUsers')
+    no_access_redirect_url = reverse_lazy('users_list')
 
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, _('UserUpdatedMessage'))
         return reverse_lazy('users_list')
 
-    def get(self, request, *args, **kwargs):
-        if self.request.user.is_authenticated:
-            return super(UpdateUserView, self).get(request, *args, **kwargs)
-        messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
-        return redirect(reverse_lazy('users_list'))
 
-    def post(self, request, *args, **kwargs):
-        if self.request.user.id == self.kwargs['pk'] or self.request.user.is_superuser:
-            return super(UpdateUserView, self).post( request, *args, **kwargs)
-        messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
-        return redirect(reverse_lazy('users_list'))
-
-
-class DeleteUserView(generic.DeleteView):
-    template_name = 'task_manager/delete_user.html'
+class DeleteUserView(UserIsOwnerOrAdmin, generic.DeleteView):
+    template_name = 'task_manager/users/delete_user.html'
     model = get_user_model()
+    no_access_message = _('YouCantDeleteOtherUsers')
+    no_access_redirect_url = reverse_lazy('users_list')
 
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, _('UserDeletedMessage'))
         return reverse_lazy('users_list')
-
-    def get(self, request, *args, **kwargs):
-        if self.request.user.is_authenticated:
-            return super(DeleteUserView, self).get(request, *args, **kwargs)
-        messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
-        return redirect(reverse_lazy('users_list'))
-
-    def post(self, request, *args, **kwargs):
-        if self.request.user.id == self.kwargs['pk'] or self.request.user.is_superuser:
-            return super(DeleteUserView, self).post(request, *args, **kwargs)
-        messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
-        return redirect(reverse_lazy('users_list'))
 
 
 class UserLoginView(LoginView):
@@ -119,7 +100,7 @@ class UserLogoutView(LogoutView):
 # --------------- Statuses Views ---------------
 
 class StatusesView(LoginRequiredMixin, generic.ListView):
-    template_name = 'task_manager/statuses.html'
+    template_name = 'task_manager/statuses/statuses.html'
     context_object_name = 'statuses_list'
     permission_denied_message = _('NeedToLogInFirst')
 
@@ -133,8 +114,8 @@ class StatusesView(LoginRequiredMixin, generic.ListView):
 
 
 class UpdateStatusView(LoginRequiredMixin, generic.UpdateView):
-    form_class = UpdateStatusForm
-    template_name = 'task_manager/update_status.html'
+    form_class = CreateStatusForm
+    template_name = 'task_manager/statuses/update_status.html'
     model = Status
 
     def get_login_url(self):
@@ -148,7 +129,7 @@ class UpdateStatusView(LoginRequiredMixin, generic.UpdateView):
 
 class CreateStatusView(LoginRequiredMixin, generic.CreateView):
     form_class = CreateStatusForm
-    template_name = 'task_manager/create_status.html'
+    template_name = 'task_manager/statuses/create_status.html'
     model = Status
 
     def get_login_url(self):
@@ -161,7 +142,7 @@ class CreateStatusView(LoginRequiredMixin, generic.CreateView):
 
 
 class DeleteStatusView(LoginRequiredMixin, generic.DeleteView):
-    template_name = 'task_manager/delete_status.html'
+    template_name = 'task_manager/statuses/delete_status.html'
     model = Status
 
     def get_login_url(self):
@@ -171,3 +152,82 @@ class DeleteStatusView(LoginRequiredMixin, generic.DeleteView):
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, _('StatusDeletedMessage'))
         return reverse_lazy('statuses')
+
+
+# --------------- Tasks Views ---------------
+
+class TasksView(LoginRequiredMixin, generic.ListView):
+    template_name = 'task_manager/tasks/tasks.html'
+    context_object_name = 'tasks_list'
+    permission_denied_message = _('NeedToLogInFirst')
+
+    def get_queryset(self):
+        model = Task
+        return model.objects.all()
+
+    def get_login_url(self):
+        messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
+        return reverse_lazy('login')
+
+
+class UpdateTaskView(LoginRequiredMixin, generic.UpdateView):
+    form_class = UpdateTaskForm
+    template_name = 'task_manager/tasks/update_task.html'
+    model = Task
+
+    def get_login_url(self):
+        messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
+        return reverse_lazy('login')
+
+    def get_success_url(self):
+        messages.add_message(self.request, messages.INFO, _('TaskUpdatedMessage'))
+        return reverse_lazy('tasks')
+
+
+class CreateTaskView(LoginRequiredMixin, generic.CreateView):
+    form_class = CreateTaskForm
+    template_name = 'task_manager/tasks/create_task.html'
+    model = Task
+
+    def get_login_url(self):
+        messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
+        return reverse_lazy('login')
+
+    def get_success_url(self):
+        messages.add_message(self.request, messages.INFO, _('TaskCreatedMessage'))
+        return reverse_lazy('tasks')
+
+    def get_form_kwargs(self):
+        kwargs = super(CreateTaskView, self).get_form_kwargs()
+        kwargs['current_user'] = self.request.user
+        return kwargs
+
+
+class DeleteTaskView(LoginRequiredMixin, UserIsOwnerOrAdmin, generic.DeleteView):
+    template_name = 'task_manager/tasks/delete_task.html'
+    model = Task
+    no_access_message = _('TaskCanOnlyBeDeletedByItsOwner')
+    no_access_redirect_url = reverse_lazy('tasks')
+
+    def get_login_url(self):
+        messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
+        return reverse_lazy('login')
+
+    def get_success_url(self):
+        messages.add_message(self.request, messages.INFO, _('TaskDeletedMessage'))
+        return reverse_lazy('tasks')
+
+
+class DetailTaskView(generic.DetailView):
+    template_name = 'task_manager/tasks/task_detail.html'
+    context_object_name = 'task'
+    permission_denied_message = _('NeedToLogInFirst')
+
+    def get_queryset(self):
+        model = Task
+        return model.objects.filter(pk=self.kwargs['pk'])
+
+    def get_login_url(self):
+        messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
+        return reverse_lazy('login')
+

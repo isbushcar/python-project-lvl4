@@ -1,0 +1,29 @@
+{% extends "task_manager/base_generic.html" %}
+<!DOCTYPE html>
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="en">
+{% block content %}
+    <h1 class="my-4">{% trans "TaskDetail" %}</h1>
+    <h6>ID</h6>
+    <span>{{ task.id }}</span>
+    <h6 class="mt-2">{% trans "Name" %}</h6>
+    <span>{{ task.name }}</span>
+    <h6 class="mt-2">{% trans "Description" %}</h6>
+    <span>
+    {% if task.description %}
+        {{ task.description }}
+    {% else %}
+        {% trans "Absent" %}
+    {% endif %}
+    </span>
+    <h6 class="mt-2">{% trans "Status" %}</h6>
+    <span>{{ task.status }}</span>
+    <h6 class="mt-2">{% trans "Author" %}</h6>
+    <span>{{ task.author }}</span>
+    <h6 class="mt-2">{% trans "Executor" %}</h6>
+    <span>{{ task.executor }}</span>
+    <h6 class="mt-2">{% trans "CreationDate" %}</h6>
+    <span>{{ task.creation_date }}</span>
+{% endblock content %}
+</html>

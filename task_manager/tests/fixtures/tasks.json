@@ -1,0 +1,38 @@
+[
+  {
+    "model": "task_manager.task",
+    "pk": 1,
+    "fields": {
+      "name": "Task 1",
+      "description": "",
+      "status": 3,
+      "author": 1,
+      "executor": 2,
+      "creation_date": "2021-09-12T02:28:19.082Z"
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 2,
+    "fields": {
+      "name": "Task 2",
+      "description": "",
+      "status": 1,
+      "author": 3,
+      "executor": 1,
+      "creation_date": "2021-09-12T04:14:22.579Z"
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 3,
+    "fields": {
+      "name": "Task 3",
+      "description": "",
+      "status": 3,
+      "author": 3,
+      "executor": 1,
+      "creation_date": "2021-09-12T04:15:22.858Z"
+    }
+  }
+]

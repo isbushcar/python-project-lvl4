@@ -27,25 +27,31 @@
     <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/users/">{% trans "UsersNavBar" %}</a>
+                <a class="nav-link" href={% url 'users_list' %}>{% trans "Users" %}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/statuses/">{% trans "StatusesNavBar" %}</a>
+                <a class="nav-link" href={% url 'statuses' %}>{% trans "Statuses" %}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href={% url 'tasks' %}>{% trans "Tasks" %}</a>
             </li>
         </ul>
         {% if user.is_authenticated %}
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout/">{% trans "LogOutNavBar" %}</a>
+                    <span class="navbar-text mr-2"><b>{{ user.get_username }}</b></span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href={% url 'logout' %}>{% trans "LogOutNavBar" %}</a>
                 </li>
             </ul>
         {% else %}
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/login/">{% trans "LogInNavBar" %}</a>
+                    <a class="nav-link" href={% url 'login' %}>{% trans "LogInNavBar" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/users/create/">{% trans "RegisterNavBar" %}</a>
+                    <a class="nav-link" href={% url 'create_user' %}>{% trans "RegisterNavBar" %}</a>
                 </li>
             </ul>
         {% endif %}
