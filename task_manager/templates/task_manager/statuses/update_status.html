@@ -5,14 +5,10 @@
 <html lang="en">
 {% block content %}
     <h1 class="my-4">{% trans "UpdateStatus" %}</h1>
-    {% if user.id == request.user.id or request.user.is_superuser %}
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">{% trans "Update" %}</button>
-        </form>
-    {% else %}
-        <h4 class="my-4">{% trans "NotEnoughRights" %}</h4>
-    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% trans "Update" %}</button>
+    </form>
 {% endblock content %}
 </html>

@@ -5,13 +5,9 @@
 <html lang="en">
 {% block content %}
     <h1 class="my-4">{% trans "DeleteUser" %}</h1>
-    {% if user.id == request.user.id or request.user.is_superuser %}
-        <form method="post">{% csrf_token %}
-            <p>{% trans "DeleteConfirmationQuestion" %} "{{ object }}"?</p>
-            <button type="submit" value="Confirm">{% trans "Delete" %}</button>
-        </form>
-    {% else %}
-        <h4 class="my-4">{% trans "NotEnoughRights" %}</h4>
-    {% endif %}
+    <form method="post">{% csrf_token %}
+        <p>{% trans "DeleteConfirmationQuestion" %} "{{ object }}"?</p>
+        <button type="submit" value="Confirm">{% trans "Delete" %}</button>
+    </form>
 {% endblock content %}
 </html>
