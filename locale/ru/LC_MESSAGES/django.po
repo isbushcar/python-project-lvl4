@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-12 20:20+1000\n"
+"POT-Creation-Date: 2021-09-13 20:12+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,6 @@ msgstr "Фамилия"
 #: task_manager/forms.py:30 task_manager/forms.py:41
 #: task_manager/templates/task_manager/statuses/statuses.html:13
 #: task_manager/templates/task_manager/tasks/create_task.html:13
-#: task_manager/templates/task_manager/tasks/task_detail.html:10
 #: task_manager/templates/task_manager/tasks/tasks.html:13
 #: task_manager/templates/task_manager/tasks/update_task.html:13
 msgid "Name"
@@ -51,14 +50,13 @@ msgstr "Задача уже существует"
 
 #: task_manager/forms.py:47
 #: task_manager/templates/task_manager/tasks/create_task.html:18
-#: task_manager/templates/task_manager/tasks/task_detail.html:12
 #: task_manager/templates/task_manager/tasks/update_task.html:18
 msgid "Description"
 msgstr "Описание"
 
 #: task_manager/forms.py:53
 #: task_manager/templates/task_manager/tasks/create_task.html:23
-#: task_manager/templates/task_manager/tasks/task_detail.html:20
+#: task_manager/templates/task_manager/tasks/task_detail.html:40
 #: task_manager/templates/task_manager/tasks/tasks.html:14
 #: task_manager/templates/task_manager/tasks/update_task.html:23
 msgid "Status"
@@ -70,7 +68,7 @@ msgstr "Выберите статус"
 
 #: task_manager/forms.py:60
 #: task_manager/templates/task_manager/tasks/create_task.html:28
-#: task_manager/templates/task_manager/tasks/task_detail.html:24
+#: task_manager/templates/task_manager/tasks/task_detail.html:36
 #: task_manager/templates/task_manager/tasks/tasks.html:16
 #: task_manager/templates/task_manager/tasks/update_task.html:28
 msgid "Executor"
@@ -152,6 +150,7 @@ msgstr "Вы уверены, что хотите удалить"
 #: task_manager/templates/task_manager/statuses/delete_status.html:10
 #: task_manager/templates/task_manager/statuses/statuses.html:26
 #: task_manager/templates/task_manager/tasks/delete_task.html:10
+#: task_manager/templates/task_manager/tasks/task_detail.html:17
 #: task_manager/templates/task_manager/tasks/tasks.html:34
 #: task_manager/templates/task_manager/users/delete_user.html:10
 #: task_manager/templates/task_manager/users/users.html:27
@@ -163,13 +162,14 @@ msgid "StatusesTitle"
 msgstr "Статусы"
 
 #: task_manager/templates/task_manager/statuses/statuses.html:14
-#: task_manager/templates/task_manager/tasks/task_detail.html:26
+#: task_manager/templates/task_manager/tasks/task_detail.html:44
 #: task_manager/templates/task_manager/tasks/tasks.html:17
 #: task_manager/templates/task_manager/users/users.html:14
 msgid "CreationDate"
 msgstr "Дата создания"
 
 #: task_manager/templates/task_manager/statuses/statuses.html:24
+#: task_manager/templates/task_manager/tasks/task_detail.html:15
 #: task_manager/templates/task_manager/tasks/tasks.html:32
 #: task_manager/templates/task_manager/users/users.html:25
 msgid "Edit"
@@ -195,11 +195,11 @@ msgstr "Удалить задачу"
 msgid "TaskDetail"
 msgstr "Подробнее о задаче"
 
-#: task_manager/templates/task_manager/tasks/task_detail.html:17
-msgid "Absent"
-msgstr "Отсутствует"
+#: task_manager/templates/task_manager/tasks/task_detail.html:26
+msgid "DescriptionIsAbsent"
+msgstr "Описание отсутствует"
 
-#: task_manager/templates/task_manager/tasks/task_detail.html:22
+#: task_manager/templates/task_manager/tasks/task_detail.html:32
 #: task_manager/templates/task_manager/tasks/tasks.html:15
 msgid "Author"
 msgstr "Автор"
@@ -312,6 +312,3 @@ msgstr "Задача может быть удалена только её соз
 #: task_manager/views.py:217
 msgid "TaskDeletedMessage"
 msgstr "Задача успешно удалена"
-
-#~ msgid "NotEnoughRights"
-#~ msgstr "Извините, у вас недостаточно прав для просмотра этой страницы"

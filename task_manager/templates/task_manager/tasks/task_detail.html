@@ -5,25 +5,59 @@
 <html lang="en">
 {% block content %}
     <h1 class="my-4">{% trans "TaskDetail" %}</h1>
-    <h6>ID</h6>
-    <span>{{ task.id }}</span>
-    <h6 class="mt-2">{% trans "Name" %}</h6>
-    <span>{{ task.name }}</span>
-    <h6 class="mt-2">{% trans "Description" %}</h6>
-    <span>
-    {% if task.description %}
-        {{ task.description }}
-    {% else %}
-        {% trans "Absent" %}
-    {% endif %}
-    </span>
-    <h6 class="mt-2">{% trans "Status" %}</h6>
-    <span>{{ task.status }}</span>
-    <h6 class="mt-2">{% trans "Author" %}</h6>
-    <span>{{ task.author }}</span>
-    <h6 class="mt-2">{% trans "Executor" %}</h6>
-    <span>{{ task.executor }}</span>
-    <h6 class="mt-2">{% trans "CreationDate" %}</h6>
-    <span>{{ task.creation_date }}</span>
+    <div class="card text-white bg-dark border border-white">
+        <div class="card-header border border-white">
+            <div class="row p-1">
+                <div class="col">
+                    <h2>{{ task.name }}</h2>
+                </div>
+                <div class="col">
+                    <a class="float-right" href={% url 'update_task' task.id %}>{% trans "Edit" %}</a>
+                    <br>
+                    <a class="float-right" href={% url 'delete_task' task.id %}>{% trans "Delete" %}</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body border border-white">
+            <p>
+                {% if task.description %}
+                    {{ task.description }}
+                {% else %}
+                    {% trans "DescriptionIsAbsent" %}
+                {% endif %}
+            </p>
+            <hr class="border border-white">
+            <div class="container">
+                <div class="row p-1">
+                    <div class="col">{% trans "Author" %}</div>
+                    <div class="col">{{ task.author }}</div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">{% trans "Executor" %}</div>
+                    <div class="col">{{ task.executor }}</div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">{% trans "Status" %}</div>
+                    <div class="col">{{ task.status }}</div>
+                </div>
+                <div class="row p-1">
+                    <div class="col">{% trans "CreationDate" %}</div>
+                    <div class="col">{{ task.creation_date }}</div>
+                </div>
+                {#            <div class="row p-1">#}
+                {#        <div class="col">#}
+                {#          <h6>Метки:</h6>#}
+                {#          <ul>#}
+                {#            #}
+                {#              <li>рекламирование</li>#}
+                {#            #}
+                {#              <li>тестирование</li>#}
+                {#            #}
+                {#          </ul>#}
+                {#        </div>#}
+                {#      </div>#}
+            </div>
+        </div>
+    </div>
 {% endblock content %}
 </html>
