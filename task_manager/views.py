@@ -5,14 +5,14 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.template import loader
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views import generic, View
 
 from task_manager.forms import CreateUserForm, UpdateUserForm, CreateStatusForm, CreateTaskForm, UpdateTaskForm
 from task_manager.models import Status, Task
 from task_manager.custom_helper_classes import UserIsOwnerOrAdmin
-
+from django.db.models import ProtectedError
 
 class IndexView(View):
 
@@ -44,18 +44,18 @@ class CreateUserView(generic.CreateView):
 
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, _('UserCreatedMessage'))
-        return reverse_lazy('login')
+        return reverse('login')
 
     def get(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
             messages.add_message(self.request, messages.INFO, _('AlreadyInMessage'))
-            return redirect(reverse_lazy('users_list'))
+            return redirect(reverse('users_list'))
         return super(CreateUserView, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
             messages.add_message(self.request, messages.INFO, _('AlreadyInMessage'))
-            return redirect(reverse_lazy('users_list'))
+            return redirect(reverse('users_list'))
         return super(CreateUserView, self).post(request, *args, **kwargs)
 
 
@@ -68,7 +68,7 @@ class UpdateUserView(UserIsOwnerOrAdmin, generic.UpdateView):
 
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, _('UserUpdatedMessage'))
-        return reverse_lazy('users_list')
+        return reverse('users_list')
 
 
 class DeleteUserView(UserIsOwnerOrAdmin, generic.DeleteView):
@@ -79,7 +79,7 @@ class DeleteUserView(UserIsOwnerOrAdmin, generic.DeleteView):
 
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, _('UserDeletedMessage'))
-        return reverse_lazy('users_list')
+        return reverse('users_list')
 
 
 class UserLoginView(LoginView):
@@ -87,14 +87,14 @@ class UserLoginView(LoginView):
 
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, _('UserLoggedInMessage'))
-        return reverse_lazy('users_list')
+        return reverse('users_list')
 
 
 class UserLogoutView(LogoutView):
 
     def get_next_page(self):
         messages.add_message(self.request, messages.INFO, _('UserLoggedOutMessage'))
-        return reverse_lazy('main_page')
+        return reverse('main_page')
 
 
 # --------------- Statuses Views ---------------
@@ -110,7 +110,7 @@ class StatusesView(LoginRequiredMixin, generic.ListView):
 
     def get_login_url(self):
         messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
-        return reverse_lazy('login')
+        return reverse('login')
 
 
 class UpdateStatusView(LoginRequiredMixin, generic.UpdateView):
@@ -120,11 +120,11 @@ class UpdateStatusView(LoginRequiredMixin, generic.UpdateView):
 
     def get_login_url(self):
         messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
-        return reverse_lazy('login')
+        return reverse('login')
 
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, _('StatusUpdatedMessage'))
-        return reverse_lazy('statuses')
+        return reverse('statuses')
 
 
 class CreateStatusView(LoginRequiredMixin, generic.CreateView):
@@ -134,11 +134,11 @@ class CreateStatusView(LoginRequiredMixin, generic.CreateView):
 
     def get_login_url(self):
         messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
-        return reverse_lazy('login')
+        return reverse('login')
 
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, _('StatusCreatedMessage'))
-        return reverse_lazy('statuses')
+        return reverse('statuses')
 
 
 class DeleteStatusView(LoginRequiredMixin, generic.DeleteView):
@@ -147,11 +147,11 @@ class DeleteStatusView(LoginRequiredMixin, generic.DeleteView):
 
     def get_login_url(self):
         messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
-        return reverse_lazy('login')
+        return reverse('login')
 
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, _('StatusDeletedMessage'))
-        return reverse_lazy('statuses')
+        return reverse('statuses')
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -176,7 +176,7 @@ class TasksView(LoginRequiredMixin, generic.ListView):
 
     def get_login_url(self):
         messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
-        return reverse_lazy('login')
+        return reverse('login')
 
 
 class UpdateTaskView(LoginRequiredMixin, generic.UpdateView):
@@ -186,11 +186,11 @@ class UpdateTaskView(LoginRequiredMixin, generic.UpdateView):
 
     def get_login_url(self):
         messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
-        return reverse_lazy('login')
+        return reverse('login')
 
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, _('TaskUpdatedMessage'))
-        return reverse_lazy('tasks')
+        return reverse('tasks')
 
 
 class CreateTaskView(LoginRequiredMixin, generic.CreateView):
@@ -200,11 +200,11 @@ class CreateTaskView(LoginRequiredMixin, generic.CreateView):
 
     def get_login_url(self):
         messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
-        return reverse_lazy('login')
+        return reverse('login')
 
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, _('TaskCreatedMessage'))
-        return reverse_lazy('tasks')
+        return reverse('tasks')
 
     def get_form_kwargs(self):
         kwargs = super(CreateTaskView, self).get_form_kwargs()
@@ -220,11 +220,11 @@ class DeleteTaskView(LoginRequiredMixin, UserIsOwnerOrAdmin, generic.DeleteView)
 
     def get_login_url(self):
         messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
-        return reverse_lazy('login')
+        return reverse('login')
 
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, _('TaskDeletedMessage'))
-        return reverse_lazy('tasks')
+        return reverse('tasks')
 
 
 class DetailTaskView(generic.DetailView):
@@ -238,5 +238,5 @@ class DetailTaskView(generic.DetailView):
 
     def get_login_url(self):
         messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
-        return reverse_lazy('login')
+        return reverse('login')
 
