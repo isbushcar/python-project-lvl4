@@ -79,6 +79,12 @@ class TestAddingTask(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Task.objects.all().count(), 2)
 
+        task_with_wrong_author = self.task.copy()
+        new_task.update({'name': 'another_unused_name', 'author': '2'})
+        response = self.client.post(self.target_url, task_with_wrong_author)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(Task.objects.all().count(), 2)
+
         response = self.client.get(reverse('create_task'))
         self.assertTemplateUsed(response, 'task_manager/tasks/create_task.html')
 
