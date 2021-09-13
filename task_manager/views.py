@@ -153,6 +153,15 @@ class DeleteStatusView(LoginRequiredMixin, generic.DeleteView):
         messages.add_message(self.request, messages.INFO, _('StatusDeletedMessage'))
         return reverse_lazy('statuses')
 
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        try:
+            self.object.delete()
+        except ProtectedError:
+            messages.add_message(self.request, messages.INFO, _('YouCantDeleteStatusThatIsUsedInTask'))
+            return redirect(reverse('statuses'))
+        success_url = self.get_success_url()
+        return redirect(success_url)
 
 # --------------- Tasks Views ---------------
 
