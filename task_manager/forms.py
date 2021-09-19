@@ -1,10 +1,10 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.forms import ModelForm
 from django.contrib.auth.models import User
-from django.utils.translation import gettext, gettext_lazy as _
+from django.forms import ModelForm
+from django.utils.translation import gettext_lazy as _
 
-from task_manager.models import Status, Task
+from task_manager.models import Label, Status, Task
 
 
 class CreateUserForm(UserCreationForm):
@@ -62,10 +62,16 @@ class CreateTaskForm(ModelForm):
         required=True,
         empty_label=_("ChooseExecutor"),
     )
+    labels = forms.ModelMultipleChoiceField(
+        queryset=Label.objects.all(),
+        label=_("Labels"),
+        widget=forms.SelectMultiple(attrs={"class": "form-control"}),
+        required=False,
+    )
 
     class Meta:
         model = Task
-        fields = ('name', 'description', 'status', 'author', 'executor')
+        fields = ('name', 'description', 'status', 'author', 'executor', 'labels')
 
     def __init__(self, *args, **kwargs):
         self.current_user = kwargs.pop('current_user', None)
@@ -82,4 +88,15 @@ class UpdateTaskForm(CreateTaskForm):
 
     class Meta:
         model = Task
-        fields = ('name', 'description', 'status', 'executor')
+        fields = ('name', 'description', 'status', 'executor', 'labels')
+
+
+class CreateLabelForm(ModelForm):
+    name = forms.CharField(
+        label=_("Name"),
+        error_messages={'unique': _("LabelAlreadyExists")}
+    )
+
+    class Meta:
+        model = Label
+        fields = ('name', )

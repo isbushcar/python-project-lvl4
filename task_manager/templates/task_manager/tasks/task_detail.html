@@ -44,18 +44,18 @@
                     <div class="col">{% trans "CreationDate" %}</div>
                     <div class="col">{{ task.creation_date }}</div>
                 </div>
-                {#            <div class="row p-1">#}
-                {#        <div class="col">#}
-                {#          <h6>Метки:</h6>#}
-                {#          <ul>#}
-                {#            #}
-                {#              <li>рекламирование</li>#}
-                {#            #}
-                {#              <li>тестирование</li>#}
-                {#            #}
-                {#          </ul>#}
-                {#        </div>#}
-                {#      </div>#}
+                {% if task.labels.all %}
+                    <div class="row p-1">
+                        <div class="col">
+                            <h6>{% trans "Labels" %}:</h6>
+                            <ul>
+                                {% for label in task.labels.all %}
+                                    <li>{{ label.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

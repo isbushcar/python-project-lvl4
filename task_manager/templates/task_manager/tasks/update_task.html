@@ -28,7 +28,12 @@
             <label for="{{ form.executor.id_for_label }}">{% trans "Executor" %}:</label>
             {{ form.executor }}
         </div>
-        <button type="submit">{% trans "Create" %}</button>
+        <div class="form-group">
+            {{ form.labels.errors }}
+            <label for="{{ form.labels.id_for_label }}">{% trans "Labels" %}:</label>
+            {{ form.labels }}
+        </div>
+        <button type="submit">{% trans "Update" %}</button>
     </form>
 {% endblock content %}
 </html>

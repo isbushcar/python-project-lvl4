@@ -1,0 +1,33 @@
+{% extends "task_manager/base_generic.html" %}
+<!DOCTYPE html>
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="en">
+{% block content %}
+    <h1 class="my-4">{% trans "LabelsTitle" %}</h1>
+    <a type="button" class="btn btn-light mb-3" href={% url 'create_label' %}>{% trans "Create" %}</a>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">{% trans "Name" %}</th>
+            <th scope="col">{% trans "CreationDate" %}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for label in labels_list %}
+            <tr>
+                <td>{{ label.id }}</td>
+                <td>{{ label.name }}</td>
+                <td>{{ label.creation_date }}</td>
+                <td>
+                    <a href={% url 'update_label' label.id %}>{% trans "Edit" %}</a>
+                    <br>
+                    <a href={% url 'delete_label' label.id %}>{% trans "Delete" %}</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
+</html>

@@ -28,6 +28,11 @@
             <label for="{{ form.executor.id_for_label }}">{% trans "Executor" %}:</label>
             {{ form.executor }}
         </div>
+        <div class="form-group">
+            {{ form.labels.errors }}
+            <label for="{{ form.labels.id_for_label }}">{% trans "Labels" %}:</label>
+            {{ form.labels }}
+        </div>
         <div class="d-none">
             {{ form.author }}
         </div>

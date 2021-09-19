@@ -24,8 +24,8 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    path('', views.IndexView.as_view(), name='main_page'),
-    path('users/', views.UsersView.as_view(), name='users_list'),
+    path('', views.IndexView.as_view(), name='main_page'),  # TODO: remove lang from all templates
+    path('users/', views.UsersView.as_view(), name='users_list'),  # TODO: refactor translations
     path('users/create/', views.CreateUserView.as_view(), name='create_user'),
     path('users/<int:pk>/update/', views.UpdateUserView.as_view(), name='update_user'),
     path('users/<int:pk>/delete/', views.DeleteUserView.as_view(), name='delete_user'),
@@ -40,4 +40,8 @@ urlpatterns += i18n_patterns(
     path('tasks/<int:pk>/update/', views.UpdateTaskView.as_view(), name='update_task'),
     path('tasks/<int:pk>/delete/', views.DeleteTaskView.as_view(), name='delete_task'),
     path('tasks/<int:pk>/', views.DetailTaskView.as_view(), name='task_detail'),
+    path('labels/', views.LabelsView.as_view(), name='labels'),
+    path('labels/create/', views.CreateLabelView.as_view(), name='create_label'),
+    path('labels/<int:pk>/update/', views.UpdateLabelView.as_view(), name='update_label'),
+    path('labels/<int:pk>/delete/', views.DeleteLabelView.as_view(), name='delete_label'),
 )

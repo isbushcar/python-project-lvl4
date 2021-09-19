@@ -1,0 +1,26 @@
+[
+  {
+    "model": "task_manager.label",
+    "pk": 1,
+    "fields": {
+      "name": "Label 1",
+      "creation_date": "2021-09-13T10:59:00.336Z"
+    }
+  },
+  {
+    "model": "task_manager.label",
+    "pk": 2,
+    "fields": {
+      "name": "Label 2",
+      "creation_date": "2021-09-19T03:11:44.818Z"
+    }
+  },
+  {
+    "model": "task_manager.label",
+    "pk": 3,
+    "fields": {
+      "name": "Label 3",
+      "creation_date": "2021-09-19T03:11:48.818Z"
+    }
+  }
+]
