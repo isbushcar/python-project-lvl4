@@ -4,11 +4,11 @@
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="en">
 {% block content %}
-    <h1 class="my-4">{% trans "UpdateUser" %}</h1>
+    <h1 class="my-4">{% trans "Update" %} {% trans "[to do] user" %}</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">{% trans "UpdateUserButton" %}</button>
+        <button type="submit">{% trans "Update" %}</button>
     </form>
 {% endblock content %}
 </html>

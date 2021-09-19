@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 
 from task_manager.models import Status, Task
 
-LOGIN_SANSA = (reverse_lazy('login'), {"username": "SansaStark", "password": "aaa12345"})
+LOGIN_SANSA = (reverse_lazy('login'), {"username": "SansaStark", "password": "aaa12345"})  # TODO: update detail view test; label test on tasks
 
 
 class TestViewingTasks(TestCase):

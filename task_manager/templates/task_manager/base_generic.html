@@ -4,7 +4,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 <head>
     <meta charset="UTF-8">
-    <title>{% trans "TaskManagerTitle" %}</title>
+    <title>{% trans "TaskManager" %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script crossorigin="anonymous" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
@@ -20,7 +20,7 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #212529;">
-    <a class="navbar-brand" href="/">{% trans "TaskManagerTitle" %}</a>
+    <a class="navbar-brand" href="/">{% trans "TaskManager" %}</a>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarToggleExternalContent">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -45,13 +45,13 @@
                     <span class="navbar-text mr-2"><b>{{ user.get_username }}</b></span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href={% url 'logout' %}>{% trans "LogOutNavBar" %}</a>
+                    <a class="nav-link" href={% url 'logout' %}>{% trans "LogOut" %}</a>
                 </li>
             </ul>
         {% else %}
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href={% url 'login' %}>{% trans "LogInNavBar" %}</a>
+                    <a class="nav-link" href={% url 'login' %}>{% trans "LogIn" %}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href={% url 'create_user' %}>{% trans "RegisterNavBar" %}</a>

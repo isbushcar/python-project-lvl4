@@ -4,7 +4,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="en">
 {% block content %}
-    <h1 class="my-4">{% trans "CreateTask" %}</h1>
+    <h1 class="my-4">{% trans "Create" %} {% trans "[to do] task" %}</h1>
     {{ form.non_field_errors }}
     <form method="post">
         {% csrf_token %}

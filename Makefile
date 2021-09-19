@@ -9,3 +9,9 @@ makemigrations:
 
 migrate:
 	poetry run python3 manage.py migrate
+
+makemessages:
+	poetry run django-admin makemessages -a
+
+compilemessages:
+	poetry run django-admin compilemessages

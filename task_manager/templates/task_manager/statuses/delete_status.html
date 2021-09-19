@@ -4,7 +4,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="en">
 {% block content %}
-    <h1 class="my-4">{% trans "DeleteStatus" %}</h1>
+    <h1 class="my-4">{% trans "Delete" %} {% trans "[to do] status" %}</h1>
     <form method="post">{% csrf_token %}
         <p>{% trans "DeleteConfirmationQuestion" %} "{{ object.name }}"?</p>
         <button type="submit" value="Confirm">{% trans "Delete" %}</button>

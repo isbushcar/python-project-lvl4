@@ -78,10 +78,14 @@ class TestEditingStatuses(TestCase):
 
 
 class TestDeletingStatuses(TestCase):
-    fixtures = ['task_manager/tests/fixtures/statuses.json', 'task_manager/tests/fixtures/users.json']
+    fixtures = [
+        'task_manager/tests/fixtures/statuses.json',
+        'task_manager/tests/fixtures/users.json',
+        'task_manager/tests/fixtures/tasks.json',
+    ]
 
     def test_deleting_without_being_authorized(self):
-        response = self.client.post(reverse('delete_status', args=[1]), follow=True)
+        response = self.client.post(reverse('delete_status', args=[2]), follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Вам нужно сначала войти')
         self.assertEqual(Status.objects.all().count(), 3)
@@ -89,9 +93,17 @@ class TestDeletingStatuses(TestCase):
     def test_deleting(self):
         self.client.post(*LOGIN_SANSA)
         self.assertEqual(Status.objects.all().count(), 3)
-        response = self.client.post(reverse('delete_status', args=[1]))
+        response = self.client.post(reverse('delete_status', args=[2]))
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Status.objects.all().count(), 2)
 
-        response = self.client.get(reverse('delete_status', args=[2]))
+    def test_deleting_status_that_used_in_task(self):
+        self.client.post(*LOGIN_SANSA)
+        self.assertEqual(Status.objects.all().count(), 3)
+        response = self.client.post(reverse('delete_status', args=[1]), follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Вы не можете удалить статус, связанный с задачей')
+        self.assertEqual(Status.objects.all().count(), 3)
+
+        response = self.client.get(reverse('delete_status', args=[1]))
         self.assertTemplateUsed(response, 'task_manager/statuses/delete_status.html')
