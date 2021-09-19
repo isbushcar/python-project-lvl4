@@ -58,3 +58,25 @@ sqlparse==0.4.1; python_version >= "3.6" \
 whitenoise==5.2.0; python_version >= "3.5" and python_version < "4" \
     --hash=sha256:05d00198c777028d72d8b0bbd234db605ef6d60e9410125124002518a48e515d \
     --hash=sha256:05ce0be39ad85740a78750c86a93485c40f08ad8c62a6006de0233765996e5c7
+
+Django~=3.2.4
+py~=1.10.0
+beautifulsoup4~=4.9.3
+soupsieve~=2.2.1
+pip~=21.0.1
+wheel~=0.36.2
+attrs~=21.2.0
+pytz~=2021.1
+toml~=0.10.2
+sqlparse~=0.4.1
+asgiref~=3.3.4
+pytest~=6.2.4
+pluggy~=0.13.1
+iniconfig~=1.1.1
+coverage~=5.5
+gunicorn~=20.1.0
+pyparsing~=2.4.7
+setuptools~=52.0.0
+django-filter~=2.4.0
+python-dotenv~=0.17.1
+whitenoise~=5.2.0
