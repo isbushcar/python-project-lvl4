@@ -61,13 +61,13 @@ class TestAddingLabel(TestCase):
 class TestEditingLabels(TestCase):
     fixtures = ['task_manager/tests/fixtures/labels.json', 'task_manager/tests/fixtures/users.json']
 
-    def test_changing_status_without_being_authorized(self):
+    def test_changing_label_without_being_authorized(self):
         response = self.client.post(reverse('update_label', args=[1]), {"name": "new_name"}, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'Вам нужно сначала войти')
         self.assertEqual(Label.objects.filter(id=1)[0].name, 'Label 1')
 
-    def test_changing_status(self):
+    def test_changing_label(self):
         self.client.post(*LOGIN_SANSA)
         response = self.client.post(reverse('update_label', args=[1]), {"name": "new_name"})
         self.assertEqual(response.status_code, 302)
@@ -78,7 +78,12 @@ class TestEditingLabels(TestCase):
 
 
 class TestDeletingLabels(TestCase):
-    fixtures = ['task_manager/tests/fixtures/labels.json', 'task_manager/tests/fixtures/users.json']
+    fixtures = [
+        'task_manager/tests/fixtures/labels.json',
+        'task_manager/tests/fixtures/users.json',
+        'task_manager/tests/fixtures/statuses.json',
+        'task_manager/tests/fixtures/task_with_label.json',
+    ]
 
     def test_deleting_without_being_authorized(self):
         response = self.client.post(reverse('delete_label', args=[1]), follow=True)
@@ -93,7 +98,7 @@ class TestDeletingLabels(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Label.objects.all().count(), 2)
 
-    def test_deleting_status_that_used_in_task(self):
+    def test_deleting_label_that_used_in_task(self):
         self.client.post(*LOGIN_SANSA)
         self.assertEqual(Label.objects.all().count(), 3)
         response = self.client.post(reverse('delete_label', args=[1]), follow=True)
@@ -101,5 +106,5 @@ class TestDeletingLabels(TestCase):
         self.assertContains(response, 'Вы не можете удалить метку, связанную с задачей')
         self.assertEqual(Label.objects.all().count(), 3)
 
-        response = self.client.get(reverse('delete_status', args=[1]))
-        self.assertTemplateUsed(response, 'task_manager/statuses/delete_status.html')
+        response = self.client.get(reverse('delete_label', args=[1]))
+        self.assertTemplateUsed(response, 'task_manager/labels/delete_label.html')

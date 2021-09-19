@@ -1,0 +1,17 @@
+[
+  {
+    "model": "task_manager.task",
+    "pk": 99,
+    "fields": {
+      "name": "Task 99",
+      "description": "",
+      "status": 1,
+      "author": 1,
+      "executor": 1,
+      "creation_date": "2021-09-12T02:28:19.082Z",
+      "labels": [
+        1
+      ]
+    }
+  }
+]

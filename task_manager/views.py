@@ -305,10 +305,7 @@ class DeleteLabelView(LoginRequiredMixin, generic.DeleteView):
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
-        try:
-            self.object.delete()
-        except ProtectedError:
+        if Task.objects.filter(labels=self.kwargs['pk']):
             messages.add_message(self.request, messages.INFO, _('YouCantDeleteLabelThatIsUsedInTask'))
             return redirect(reverse('labels'))
-        success_url = self.get_success_url()
-        return redirect(success_url)
+        return super(DeleteLabelView, self).delete(request, *args, **kwargs)
