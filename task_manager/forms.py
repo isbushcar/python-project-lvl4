@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
@@ -100,3 +100,16 @@ class CreateLabelForm(ModelForm):
     class Meta:
         model = Label
         fields = ('name', )
+
+
+class UserAuthenticationForm(AuthenticationForm):
+    
+    def __init__(self, request=None, *args, **kwargs):
+        super(UserAuthenticationForm, self).__init__(request=request, *args, **kwargs)
+        self.fields['username'].widget = forms.TextInput(attrs={'autofocus': True, 'placeholder': _('UserName')})
+        self.fields['password'].widget = forms.PasswordInput(
+            attrs={
+                'autocomplete': 'current-password',
+                'placeholder': _('Password'),
+            }
+        )

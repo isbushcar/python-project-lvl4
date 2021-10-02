@@ -14,7 +14,7 @@ from django_filters.views import FilterView
 from task_manager.custom_helper_classes import UserIsUserHimselfOrAdmin, UserIsAuthorOrAdmin
 from task_manager.filters import TaskFilter
 from task_manager.forms import CreateUserForm, UpdateUserForm, CreateStatusForm, CreateTaskForm, UpdateTaskForm, \
-    CreateLabelForm
+    CreateLabelForm, UserAuthenticationForm
 from task_manager.models import Label, Status, Task
 
 
@@ -88,6 +88,7 @@ class DeleteUserView(UserIsUserHimselfOrAdmin, generic.DeleteView):
 
 class UserLoginView(LoginView):
     template_name = 'task_manager/login.html'
+    form_class = UserAuthenticationForm
 
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, _('UserLoggedInMessage'))
