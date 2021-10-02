@@ -29,8 +29,7 @@
                     <br>
                     {{ form.password }}
                 </div>
-                <input type="submit" name="next" value="{% trans "LoginButton" %}">
-                <input type="hidden" name="next" value="{{ next }}">
+                <input class="btn btn-secondary" type="submit" name="next" value="{% trans "LoginButton" %}">
             </form>
         {% endif %}
     </div>
