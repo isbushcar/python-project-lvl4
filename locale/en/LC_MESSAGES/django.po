@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-02 15:29+1000\n"
+"POT-Creation-Date: 2021-10-02 16:25+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,6 +93,15 @@ msgstr "Labels"
 #: task_manager/forms.py:97 task_manager/tests/test_working_with_labels.py:46
 msgid "LabelAlreadyExists"
 msgstr "Label already exists"
+
+#: task_manager/forms.py:109
+#: task_manager/templates/task_manager/users/users.html:12
+msgid "UserName"
+msgstr "Username"
+
+#: task_manager/forms.py:113
+msgid "Password"
+msgstr "Password"
 
 #: task_manager/templates/task_manager/base_generic.html:7
 #: task_manager/templates/task_manager/base_generic.html:23
@@ -282,10 +291,6 @@ msgstr "Sign up"
 msgid "[to do] user"
 msgstr "user"
 
-#: task_manager/templates/task_manager/users/users.html:12
-msgid "UserName"
-msgstr "Username"
-
 #: task_manager/templates/task_manager/users/users.html:13
 msgid "FullName"
 msgstr "Full name"
@@ -302,28 +307,28 @@ msgstr "Full name"
 #: task_manager/tests/test_working_with_tasks.py:43
 #: task_manager/tests/test_working_with_tasks.py:111
 #: task_manager/tests/test_working_with_tasks.py:138
-#: task_manager/tests/test_working_with_tasks.py:171 task_manager/views.py:109
-#: task_manager/views.py:116 task_manager/views.py:126
-#: task_manager/views.py:140 task_manager/views.py:153
-#: task_manager/views.py:179 task_manager/views.py:189
-#: task_manager/views.py:203 task_manager/views.py:223
-#: task_manager/views.py:234 task_manager/views.py:241
-#: task_manager/views.py:250 task_manager/views.py:257
-#: task_manager/views.py:267 task_manager/views.py:281
-#: task_manager/views.py:294
+#: task_manager/tests/test_working_with_tasks.py:171 task_manager/views.py:110
+#: task_manager/views.py:117 task_manager/views.py:127
+#: task_manager/views.py:141 task_manager/views.py:154
+#: task_manager/views.py:180 task_manager/views.py:190
+#: task_manager/views.py:204 task_manager/views.py:224
+#: task_manager/views.py:235 task_manager/views.py:242
+#: task_manager/views.py:251 task_manager/views.py:258
+#: task_manager/views.py:268 task_manager/views.py:282
+#: task_manager/views.py:295
 msgid "NeedToLogInFirst"
 msgstr "You need to login first"
 
-#: task_manager/tests/test_working_with_labels.py:107 task_manager/views.py:304
+#: task_manager/tests/test_working_with_labels.py:107 task_manager/views.py:305
 msgid "YouCantDeleteLabelThatIsUsedInTask"
 msgstr "You can't delete label that is used in task"
 
 #: task_manager/tests/test_working_with_statuses.py:106
-#: task_manager/views.py:165
+#: task_manager/views.py:166
 msgid "YouCantDeleteStatusThatIsUsedInTask"
 msgstr "You can't delete status that is used in task"
 
-#: task_manager/tests/test_working_with_tasks.py:157 task_manager/views.py:219
+#: task_manager/tests/test_working_with_tasks.py:157 task_manager/views.py:220
 msgid "TaskCanOnlyBeDeletedByItsOwner"
 msgstr "Task can only be deleted by its owner"
 
@@ -335,10 +340,10 @@ msgstr "You can't update other users"
 msgid "YouCantDeleteOtherUsers"
 msgstr "You can't delete other users"
 
-#: task_manager/views.py:93
+#: task_manager/views.py:94
 msgid "UserLoggedInMessage"
 msgstr "You logged in"
 
-#: task_manager/views.py:100
+#: task_manager/views.py:101
 msgid "UserLoggedOutMessage"
 msgstr "You logged out"
