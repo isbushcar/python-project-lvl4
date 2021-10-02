@@ -113,3 +113,4 @@ class UserAuthenticationForm(AuthenticationForm):
                 'placeholder': _('Password'),
             }
         )
+        self.label_suffix = ''
