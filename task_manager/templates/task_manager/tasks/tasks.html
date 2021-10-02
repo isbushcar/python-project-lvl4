@@ -5,6 +5,43 @@
 <html lang="en">
 {% block content %}
     <h1 class="my-4">{% trans "Tasks" %}</h1>
+    <div class="card mb-3">
+        <div class="card-body bg-dark">
+            <form class="form-inline center" method="get">
+                <div class="form-group">
+                    {{ filter.form.status.errors }}
+                    <label for="{{ filter.form.status.id_for_label }}">{% trans "Status" %}:</label>
+                    <div class="ml-2 mr-3">
+                        {{ filter.form.status }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ filter.form.executor.errors }}
+                    <label for="{{ filter.form.executor.id_for_label }}">{% trans "Executor" %}:</label>
+                    <div class="ml-2 mr-3">
+                        {{ filter.form.executor }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ filter.form.labels.errors }}
+                    <label for="{{ filter.form.labels.id_for_label }}">{% trans "Label[single]" %}:</label>
+                    <div class="ml-2 mr-3">
+                        {{ filter.form.labels }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ filter.form.users_tasks_only.errors }}
+                    <div class="ml-2 mr-1">
+                        {{ filter.form.users_tasks_only }}
+                    </div>
+                    <label for="{{ filter.form.users_tasks_only.id_for_label }}">{% trans "My tasks only" %}</label>
+                </div>
+                <div class="form-group ml-3">
+                    <button type="submit" class="btn btn-light border border-dark">{% trans "Search" %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <a type="button" class="btn btn-light mb-3" href={% url 'create_task' %}>{% trans "Create" %}</a>
     <table class="table table-dark">
         <thead>
@@ -18,7 +55,7 @@
         </tr>
         </thead>
         <tbody>
-        {% for task in tasks_list %}
+        {% for task in filter.qs %}
             <tr>
                 <td>{{ task.id }}</td>
                 <td>{{ task.name }}</td>

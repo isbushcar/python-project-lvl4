@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-19 15:29+1000\n"
+"POT-Creation-Date: 2021-10-02 15:29+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: task_manager/custom_helper_classes.py:23
+#: task_manager/custom_helper_classes.py:14
+#: task_manager/custom_helper_classes.py:28
+#: task_manager/tests/test_working_with_users.py:161
 msgid "TryToLoginFirst"
 msgstr "Try to login first"
 
@@ -34,16 +36,16 @@ msgstr "Last name"
 #: task_manager/templates/task_manager/labels/labels.html:13
 #: task_manager/templates/task_manager/statuses/statuses.html:13
 #: task_manager/templates/task_manager/tasks/create_task.html:13
-#: task_manager/templates/task_manager/tasks/tasks.html:13
+#: task_manager/templates/task_manager/tasks/tasks.html:50
 #: task_manager/templates/task_manager/tasks/update_task.html:13
 msgid "Name"
 msgstr "Name"
 
-#: task_manager/forms.py:31
+#: task_manager/forms.py:31 task_manager/tests/test_working_with_statuses.py:46
 msgid "StatusAlreadyExists"
 msgstr "Status already exists"
 
-#: task_manager/forms.py:42
+#: task_manager/forms.py:42 task_manager/tests/test_working_with_tasks.py:55
 msgid "TaskAlreadyExists"
 msgstr "Task already exists"
 
@@ -56,7 +58,8 @@ msgstr "Description"
 #: task_manager/forms.py:53
 #: task_manager/templates/task_manager/tasks/create_task.html:23
 #: task_manager/templates/task_manager/tasks/task_detail.html:40
-#: task_manager/templates/task_manager/tasks/tasks.html:14
+#: task_manager/templates/task_manager/tasks/tasks.html:13
+#: task_manager/templates/task_manager/tasks/tasks.html:51
 #: task_manager/templates/task_manager/tasks/update_task.html:23
 msgid "Status"
 msgstr "Status"
@@ -68,7 +71,8 @@ msgstr "Choose status"
 #: task_manager/forms.py:60
 #: task_manager/templates/task_manager/tasks/create_task.html:28
 #: task_manager/templates/task_manager/tasks/task_detail.html:36
-#: task_manager/templates/task_manager/tasks/tasks.html:16
+#: task_manager/templates/task_manager/tasks/tasks.html:20
+#: task_manager/templates/task_manager/tasks/tasks.html:53
 #: task_manager/templates/task_manager/tasks/update_task.html:28
 msgid "Executor"
 msgstr "Executor"
@@ -86,7 +90,7 @@ msgstr "Choose executor"
 msgid "Labels"
 msgstr "Labels"
 
-#: task_manager/forms.py:97
+#: task_manager/forms.py:97 task_manager/tests/test_working_with_labels.py:46
 msgid "LabelAlreadyExists"
 msgstr "Label already exists"
 
@@ -123,6 +127,18 @@ msgstr "Login"
 msgid "RegisterNavBar"
 msgstr "Registration"
 
+#: task_manager/templates/task_manager/index.html:10
+msgid "Hi there!"
+msgstr "Hi there!"
+
+#: task_manager/templates/task_manager/index.html:11
+msgid "You are looking at my Django project"
+msgstr "You are looking at my Django project"
+
+#: task_manager/templates/task_manager/index.html:13
+msgid "Just a button"
+msgstr "Just a button"
+
 #: task_manager/templates/task_manager/labels/create_label.html:7
 #: task_manager/templates/task_manager/labels/create_label.html:11
 #: task_manager/templates/task_manager/labels/labels.html:8
@@ -131,7 +147,10 @@ msgstr "Registration"
 #: task_manager/templates/task_manager/statuses/statuses.html:8
 #: task_manager/templates/task_manager/tasks/create_task.html:7
 #: task_manager/templates/task_manager/tasks/create_task.html:39
-#: task_manager/templates/task_manager/tasks/tasks.html:8
+#: task_manager/templates/task_manager/tasks/tasks.html:45
+#: task_manager/tests/test_working_with_labels.py:22
+#: task_manager/tests/test_working_with_statuses.py:22
+#: task_manager/tests/test_working_with_tasks.py:24
 msgid "Create"
 msgstr "Create"
 
@@ -150,7 +169,7 @@ msgstr "label"
 #: task_manager/templates/task_manager/tasks/delete_task.html:7
 #: task_manager/templates/task_manager/tasks/delete_task.html:10
 #: task_manager/templates/task_manager/tasks/task_detail.html:17
-#: task_manager/templates/task_manager/tasks/tasks.html:34
+#: task_manager/templates/task_manager/tasks/tasks.html:71
 #: task_manager/templates/task_manager/users/delete_user.html:7
 #: task_manager/templates/task_manager/users/delete_user.html:10
 #: task_manager/templates/task_manager/users/users.html:27
@@ -167,7 +186,7 @@ msgstr "Are you sure you want to delete"
 #: task_manager/templates/task_manager/labels/labels.html:14
 #: task_manager/templates/task_manager/statuses/statuses.html:14
 #: task_manager/templates/task_manager/tasks/task_detail.html:44
-#: task_manager/templates/task_manager/tasks/tasks.html:17
+#: task_manager/templates/task_manager/tasks/tasks.html:54
 #: task_manager/templates/task_manager/users/users.html:14
 msgid "CreationDate"
 msgstr "Creation date"
@@ -175,7 +194,7 @@ msgstr "Creation date"
 #: task_manager/templates/task_manager/labels/labels.html:24
 #: task_manager/templates/task_manager/statuses/statuses.html:24
 #: task_manager/templates/task_manager/tasks/task_detail.html:15
-#: task_manager/templates/task_manager/tasks/tasks.html:32
+#: task_manager/templates/task_manager/tasks/tasks.html:69
 #: task_manager/templates/task_manager/users/users.html:25
 msgid "Edit"
 msgstr "Edit"
@@ -195,8 +214,9 @@ msgstr "Update"
 msgid "LoginTitle"
 msgstr "Login"
 
-#: task_manager/templates/task_manager/login.html:11 task_manager/views.py:52
-#: task_manager/views.py:58
+#: task_manager/templates/task_manager/login.html:11
+#: task_manager/tests/test_working_with_users.py:73 task_manager/views.py:55
+#: task_manager/views.py:61
 msgid "AlreadyInMessage"
 msgstr "You are logged in already"
 
@@ -229,11 +249,23 @@ msgid "DescriptionIsAbsent"
 msgstr "Description is absent"
 
 #: task_manager/templates/task_manager/tasks/task_detail.html:32
-#: task_manager/templates/task_manager/tasks/tasks.html:15
+#: task_manager/templates/task_manager/tasks/tasks.html:52
 msgid "Author"
 msgstr "Author"
 
-#: task_manager/templates/task_manager/tasks/tasks.html:30
+#: task_manager/templates/task_manager/tasks/tasks.html:27
+msgid "Label[single]"
+msgstr "Label"
+
+#: task_manager/templates/task_manager/tasks/tasks.html:37
+msgid "My tasks only"
+msgstr "Your tasks only"
+
+#: task_manager/templates/task_manager/tasks/tasks.html:40
+msgid "Search"
+msgstr "Search"
+
+#: task_manager/templates/task_manager/tasks/tasks.html:67
 msgid "Details"
 msgstr "Details"
 
@@ -258,48 +290,55 @@ msgstr "Username"
 msgid "FullName"
 msgstr "Full name"
 
-#: task_manager/views.py:67
-msgid "YouCantUpdateOtherUsers"
-msgstr "You can't update other users"
-
-#: task_manager/views.py:78
-msgid "YouCantDeleteOtherUsers"
-msgstr "You can't delete other users"
-
-#: task_manager/views.py:90
-msgid "UserLoggedInMessage"
-msgstr "You logged in"
-
-#: task_manager/views.py:97
-msgid "UserLoggedOutMessage"
-msgstr "You logged out"
-
-#: task_manager/views.py:106 task_manager/views.py:113
-#: task_manager/views.py:123 task_manager/views.py:137
-#: task_manager/views.py:150 task_manager/views.py:172
+#: task_manager/tests/test_working_with_labels.py:16
+#: task_manager/tests/test_working_with_labels.py:34
+#: task_manager/tests/test_working_with_labels.py:68
+#: task_manager/tests/test_working_with_labels.py:92
+#: task_manager/tests/test_working_with_statuses.py:16
+#: task_manager/tests/test_working_with_statuses.py:34
+#: task_manager/tests/test_working_with_statuses.py:68
+#: task_manager/tests/test_working_with_statuses.py:91
+#: task_manager/tests/test_working_with_tasks.py:18
+#: task_manager/tests/test_working_with_tasks.py:43
+#: task_manager/tests/test_working_with_tasks.py:111
+#: task_manager/tests/test_working_with_tasks.py:138
+#: task_manager/tests/test_working_with_tasks.py:171 task_manager/views.py:109
+#: task_manager/views.py:116 task_manager/views.py:126
+#: task_manager/views.py:140 task_manager/views.py:153
 #: task_manager/views.py:179 task_manager/views.py:189
 #: task_manager/views.py:203 task_manager/views.py:223
 #: task_manager/views.py:234 task_manager/views.py:241
-#: task_manager/views.py:255 task_manager/views.py:262
-#: task_manager/views.py:272 task_manager/views.py:286
-#: task_manager/views.py:299
+#: task_manager/views.py:250 task_manager/views.py:257
+#: task_manager/views.py:267 task_manager/views.py:281
+#: task_manager/views.py:294
 msgid "NeedToLogInFirst"
 msgstr "You need to login first"
 
-#: task_manager/views.py:162
-msgid "YouCantDeleteStatusThatIsUsedInTask"
-msgstr "You can't delete status that is used in task"
-
-#: task_manager/views.py:219
-msgid "TaskCanOnlyBeDeletedByItsOwner"
-msgstr "Task can only be deleted by its owner"
-
-#: task_manager/views.py:311
+#: task_manager/tests/test_working_with_labels.py:107 task_manager/views.py:304
 msgid "YouCantDeleteLabelThatIsUsedInTask"
 msgstr "You can't delete label that is used in task"
 
-#~ msgid "Task"
-#~ msgstr "Task"
+#: task_manager/tests/test_working_with_statuses.py:106
+#: task_manager/views.py:165
+msgid "YouCantDeleteStatusThatIsUsedInTask"
+msgstr "You can't delete status that is used in task"
 
-#~ msgid "Label"
-#~ msgstr "Label"
+#: task_manager/tests/test_working_with_tasks.py:157 task_manager/views.py:219
+msgid "TaskCanOnlyBeDeletedByItsOwner"
+msgstr "Task can only be deleted by its owner"
+
+#: task_manager/views.py:70
+msgid "YouCantUpdateOtherUsers"
+msgstr "You can't update other users"
+
+#: task_manager/views.py:81
+msgid "YouCantDeleteOtherUsers"
+msgstr "You can't delete other users"
+
+#: task_manager/views.py:93
+msgid "UserLoggedInMessage"
+msgstr "You logged in"
+
+#: task_manager/views.py:100
+msgid "UserLoggedOutMessage"
+msgstr "You logged out"

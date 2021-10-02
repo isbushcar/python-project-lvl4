@@ -2,6 +2,7 @@ from django.test import TestCase
 from task_manager.models import Label, Status
 from django.shortcuts import reverse
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 
 LOGIN_SANSA = (reverse_lazy('login'), {"username": "SansaStark", "password": "aaa12345"})
 
@@ -12,13 +13,13 @@ class TestViewingLabels(TestCase):
     def test_viewing_without_being_authorized(self):
         response = self.client.get(reverse('labels'), follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Вам нужно сначала войти')
+        self.assertContains(response, _('NeedToLogInFirst'))
 
     def test_viewing(self):
         self.client.post(*LOGIN_SANSA)
         response = self.client.get(reverse('labels'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Создать')
+        self.assertContains(response, _('Create'))
 
         self.assertTemplateUsed(response, 'task_manager/labels/labels.html')
 
@@ -30,7 +31,7 @@ class TestAddingLabel(TestCase):
     def test_adding_without_being_authorized(self):
         response = self.client.post(self.target_url, self.new_label, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Вам нужно сначала войти')
+        self.assertContains(response, _('NeedToLogInFirst'))
         self.assertEqual(Status.objects.all().count(), 0)
 
     def test_adding(self):
@@ -42,7 +43,7 @@ class TestAddingLabel(TestCase):
 
         response = self.client.post(self.target_url, self.new_label)  # same name
         self.assertEqual(response.status_code, 200)
-        self.assertFormError(response, 'form', 'name', ['Метка уже существует'])
+        self.assertFormError(response, 'form', 'name', [_("LabelAlreadyExists")])
         self.assertEqual(Label.objects.all().count(), 1)
 
         response = self.client.post(self.target_url, {"name": ""})  # empty name
@@ -64,7 +65,7 @@ class TestEditingLabels(TestCase):
     def test_changing_label_without_being_authorized(self):
         response = self.client.post(reverse('update_label', args=[1]), {"name": "new_name"}, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Вам нужно сначала войти')
+        self.assertContains(response, _('NeedToLogInFirst'))
         self.assertEqual(Label.objects.filter(id=1)[0].name, 'Label 1')
 
     def test_changing_label(self):
@@ -88,7 +89,7 @@ class TestDeletingLabels(TestCase):
     def test_deleting_without_being_authorized(self):
         response = self.client.post(reverse('delete_label', args=[1]), follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Вам нужно сначала войти')
+        self.assertContains(response, _('NeedToLogInFirst'))
         self.assertEqual(Label.objects.all().count(), 3)
 
     def test_deleting(self):
@@ -103,7 +104,7 @@ class TestDeletingLabels(TestCase):
         self.assertEqual(Label.objects.all().count(), 3)
         response = self.client.post(reverse('delete_label', args=[1]), follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Вы не можете удалить метку, связанную с задачей')
+        self.assertContains(response, _('YouCantDeleteLabelThatIsUsedInTask'))
         self.assertEqual(Label.objects.all().count(), 3)
 
         response = self.client.get(reverse('delete_label', args=[1]))

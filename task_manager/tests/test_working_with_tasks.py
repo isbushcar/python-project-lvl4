@@ -2,10 +2,11 @@ from django.contrib.auth.models import User
 from django.shortcuts import reverse
 from django.test import TestCase
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 
 from task_manager.models import Status, Task
 
-LOGIN_SANSA = (reverse_lazy('login'), {"username": "SansaStark", "password": "aaa12345"})  # TODO: update detail view test; label test on tasks
+LOGIN_SANSA = (reverse_lazy('login'), {"username": "SansaStark", "password": "aaa12345"})
 
 
 class TestViewingTasks(TestCase):
@@ -14,13 +15,13 @@ class TestViewingTasks(TestCase):
     def test_viewing_without_being_authorized(self):
         response = self.client.get(reverse('tasks'), follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Вам нужно сначала войти')
+        self.assertContains(response, _('NeedToLogInFirst'))
 
     def test_viewing(self):
         self.client.post(*LOGIN_SANSA)
         response = self.client.get(reverse('tasks'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Создать')
+        self.assertContains(response, _('Create'))
 
         self.assertTemplateUsed(response, 'task_manager/tasks/tasks.html')
 
@@ -39,7 +40,7 @@ class TestAddingTask(TestCase):
     def test_adding_without_being_authorized(self):
         response = self.client.post(self.target_url, self.task, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Вам нужно сначала войти')
+        self.assertContains(response, _('NeedToLogInFirst'))
         self.assertEqual(Task.objects.all().count(), 0)
 
     def test_adding(self):
@@ -51,7 +52,7 @@ class TestAddingTask(TestCase):
 
         response = self.client.post(self.target_url, self.task)  # same task
         self.assertEqual(response.status_code, 200)
-        self.assertFormError(response, 'form', 'name', ['Задача уже существует'])
+        self.assertFormError(response, 'form', 'name', [_("TaskAlreadyExists")])
         self.assertEqual(Task.objects.all().count(), 1)
 
         task_that_has_no_name = self.task.copy()
@@ -88,23 +89,26 @@ class TestAddingTask(TestCase):
         response = self.client.get(reverse('create_task'))
         self.assertTemplateUsed(response, 'task_manager/tasks/create_task.html')
 
-class TestEditingStatuses(TestCase):
+
+class TestEditingTasks(TestCase):
     fixtures = [
         'task_manager/tests/fixtures/statuses.json',
         'task_manager/tests/fixtures/users.json',
         'task_manager/tests/fixtures/tasks.json',
+        'task_manager/tests/fixtures/labels.json',
     ]
     task = {
         'name': 'new_name',
         'description': 'Awesome task!',
-        'status': "2",
-        'executor': "3",
+        'status': '2',
+        'executor': '3',
+        'label': '1',
     }
 
     def test_changing_task_without_being_authorized(self):
         response = self.client.post(reverse('update_task', args=[1]), self.task, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Вам нужно сначала войти')
+        self.assertContains(response, _('NeedToLogInFirst'))
         self.assertEqual(Task.objects.filter(id=1)[0].name, 'Task 1')
 
     def test_changing_task(self):
@@ -120,28 +124,56 @@ class TestEditingStatuses(TestCase):
         response = self.client.get(reverse('update_task', args=[1]))
         self.assertTemplateUsed(response, 'task_manager/tasks/update_task.html')
 
-    class TestDeletingStatuses(TestCase):
-        fixtures = ['task_manager/tests/fixtures/users.json', 'task_manager/tests/fixtures/tasks.json']
 
-        def test_deleting_without_being_authorized(self):
-            response = self.client.post(reverse('delete_task', args=[1]), follow=True)
-            self.assertEqual(response.status_code, 200)
-            self.assertContains(response, 'Вам нужно сначала войти')
-            self.assertEqual(Task.objects.all().count(), 3)
+class TestDeletingTasks(TestCase):
+    fixtures = [
+        'task_manager/tests/fixtures/users.json',
+        'task_manager/tests/fixtures/tasks.json',
+        'task_manager/tests/fixtures/statuses.json',
+    ]
 
-        def test_deleting(self):
-            self.client.post(*LOGIN_SANSA)
-            self.assertEqual(Task.objects.all().count(), 3)
-            response = self.client.post(reverse('delete_task', args=[2]))
-            self.assertEqual(response.status_code, 302)
-            self.assertEqual(Task.objects.all().count(), 2)
+    def test_deleting_without_being_authorized(self):
+        response = self.client.post(reverse('delete_task', args=[1]), follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, _('NeedToLogInFirst'))
+        self.assertEqual(Task.objects.all().count(), 3)
 
-            response = self.client.get(reverse('delete_task', args=[2]))
-            self.assertTemplateUsed(response, 'task_manager/tasks/delete_task.html')
+    def test_deleting(self):
+        self.client.post(*LOGIN_SANSA)
+        self.assertEqual(Task.objects.all().count(), 3)
 
-        def test_deleting_task_that_belongs_to_someone_else(self):
-            self.client.post(*LOGIN_SANSA)
-            self.assertEqual(Task.objects.all().count(), 3)
-            response = self.client.post(reverse('delete_task', args=[1]))
-            self.assertEqual(response.status_code, 302)
-            self.assertEqual(Task.objects.all().count(), 3)
+        response = self.client.get(reverse('delete_task', args=[2]))
+        self.assertTemplateUsed(response, 'task_manager/tasks/delete_task.html')
+
+        response = self.client.post(reverse('delete_task', args=[2]))
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(Task.objects.all().count(), 2)
+
+    def test_deleting_task_that_belongs_to_someone_else(self):
+        self.client.post(*LOGIN_SANSA)
+        self.assertEqual(Task.objects.all().count(), 3)
+        response = self.client.post(reverse('delete_task', args=[1]), follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, _('TaskCanOnlyBeDeletedByItsOwner'))
+        self.assertEqual(Task.objects.all().count(), 3)
+
+
+class TestTaskDetailView(TestCase):
+    fixtures = [
+        'task_manager/tests/fixtures/statuses.json',
+        'task_manager/tests/fixtures/users.json',
+        'task_manager/tests/fixtures/tasks.json',
+    ]
+
+    def test_viewing_without_being_authorized(self):
+        response = self.client.get(reverse('task_detail', args=[1]), follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, _('NeedToLogInFirst'))
+
+    def test_viewing(self):
+        self.client.post(*LOGIN_SANSA)
+        response = self.client.get(reverse('task_detail', args=[1]))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Test description')
+
+        self.assertTemplateUsed(response, 'task_manager/tasks/task_detail.html')

@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import reverse
 from django.test import TestCase
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 
 USER = {
     "username": "Brann",
@@ -69,7 +70,7 @@ class TestSignUpForm(TestCase):
 
         response = self.client.post(self.target_url, second_user, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Вы уже вошли')
+        self.assertContains(response, _('AlreadyInMessage'))
         self.assertEqual(User.objects.all().count(), 1)
 
 
@@ -157,7 +158,7 @@ class TestDeletingUsers(TestCase):
     def test_deleting_without_being_authorized(self):
         response = self.client.post(reverse('delete_user', args=[1]), follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'сначала войти')
+        self.assertContains(response, _('TryToLoginFirst'))
         self.assertEqual(User.objects.filter(id=1)[0].username, 'SansaStark')
 
     def test_deleting(self):

@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "name": "Task 1",
-      "description": "",
+      "description": "Test description",
       "status": 3,
       "author": 2,
       "executor": 2,

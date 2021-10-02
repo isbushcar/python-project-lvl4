@@ -2,6 +2,7 @@ from django.test import TestCase
 from task_manager.models import Status
 from django.shortcuts import reverse
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 
 LOGIN_SANSA = (reverse_lazy('login'), {"username": "SansaStark", "password": "aaa12345"})
 
@@ -12,13 +13,13 @@ class TestViewingStatus(TestCase):
     def test_viewing_without_being_authorized(self):
         response = self.client.get(reverse('statuses'), follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Вам нужно сначала войти')
+        self.assertContains(response, _('NeedToLogInFirst'))
 
     def test_viewing(self):
         self.client.post(*LOGIN_SANSA)
         response = self.client.get(reverse('statuses'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Создать')
+        self.assertContains(response, _('Create'))
 
         self.assertTemplateUsed(response, 'task_manager/statuses/statuses.html')
 
@@ -30,7 +31,7 @@ class TestAddingStatus(TestCase):
     def test_adding_without_being_authorized(self):
         response = self.client.post(self.target_url, self.new_status, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Вам нужно сначала войти')
+        self.assertContains(response, _('NeedToLogInFirst'))
         self.assertEqual(Status.objects.all().count(), 0)
 
     def test_adding(self):
@@ -42,7 +43,7 @@ class TestAddingStatus(TestCase):
 
         response = self.client.post(self.target_url, self.new_status)  # same name
         self.assertEqual(response.status_code, 200)
-        self.assertFormError(response, 'form', 'name', ['Статус уже существует'])
+        self.assertFormError(response, 'form', 'name', [_("StatusAlreadyExists")])
         self.assertEqual(Status.objects.all().count(), 1)
 
         response = self.client.post(self.target_url, {"name": ""})  # empty name
@@ -64,7 +65,7 @@ class TestEditingStatuses(TestCase):
     def test_changing_status_without_being_authorized(self):
         response = self.client.post(reverse('update_status', args=[1]), {"name": "new_name"}, follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Вам нужно сначала войти')
+        self.assertContains(response, _('NeedToLogInFirst'))
         self.assertEqual(Status.objects.filter(id=1)[0].name, 'Status 1')
 
     def test_changing_status(self):
@@ -87,7 +88,7 @@ class TestDeletingStatuses(TestCase):
     def test_deleting_without_being_authorized(self):
         response = self.client.post(reverse('delete_status', args=[2]), follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Вам нужно сначала войти')
+        self.assertContains(response, _('NeedToLogInFirst'))
         self.assertEqual(Status.objects.all().count(), 3)
 
     def test_deleting(self):
@@ -102,7 +103,7 @@ class TestDeletingStatuses(TestCase):
         self.assertEqual(Status.objects.all().count(), 3)
         response = self.client.post(reverse('delete_status', args=[1]), follow=True)
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'Вы не можете удалить статус, связанный с задачей')
+        self.assertContains(response, _('YouCantDeleteStatusThatIsUsedInTask'))
         self.assertEqual(Status.objects.all().count(), 3)
 
         response = self.client.get(reverse('delete_status', args=[1]))

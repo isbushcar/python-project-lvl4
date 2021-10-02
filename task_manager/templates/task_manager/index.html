@@ -5,5 +5,13 @@
 <html lang="en">
 {% block content %}
     <h1 class="my-4">{% trans "TaskManager" %}</h1>
+    <div class="card">
+        <div class="card-body p-5 bg-dark">
+            <div class="display-4">{% trans "Hi there!" %}</div>
+            <p class="lead">{% trans "You are looking at my Django project" %}</p>
+            <hr>
+            <a class="btn btn-secondary btn-lg" href={% url 'main_page' %}>{% trans "Just a button" %}</a>
+        </div>
+    </div>
 {% endblock content %}
 </html>

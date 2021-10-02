@@ -1,19 +1,22 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
+from django.db.models import ProtectedError
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.template import loader
 from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views import generic, View
+from django_filters.views import FilterView
 
-from task_manager.forms import CreateUserForm, UpdateUserForm, CreateStatusForm, CreateTaskForm, UpdateTaskForm,\
+from task_manager.custom_helper_classes import UserIsUserHimselfOrAdmin, UserIsAuthorOrAdmin
+from task_manager.filters import TaskFilter
+from task_manager.forms import CreateUserForm, UpdateUserForm, CreateStatusForm, CreateTaskForm, UpdateTaskForm, \
     CreateLabelForm
 from task_manager.models import Label, Status, Task
-from task_manager.custom_helper_classes import UserIsOwnerOrAdmin
-from django.db.models import ProtectedError
+
 
 class IndexView(View):  # TODO: rework
 
@@ -60,7 +63,7 @@ class CreateUserView(generic.CreateView):
         return super(CreateUserView, self).post(request, *args, **kwargs)
 
 
-class UpdateUserView(UserIsOwnerOrAdmin, generic.UpdateView):
+class UpdateUserView(UserIsUserHimselfOrAdmin, generic.UpdateView):
     form_class = UpdateUserForm
     template_name = 'task_manager/users/update_user.html'
     model = get_user_model()
@@ -72,7 +75,7 @@ class UpdateUserView(UserIsOwnerOrAdmin, generic.UpdateView):
         return reverse('users_list')
 
 
-class DeleteUserView(UserIsOwnerOrAdmin, generic.DeleteView):
+class DeleteUserView(UserIsUserHimselfOrAdmin, generic.DeleteView):
     template_name = 'task_manager/users/delete_user.html'
     model = get_user_model()
     no_access_message = _('YouCantDeleteOtherUsers')
@@ -164,16 +167,13 @@ class DeleteStatusView(LoginRequiredMixin, generic.DeleteView):
         success_url = self.get_success_url()
         return redirect(success_url)
 
+
 # --------------- Tasks Views ---------------
 
-class TasksView(LoginRequiredMixin, generic.ListView):
+class TasksView(LoginRequiredMixin, FilterView):
     template_name = 'task_manager/tasks/tasks.html'
     context_object_name = 'tasks_list'
-    permission_denied_message = _('NeedToLogInFirst')
-
-    def get_queryset(self):
-        model = Task
-        return model.objects.all()
+    filterset_class = TaskFilter
 
     def get_login_url(self):
         messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
@@ -213,7 +213,7 @@ class CreateTaskView(LoginRequiredMixin, generic.CreateView):
         return kwargs
 
 
-class DeleteTaskView(LoginRequiredMixin, UserIsOwnerOrAdmin, generic.DeleteView):
+class DeleteTaskView(LoginRequiredMixin, UserIsAuthorOrAdmin, generic.DeleteView):
     template_name = 'task_manager/tasks/delete_task.html'
     model = Task
     no_access_message = _('TaskCanOnlyBeDeletedByItsOwner')
@@ -228,7 +228,7 @@ class DeleteTaskView(LoginRequiredMixin, UserIsOwnerOrAdmin, generic.DeleteView)
         return reverse('tasks')
 
 
-class DetailTaskView(generic.DetailView):
+class DetailTaskView(LoginRequiredMixin, generic.DetailView):
     template_name = 'task_manager/tasks/task_detail.html'
     context_object_name = 'task'
     permission_denied_message = _('NeedToLogInFirst')
@@ -240,11 +240,6 @@ class DetailTaskView(generic.DetailView):
     def get_login_url(self):
         messages.add_message(self.request, messages.INFO, _('NeedToLogInFirst'))
         return reverse('login')
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['labels_list'] = Label.objects.all()
-    #     return context
 
 
 # --------------- Labels Views ---------------

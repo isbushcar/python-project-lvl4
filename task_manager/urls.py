@@ -24,8 +24,8 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    path('', views.IndexView.as_view(), name='main_page'),  # TODO: remove lang from all templates
-    path('users/', views.UsersView.as_view(), name='users_list'),  # TODO: refactor translations
+    path('', views.IndexView.as_view(), name='main_page'),
+    path('users/', views.UsersView.as_view(), name='users_list'),
     path('users/create/', views.CreateUserView.as_view(), name='create_user'),
     path('users/<int:pk>/update/', views.UpdateUserView.as_view(), name='update_user'),
     path('users/<int:pk>/delete/', views.DeleteUserView.as_view(), name='delete_user'),

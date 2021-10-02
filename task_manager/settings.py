@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 ]
 
 ROOT_URLCONF = 'task_manager.urls'
@@ -146,3 +147,9 @@ LOCALE_PATHS = (
 )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+ROLLBAR = {
+    'access_token': os.environ.get('ROLLBAR_TOKEN'),
+    'environment': 'development' if DEBUG else 'production',
+    'root': BASE_DIR,
+}

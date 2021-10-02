@@ -13,6 +13,7 @@ gunicorn = "^20.1.0"
 whitenoise = "^5.2.0"
 psycopg2-binary = "^2.9.1"
 django-filter = "^2.4.0"
+rollbar = "^0.16.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"
