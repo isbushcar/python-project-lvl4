@@ -223,7 +223,7 @@ msgstr "Изменить"
 
 #: task_manager/templates/task_manager/login.html:8
 msgid "LoginTitle"
-msgstr "Войти"
+msgstr "Вход"
 
 #: task_manager/templates/task_manager/login.html:11
 #: task_manager/tests/test_working_with_users.py:73 task_manager/views.py:55
