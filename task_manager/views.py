@@ -92,7 +92,7 @@ class UserLoginView(LoginView):
 
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, _('UserLoggedInMessage'))
-        return reverse('users_list')
+        return reverse('main_page')
 
 
 class UserLogoutView(LogoutView):
