@@ -47,7 +47,7 @@ class CreateUserView(generic.CreateView):
     template_name = 'task_manager/users/create_user.html'
 
     def get_success_url(self):
-        messages.add_message(self.request, messages.INFO, f"{_('User')} {_('successfullyCreated')}")
+        messages.add_message(self.request, messages.INFO, _('User successfully created'))
         return reverse('login')
 
     def get(self, request, *args, **kwargs):
@@ -142,7 +142,7 @@ class CreateStatusView(LoginRequiredMixin, generic.CreateView):
         return reverse('login')
 
     def get_success_url(self):
-        messages.add_message(self.request, messages.INFO, f"{_('Status')} {_('successfullyCreated')}")
+        messages.add_message(self.request, messages.INFO, _('Status successfully created'))
         return reverse('statuses')
 
 
@@ -205,7 +205,7 @@ class CreateTaskView(LoginRequiredMixin, generic.CreateView):
         return reverse('login')
 
     def get_success_url(self):
-        messages.add_message(self.request, messages.INFO, f"{_('Task')} {_('successfullyCreated')}")
+        messages.add_message(self.request, messages.INFO, _('Task successfully сreated'))
         return reverse('tasks')
 
     def get_form_kwargs(self):
@@ -283,7 +283,7 @@ class CreateLabelView(LoginRequiredMixin, generic.CreateView):
         return reverse('login')
 
     def get_success_url(self):
-        messages.add_message(self.request, messages.INFO, f"{_('Task')} {_('successfullyCreated')}")
+        messages.add_message(self.request, messages.INFO, _('Label successfully created'))
         return reverse('labels')
 
 

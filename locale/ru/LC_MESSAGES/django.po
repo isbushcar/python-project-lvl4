@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-02 16:25+1000\n"
+"POT-Creation-Date: 2021-10-05 09:04+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -334,6 +334,10 @@ msgstr "Вы не можете удалить статус, связанный �
 msgid "TaskCanOnlyBeDeletedByItsOwner"
 msgstr "Задача может быть удалена только её создателем"
 
+#: task_manager/views.py:50
+msgid "User successfully created"
+msgstr "Пользователь успешно создан"
+
 #: task_manager/views.py:70
 msgid "YouCantUpdateOtherUsers"
 msgstr "Вы не можете изменять других пользователей"
@@ -349,3 +353,15 @@ msgstr "Вы вошли"
 #: task_manager/views.py:101
 msgid "UserLoggedOutMessage"
 msgstr "Вы вышли"
+
+#: task_manager/views.py:145
+msgid "Status successfully created"
+msgstr "Статус успешно создан"
+
+#: task_manager/views.py:208
+msgid "Task successfully сreated"
+msgstr "Задача успешно создана"
+
+#: task_manager/views.py:286
+msgid "Label successfully created"
+msgstr "Метка успешно создана"

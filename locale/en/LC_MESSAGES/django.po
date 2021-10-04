@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-02 16:25+1000\n"
+"POT-Creation-Date: 2021-10-05 09:04+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -332,6 +332,10 @@ msgstr "You can't delete status that is used in task"
 msgid "TaskCanOnlyBeDeletedByItsOwner"
 msgstr "Task can only be deleted by its owner"
 
+#: task_manager/views.py:50
+msgid "User successfully created"
+msgstr "User successfully created"
+
 #: task_manager/views.py:70
 msgid "YouCantUpdateOtherUsers"
 msgstr "You can't update other users"
@@ -347,3 +351,15 @@ msgstr "You logged in"
 #: task_manager/views.py:101
 msgid "UserLoggedOutMessage"
 msgstr "You logged out"
+
+#: task_manager/views.py:145
+msgid "Status successfully created"
+msgstr "Status successfully created"
+
+#: task_manager/views.py:208
+msgid "Task successfully сreated"
+msgstr "Task successfully сreated"
+
+#: task_manager/views.py:286
+msgid "Label successfully created"
+msgstr "Label successfully created"
