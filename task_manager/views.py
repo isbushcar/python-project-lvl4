@@ -48,7 +48,7 @@ class CreateUserView(generic.CreateView):
 
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, _('User successfully created'))
-        return reverse('main_page')
+        return reverse('login')
 
     def get(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
