@@ -7,7 +7,7 @@
     <h1 class="my-4">{% trans "Delete" %} {% trans "[to do] user" %}</h1>
     <form method="post">{% csrf_token %}
         <p>{% trans "DeleteConfirmationQuestion" %} "{{ object }}"?</p>
-        <button type="submit" value="Confirm">{% trans "Delete" %}</button>
+        <button class="btn btn-danger" type="submit" value="Confirm">{% trans "Delete confirmation" %}</button>
     </form>
 {% endblock content %}
 </html>
