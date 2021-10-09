@@ -292,7 +292,7 @@ class DeleteLabelView(LoginRequiredMixin, generic.DeleteView):
         return reverse('login')
 
     def get_success_url(self):
-        messages.add_message(self.request, messages.INFO, _('Task successfully deleted'))
+        messages.add_message(self.request, messages.INFO, _('Label successfully deleted'))
         return reverse('labels')
 
     def delete(self, request, *args, **kwargs):
