@@ -288,7 +288,7 @@ msgstr "Только свои задачи"
 
 #: task_manager/templates/task_manager/tasks/tasks.html:40
 msgid "Search"
-msgstr "Поиск"
+msgstr "Показать"
 
 #: task_manager/templates/task_manager/tasks/tasks.html:45
 msgid "Create task"
