@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-09 12:52+1000\n"
+"POT-Creation-Date: 2021-10-09 12:59+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -188,7 +188,6 @@ msgstr "метку"
 #: task_manager/templates/task_manager/tasks/task_detail.html:17
 #: task_manager/templates/task_manager/tasks/tasks.html:71
 #: task_manager/templates/task_manager/users/delete_user.html:7
-#: task_manager/templates/task_manager/users/delete_user.html:10
 #: task_manager/templates/task_manager/users/users.html:27
 msgid "Delete"
 msgstr "Удалить"
@@ -298,6 +297,10 @@ msgstr "Зарегистрировать"
 #: task_manager/templates/task_manager/users/update_user.html:7
 msgid "[to do] user"
 msgstr "пользователя"
+
+#: task_manager/templates/task_manager/users/delete_user.html:10
+msgid "Delete confirmation"
+msgstr "Да, удалить"
 
 #: task_manager/templates/task_manager/users/users.html:13
 msgid "FullName"
