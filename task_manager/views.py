@@ -84,7 +84,7 @@ class DeleteUserView(UserIsUserHimselfOrAdmin, generic.DeleteView):
     no_access_redirect_url = reverse_lazy('users_list')
 
     def get_success_url(self):
-        messages.add_message(self.request, messages.INFO, f"{_('User')} {_('successfullyDeleted')}")
+        messages.add_message(self.request, messages.INFO, _('User successfully deleted'))
         return reverse('users_list')
 
 
