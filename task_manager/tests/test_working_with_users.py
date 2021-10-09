@@ -84,6 +84,8 @@ class TestEditingUsers(TestCase):
                 "username": "Sansa",
                 "first_name": "Sansa",
                 "last_name": "Stark",
+                "password1": "aaa12345",
+                "password2": "aaa12345",
             },
             follow=True,
         )
@@ -99,6 +101,8 @@ class TestEditingUsers(TestCase):
                 "username": "Sansa",
                 "first_name": "Sansa",
                 "last_name": "Stark",
+                "password1": "aaa12345",
+                "password2": "aaa12345",
             }
         )
         self.assertEqual(response.status_code, 302)
@@ -112,6 +116,8 @@ class TestEditingUsers(TestCase):
                 "username": "Sansa",
                 "first_name": "Sansa",
                 "last_name": "Stark",
+                "password1": "aaa12345",
+                "password2": "aaa12345",
             }
         )
         self.assertEqual(response.status_code, 302)
@@ -125,6 +131,8 @@ class TestEditingUsers(TestCase):
                 "username": "Tirion_the_Halfman",
                 "first_name": "Tiriol",
                 "last_name": "Lannister",
+                "password1": "aaa12345",
+                "password2": "aaa12345",
             },
         )
         self.assertEqual(User.objects.filter(id=2)[0].username, 'Tirion')
@@ -137,6 +145,8 @@ class TestEditingUsers(TestCase):
                 "username": "Sansa",
                 "first_name": "",
                 "last_name": "Stark",
+                "password1": "aaa12345",
+                "password2": "aaa12345",
             },
         )
         self.assertEqual(User.objects.filter(id=1)[0].username, 'SansaStark')
@@ -147,6 +157,8 @@ class TestEditingUsers(TestCase):
                 "username": "Sansa",
                 "first_name": "Sansa",
                 "last_name": "",
+                "password1": "aaa12345",
+                "password2": "aaa12345",
             }
         )
         self.assertEqual(User.objects.filter(id=1)[0].username, 'SansaStark')
