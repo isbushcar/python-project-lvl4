@@ -124,7 +124,7 @@ class UpdateStatusView(LoginRequiredMixin, generic.UpdateView):
         return reverse('login')
 
     def get_success_url(self):
-        messages.add_message(self.request, messages.INFO, f"{_('Status')} {_('successfullyUpdated')}")
+        messages.add_message(self.request, messages.INFO, _('Status successfully updated'))
         return reverse('statuses')
 
 
