@@ -5,15 +5,39 @@ from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
 
 from task_manager.models import Label, Status, Task
+from task_manager.fields import UsernameFieldWithPlaceholder
 
 
 class CreateUserForm(UserCreationForm):
-    first_name = forms.CharField(label=_("First name"),)
-    last_name = forms.CharField(label=_("Last name"),)
+    first_name = forms.CharField(
+        label=_('First name'),
+        widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': _('First name')}),
+    )
+    last_name = forms.CharField(
+        label=_('Last name'),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Last name')}),
+    )
+
+    def __init__(self, *args, **kwargs):
+        super(UserCreationForm, self).__init__(*args, **kwargs)
+        self.fields['password1'].widget = forms.PasswordInput(
+            attrs={
+                'placeholder': _('Password'),
+                'class': 'form-control',
+            }
+        )
+        self.fields['password2'].widget = forms.PasswordInput(
+            attrs={
+                'placeholder': _('Password confirmation'),
+                'class': 'form-control',
+            }
+        )
+        self.label_suffix = ''
 
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'password1', 'password2')
+        field_classes = {'username': UsernameFieldWithPlaceholder}
 
 
 class UpdateUserForm(ModelForm):
