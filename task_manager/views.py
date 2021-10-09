@@ -13,7 +13,7 @@ from django_filters.views import FilterView
 
 from task_manager.user_testers import UserIsUserHimselfOrAdmin, UserIsAuthorOrAdmin
 from task_manager.filters import TaskFilter
-from task_manager.forms import CreateUserForm, UpdateUserForm, CreateStatusForm, CreateTaskForm, UpdateTaskForm, \
+from task_manager.forms import CreateUserForm, CreateStatusForm, CreateTaskForm, UpdateTaskForm, \
     CreateLabelForm, UserAuthenticationForm
 from task_manager.models import Label, Status, Task
 
@@ -64,7 +64,7 @@ class CreateUserView(generic.CreateView):
 
 
 class UpdateUserView(UserIsUserHimselfOrAdmin, generic.UpdateView):
-    form_class = UpdateUserForm
+    form_class = CreateUserForm
     template_name = 'task_manager/users/update_user.html'
     model = get_user_model()
     no_access_message = _('YouCantUpdateOtherUsers')

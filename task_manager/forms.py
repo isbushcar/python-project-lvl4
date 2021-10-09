@@ -41,15 +41,6 @@ class CreateUserForm(UserCreationForm):
         field_classes = {'username': UsernameFieldWithPlaceholder}
 
 
-class UpdateUserForm(ModelForm):
-    first_name = forms.CharField(label=_("First name"),)
-    last_name = forms.CharField(label=_("Last name"),)
-
-    class Meta:
-        model = User
-        fields = ('username', 'first_name', 'last_name')
-
-
 class CreateStatusForm(ModelForm):
     name = forms.CharField(
         label=_("Name"),
