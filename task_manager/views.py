@@ -151,7 +151,7 @@ class DeleteStatusView(LoginRequiredMixin, generic.DeleteView):
         return reverse('login')
 
     def get_success_url(self):
-        messages.add_message(self.request, messages.INFO, f"{_('Status')} {_('successfullyDeleted')}")
+        messages.add_message(self.request, messages.INFO, _('Status successfully deleted'))
         return reverse('statuses')
 
     def delete(self, request, *args, **kwargs):
@@ -187,7 +187,7 @@ class UpdateTaskView(LoginRequiredMixin, generic.UpdateView):
         return reverse('login')
 
     def get_success_url(self):
-        messages.add_message(self.request, messages.INFO, f"{_('Task')} {_('successfullyUpdated')}")
+        messages.add_message(self.request, messages.INFO, _('Task successfully updated'))
         return reverse('tasks')
 
 
@@ -221,7 +221,7 @@ class DeleteTaskView(LoginRequiredMixin, UserIsAuthorOrAdmin, generic.DeleteView
         return reverse('login')
 
     def get_success_url(self):
-        messages.add_message(self.request, messages.INFO, f"{_('Task')} {_('successfullyDeleted')}")
+        messages.add_message(self.request, messages.INFO, _('Task successfully deleted'))
         return reverse('tasks')
 
 
@@ -265,7 +265,7 @@ class UpdateLabelView(LoginRequiredMixin, generic.UpdateView):
         return reverse('login')
 
     def get_success_url(self):
-        messages.add_message(self.request, messages.INFO, f"{_('Label')} {_('successfullyUpdated')}")
+        messages.add_message(self.request, messages.INFO, _('Label successfully updated'))
         return reverse('labels')
 
 
@@ -292,7 +292,7 @@ class DeleteLabelView(LoginRequiredMixin, generic.DeleteView):
         return reverse('login')
 
     def get_success_url(self):
-        messages.add_message(self.request, messages.INFO, f"{_('Task')} {_('successfullyDeleted')}")
+        messages.add_message(self.request, messages.INFO, _('Task successfully deleted'))
         return reverse('labels')
 
     def delete(self, request, *args, **kwargs):
