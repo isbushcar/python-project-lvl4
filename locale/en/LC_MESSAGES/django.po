@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-05 09:04+1000\n"
+"POT-Creation-Date: 2021-10-09 11:08+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,21 +18,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: task_manager/custom_helper_classes.py:14
-#: task_manager/custom_helper_classes.py:28
-#: task_manager/tests/test_working_with_users.py:161
-msgid "TryToLoginFirst"
-msgstr "Try to login first"
+#: task_manager/fields.py:9
+msgid "Username"
+msgstr "Username"
 
-#: task_manager/forms.py:11 task_manager/forms.py:20
+#: task_manager/forms.py:13 task_manager/forms.py:14 task_manager/forms.py:44
 msgid "First name"
 msgstr "First name"
 
-#: task_manager/forms.py:12 task_manager/forms.py:21
+#: task_manager/forms.py:17 task_manager/forms.py:18 task_manager/forms.py:45
 msgid "Last name"
 msgstr "Last name"
 
-#: task_manager/forms.py:30 task_manager/forms.py:41 task_manager/forms.py:96
+#: task_manager/forms.py:25 task_manager/forms.py:137
+msgid "Password"
+msgstr "Password"
+
+#: task_manager/forms.py:31
+msgid "Password confirmation"
+msgstr "Password confirmation"
+
+#: task_manager/forms.py:54 task_manager/forms.py:65 task_manager/forms.py:120
 #: task_manager/templates/task_manager/labels/labels.html:13
 #: task_manager/templates/task_manager/statuses/statuses.html:13
 #: task_manager/templates/task_manager/tasks/create_task.html:13
@@ -41,21 +47,21 @@ msgstr "Last name"
 msgid "Name"
 msgstr "Name"
 
-#: task_manager/forms.py:31 task_manager/tests/test_working_with_statuses.py:46
+#: task_manager/forms.py:55 task_manager/tests/test_working_with_statuses.py:46
 msgid "StatusAlreadyExists"
 msgstr "Status already exists"
 
-#: task_manager/forms.py:42 task_manager/tests/test_working_with_tasks.py:55
+#: task_manager/forms.py:66 task_manager/tests/test_working_with_tasks.py:55
 msgid "TaskAlreadyExists"
 msgstr "Task already exists"
 
-#: task_manager/forms.py:47
+#: task_manager/forms.py:71
 #: task_manager/templates/task_manager/tasks/create_task.html:18
 #: task_manager/templates/task_manager/tasks/update_task.html:18
 msgid "Description"
 msgstr "Description"
 
-#: task_manager/forms.py:53
+#: task_manager/forms.py:77
 #: task_manager/templates/task_manager/tasks/create_task.html:23
 #: task_manager/templates/task_manager/tasks/task_detail.html:40
 #: task_manager/templates/task_manager/tasks/tasks.html:13
@@ -64,11 +70,11 @@ msgstr "Description"
 msgid "Status"
 msgstr "Status"
 
-#: task_manager/forms.py:56
+#: task_manager/forms.py:80
 msgid "ChooseStatus"
 msgstr "Choose status"
 
-#: task_manager/forms.py:60
+#: task_manager/forms.py:84
 #: task_manager/templates/task_manager/tasks/create_task.html:28
 #: task_manager/templates/task_manager/tasks/task_detail.html:36
 #: task_manager/templates/task_manager/tasks/tasks.html:20
@@ -77,11 +83,11 @@ msgstr "Choose status"
 msgid "Executor"
 msgstr "Executor"
 
-#: task_manager/forms.py:63
+#: task_manager/forms.py:87
 msgid "ChooseExecutor"
 msgstr "Choose executor"
 
-#: task_manager/forms.py:67
+#: task_manager/forms.py:91
 #: task_manager/templates/task_manager/base_generic.html:36
 #: task_manager/templates/task_manager/labels/labels.html:7
 #: task_manager/templates/task_manager/tasks/create_task.html:33
@@ -90,18 +96,14 @@ msgstr "Choose executor"
 msgid "Labels"
 msgstr "Labels"
 
-#: task_manager/forms.py:97 task_manager/tests/test_working_with_labels.py:46
+#: task_manager/forms.py:121 task_manager/tests/test_working_with_labels.py:46
 msgid "LabelAlreadyExists"
 msgstr "Label already exists"
 
-#: task_manager/forms.py:109
+#: task_manager/forms.py:133
 #: task_manager/templates/task_manager/users/users.html:12
 msgid "UserName"
 msgstr "Username"
-
-#: task_manager/forms.py:113
-msgid "Password"
-msgstr "Password"
 
 #: task_manager/templates/task_manager/base_generic.html:7
 #: task_manager/templates/task_manager/base_generic.html:23
@@ -331,6 +333,11 @@ msgstr "You can't delete status that is used in task"
 #: task_manager/tests/test_working_with_tasks.py:157 task_manager/views.py:220
 msgid "TaskCanOnlyBeDeletedByItsOwner"
 msgstr "Task can only be deleted by its owner"
+
+#: task_manager/tests/test_working_with_users.py:161
+#: task_manager/user_testers.py:14 task_manager/user_testers.py:28
+msgid "TryToLoginFirst"
+msgstr "Try to login first"
 
 #: task_manager/views.py:50
 msgid "User successfully created"
