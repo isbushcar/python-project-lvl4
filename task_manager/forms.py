@@ -61,11 +61,17 @@ class CreateTaskForm(ModelForm):
     name = forms.CharField(
         label=_("Name"),
         error_messages={'unique': _("TaskAlreadyExists")},
-        widget=forms.TextInput(attrs={"class":"form-control"}),
+        widget=forms.TextInput(attrs={"class":"form-control", 'placeholder': _("Name")}),
     )
     description = forms.CharField(
         widget=forms.Textarea(
-            attrs={'label': _("Description"), 'rows': 10, 'cols': 40, "class": "form-control"},
+            attrs={
+                'label': _("Description"),
+                'rows': 10,
+                'cols': 40,
+                "class": "form-control",
+                'placeholder': _("Description"),
+            },
         ),
         required=False,
     )
@@ -97,6 +103,7 @@ class CreateTaskForm(ModelForm):
     def __init__(self, *args, **kwargs):
         self.current_user = kwargs.pop('current_user', None)
         super(CreateTaskForm, self).__init__(*args, **kwargs)
+        self.label_suffix = ''
         if self.current_user is not None:
             self.fields['author'] = forms.ModelChoiceField(
                 queryset=User.objects.filter(pk=self.current_user.id),
