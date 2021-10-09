@@ -51,12 +51,6 @@ class CreateUserView(generic.CreateView):
         messages.add_message(self.request, messages.INFO, _('User successfully created'))
         return reverse('login')
 
-    def get(self, request, *args, **kwargs):
-        if self.request.user.is_authenticated:
-            messages.add_message(self.request, messages.INFO, _('AlreadyInMessage'))
-            return redirect(reverse('users_list'))
-        return super(CreateUserView, self).get(request, *args, **kwargs)
-
     def post(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
             messages.add_message(self.request, messages.INFO, _('AlreadyInMessage'))
