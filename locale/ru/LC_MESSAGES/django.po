@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-09 13:15+1000\n"
+"POT-Creation-Date: 2021-10-09 13:04+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -157,10 +157,13 @@ msgid "Just a button"
 msgstr "Просто кнопка"
 
 #: task_manager/templates/task_manager/labels/create_label.html:7
+#: task_manager/templates/task_manager/labels/create_label.html:11
 #: task_manager/templates/task_manager/labels/labels.html:8
 #: task_manager/templates/task_manager/statuses/create_status.html:7
+#: task_manager/templates/task_manager/statuses/create_status.html:11
 #: task_manager/templates/task_manager/statuses/statuses.html:8
 #: task_manager/templates/task_manager/tasks/create_task.html:7
+#: task_manager/templates/task_manager/tasks/create_task.html:39
 #: task_manager/templates/task_manager/tasks/tasks.html:45
 #: task_manager/tests/test_working_with_labels.py:22
 #: task_manager/tests/test_working_with_statuses.py:22
@@ -173,10 +176,6 @@ msgstr "Создать"
 #: task_manager/templates/task_manager/labels/update_label.html:7
 msgid "[to do] label"
 msgstr "метку"
-
-#: task_manager/templates/task_manager/labels/create_label.html:11
-msgid "Create label"
-msgstr "Создать метку"
 
 #: task_manager/templates/task_manager/labels/delete_label.html:7
 #: task_manager/templates/task_manager/labels/delete_label.html:10
@@ -233,6 +232,7 @@ msgstr "Вход"
 
 #: task_manager/templates/task_manager/login.html:11
 #: task_manager/tests/test_working_with_users.py:73 task_manager/views.py:56
+#: task_manager/views.py:62
 msgid "AlreadyInMessage"
 msgstr "Вы уже вошли"
 
@@ -250,19 +250,11 @@ msgstr "Войти"
 msgid "[to do] status"
 msgstr "статус"
 
-#: task_manager/templates/task_manager/statuses/create_status.html:11
-msgid "Create status"
-msgstr "Создать статус"
-
 #: task_manager/templates/task_manager/tasks/create_task.html:7
 #: task_manager/templates/task_manager/tasks/delete_task.html:7
 #: task_manager/templates/task_manager/tasks/update_task.html:7
 msgid "[to do] task"
 msgstr "задачу"
-
-#: task_manager/templates/task_manager/tasks/create_task.html:39
-msgid "Create task"
-msgstr "Создать задачу"
 
 #: task_manager/templates/task_manager/tasks/task_detail.html:7
 msgid "TaskDetail"
@@ -326,28 +318,28 @@ msgstr "Полное имя"
 #: task_manager/tests/test_working_with_tasks.py:43
 #: task_manager/tests/test_working_with_tasks.py:111
 #: task_manager/tests/test_working_with_tasks.py:138
-#: task_manager/tests/test_working_with_tasks.py:171 task_manager/views.py:106
-#: task_manager/views.py:113 task_manager/views.py:123
-#: task_manager/views.py:137 task_manager/views.py:150
-#: task_manager/views.py:176 task_manager/views.py:186
-#: task_manager/views.py:200 task_manager/views.py:220
-#: task_manager/views.py:231 task_manager/views.py:238
-#: task_manager/views.py:247 task_manager/views.py:254
-#: task_manager/views.py:264 task_manager/views.py:278
-#: task_manager/views.py:291
+#: task_manager/tests/test_working_with_tasks.py:171 task_manager/views.py:112
+#: task_manager/views.py:119 task_manager/views.py:129
+#: task_manager/views.py:143 task_manager/views.py:156
+#: task_manager/views.py:182 task_manager/views.py:192
+#: task_manager/views.py:206 task_manager/views.py:226
+#: task_manager/views.py:237 task_manager/views.py:244
+#: task_manager/views.py:253 task_manager/views.py:260
+#: task_manager/views.py:270 task_manager/views.py:284
+#: task_manager/views.py:297
 msgid "NeedToLogInFirst"
 msgstr "Вам нужно сначала войти"
 
-#: task_manager/tests/test_working_with_labels.py:107 task_manager/views.py:301
+#: task_manager/tests/test_working_with_labels.py:107 task_manager/views.py:307
 msgid "YouCantDeleteLabelThatIsUsedInTask"
 msgstr "Вы не можете удалить метку, связанную с задачей"
 
 #: task_manager/tests/test_working_with_statuses.py:106
-#: task_manager/views.py:162
+#: task_manager/views.py:168
 msgid "YouCantDeleteStatusThatIsUsedInTask"
 msgstr "Вы не можете удалить статус, связанный с задачей"
 
-#: task_manager/tests/test_working_with_tasks.py:157 task_manager/views.py:216
+#: task_manager/tests/test_working_with_tasks.py:157 task_manager/views.py:222
 msgid "TaskCanOnlyBeDeletedByItsOwner"
 msgstr "Задача может быть удалена только её создателем"
 
@@ -360,38 +352,38 @@ msgstr "Попробуйте сначала войти"
 msgid "User successfully created"
 msgstr "Пользователь успешно зарегистрирован"
 
-#: task_manager/views.py:65
+#: task_manager/views.py:71
 msgid "YouCantUpdateOtherUsers"
 msgstr "Вы не можете изменять других пользователей"
 
-#: task_manager/views.py:70
+#: task_manager/views.py:76
 msgid "User successfully updated"
 msgstr "Пользователь успешно изменён"
 
-#: task_manager/views.py:77
+#: task_manager/views.py:83
 msgid "YouCantDeleteOtherUsers"
 msgstr "Вы не можете удалять других пользователей"
 
-#: task_manager/views.py:81
+#: task_manager/views.py:87
 msgid "User successfully deleted"
 msgstr "Пользователь успешно удалён"
 
-#: task_manager/views.py:90
+#: task_manager/views.py:96
 msgid "UserLoggedInMessage"
 msgstr "Вы залогинены"
 
-#: task_manager/views.py:97
+#: task_manager/views.py:103
 msgid "UserLoggedOutMessage"
 msgstr "Вы разлогинены"
 
-#: task_manager/views.py:141
+#: task_manager/views.py:147
 msgid "Status successfully created"
 msgstr "Статус успешно создан"
 
-#: task_manager/views.py:204
+#: task_manager/views.py:210
 msgid "Task successfully сreated"
 msgstr "Задача успешно создана"
 
-#: task_manager/views.py:282
+#: task_manager/views.py:288
 msgid "Label successfully created"
 msgstr "Метка успешно создана"
