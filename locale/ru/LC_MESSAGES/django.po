@@ -348,7 +348,7 @@ msgstr "Вы не можете удалять других пользовате�
 
 #: task_manager/views.py:94
 msgid "UserLoggedInMessage"
-msgstr "Вы вошли"
+msgstr "Вы залогинены"
 
 #: task_manager/views.py:101
 msgid "UserLoggedOutMessage"
