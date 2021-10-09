@@ -28,3 +28,9 @@ class Task(models.Model):
 
     def __str__(self):
         return self.name
+
+
+def show_user_full_name(self):
+    return f'{self.first_name} {self.last_name}'
+
+User.add_to_class("__str__", show_user_full_name)
