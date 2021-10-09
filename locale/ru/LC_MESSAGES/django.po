@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-09 11:08+1000\n"
+"POT-Creation-Date: 2021-10-09 12:49+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,23 +24,27 @@ msgstr ""
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: task_manager/forms.py:13 task_manager/forms.py:14 task_manager/forms.py:44
+#: task_manager/forms.py:13 task_manager/forms.py:14
 msgid "First name"
 msgstr "Имя"
 
-#: task_manager/forms.py:17 task_manager/forms.py:18 task_manager/forms.py:45
+#: task_manager/forms.py:17 task_manager/forms.py:18
 msgid "Last name"
 msgstr "Фамилия"
 
-#: task_manager/forms.py:25 task_manager/forms.py:137
+#: task_manager/forms.py:25 task_manager/forms.py:129
 msgid "Password"
 msgstr "Пароль"
 
-#: task_manager/forms.py:31
+#: task_manager/forms.py:29
+msgid "<li>Password should contain at least 8 characters</li>"
+msgstr "Ваш пароль должен содержать как минимум 8 символов"
+
+#: task_manager/forms.py:32
 msgid "Password confirmation"
 msgstr "Подтверждение пароля"
 
-#: task_manager/forms.py:54 task_manager/forms.py:65 task_manager/forms.py:120
+#: task_manager/forms.py:46 task_manager/forms.py:57 task_manager/forms.py:112
 #: task_manager/templates/task_manager/labels/labels.html:13
 #: task_manager/templates/task_manager/statuses/statuses.html:13
 #: task_manager/templates/task_manager/tasks/create_task.html:13
@@ -49,21 +53,21 @@ msgstr "Подтверждение пароля"
 msgid "Name"
 msgstr "Имя"
 
-#: task_manager/forms.py:55 task_manager/tests/test_working_with_statuses.py:46
+#: task_manager/forms.py:47 task_manager/tests/test_working_with_statuses.py:46
 msgid "StatusAlreadyExists"
 msgstr "Статус уже существует"
 
-#: task_manager/forms.py:66 task_manager/tests/test_working_with_tasks.py:55
+#: task_manager/forms.py:58 task_manager/tests/test_working_with_tasks.py:55
 msgid "TaskAlreadyExists"
 msgstr "Задача уже существует"
 
-#: task_manager/forms.py:71
+#: task_manager/forms.py:63
 #: task_manager/templates/task_manager/tasks/create_task.html:18
 #: task_manager/templates/task_manager/tasks/update_task.html:18
 msgid "Description"
 msgstr "Описание"
 
-#: task_manager/forms.py:77
+#: task_manager/forms.py:69
 #: task_manager/templates/task_manager/tasks/create_task.html:23
 #: task_manager/templates/task_manager/tasks/task_detail.html:40
 #: task_manager/templates/task_manager/tasks/tasks.html:13
@@ -72,11 +76,11 @@ msgstr "Описание"
 msgid "Status"
 msgstr "Статус"
 
-#: task_manager/forms.py:80
+#: task_manager/forms.py:72
 msgid "ChooseStatus"
 msgstr "Выберите статус"
 
-#: task_manager/forms.py:84
+#: task_manager/forms.py:76
 #: task_manager/templates/task_manager/tasks/create_task.html:28
 #: task_manager/templates/task_manager/tasks/task_detail.html:36
 #: task_manager/templates/task_manager/tasks/tasks.html:20
@@ -85,11 +89,11 @@ msgstr "Выберите статус"
 msgid "Executor"
 msgstr "Исполнитель"
 
-#: task_manager/forms.py:87
+#: task_manager/forms.py:79
 msgid "ChooseExecutor"
 msgstr "Выберите исполнителя"
 
-#: task_manager/forms.py:91
+#: task_manager/forms.py:83
 #: task_manager/templates/task_manager/base_generic.html:36
 #: task_manager/templates/task_manager/labels/labels.html:7
 #: task_manager/templates/task_manager/tasks/create_task.html:33
@@ -98,11 +102,11 @@ msgstr "Выберите исполнителя"
 msgid "Labels"
 msgstr "Метки"
 
-#: task_manager/forms.py:121 task_manager/tests/test_working_with_labels.py:46
+#: task_manager/forms.py:113 task_manager/tests/test_working_with_labels.py:46
 msgid "LabelAlreadyExists"
 msgstr "Метка уже существует"
 
-#: task_manager/forms.py:133
+#: task_manager/forms.py:125
 #: task_manager/templates/task_manager/users/users.html:12
 msgid "UserName"
 msgstr "Имя пользователя"
@@ -228,8 +232,8 @@ msgid "LoginTitle"
 msgstr "Вход"
 
 #: task_manager/templates/task_manager/login.html:11
-#: task_manager/tests/test_working_with_users.py:73 task_manager/views.py:55
-#: task_manager/views.py:61
+#: task_manager/tests/test_working_with_users.py:73 task_manager/views.py:56
+#: task_manager/views.py:62
 msgid "AlreadyInMessage"
 msgstr "Вы уже вошли"
 
@@ -311,64 +315,64 @@ msgstr "Полное имя"
 #: task_manager/tests/test_working_with_tasks.py:43
 #: task_manager/tests/test_working_with_tasks.py:111
 #: task_manager/tests/test_working_with_tasks.py:138
-#: task_manager/tests/test_working_with_tasks.py:171 task_manager/views.py:110
-#: task_manager/views.py:117 task_manager/views.py:127
-#: task_manager/views.py:141 task_manager/views.py:154
-#: task_manager/views.py:180 task_manager/views.py:190
-#: task_manager/views.py:204 task_manager/views.py:224
-#: task_manager/views.py:235 task_manager/views.py:242
-#: task_manager/views.py:251 task_manager/views.py:258
-#: task_manager/views.py:268 task_manager/views.py:282
-#: task_manager/views.py:295
+#: task_manager/tests/test_working_with_tasks.py:171 task_manager/views.py:112
+#: task_manager/views.py:119 task_manager/views.py:129
+#: task_manager/views.py:143 task_manager/views.py:156
+#: task_manager/views.py:182 task_manager/views.py:192
+#: task_manager/views.py:206 task_manager/views.py:226
+#: task_manager/views.py:237 task_manager/views.py:244
+#: task_manager/views.py:253 task_manager/views.py:260
+#: task_manager/views.py:270 task_manager/views.py:284
+#: task_manager/views.py:297
 msgid "NeedToLogInFirst"
 msgstr "Вам нужно сначала войти"
 
-#: task_manager/tests/test_working_with_labels.py:107 task_manager/views.py:305
+#: task_manager/tests/test_working_with_labels.py:107 task_manager/views.py:307
 msgid "YouCantDeleteLabelThatIsUsedInTask"
 msgstr "Вы не можете удалить метку, связанную с задачей"
 
 #: task_manager/tests/test_working_with_statuses.py:106
-#: task_manager/views.py:166
+#: task_manager/views.py:168
 msgid "YouCantDeleteStatusThatIsUsedInTask"
 msgstr "Вы не можете удалить статус, связанный с задачей"
 
-#: task_manager/tests/test_working_with_tasks.py:157 task_manager/views.py:220
+#: task_manager/tests/test_working_with_tasks.py:157 task_manager/views.py:222
 msgid "TaskCanOnlyBeDeletedByItsOwner"
 msgstr "Задача может быть удалена только её создателем"
 
-#: task_manager/tests/test_working_with_users.py:161
+#: task_manager/tests/test_working_with_users.py:173
 #: task_manager/user_testers.py:14 task_manager/user_testers.py:28
 msgid "TryToLoginFirst"
 msgstr "Попробуйте сначала войти"
 
-#: task_manager/views.py:50
+#: task_manager/views.py:51
 msgid "User successfully created"
 msgstr "Пользователь успешно зарегистрирован"
 
-#: task_manager/views.py:70
+#: task_manager/views.py:71
 msgid "YouCantUpdateOtherUsers"
 msgstr "Вы не можете изменять других пользователей"
 
-#: task_manager/views.py:81
+#: task_manager/views.py:83
 msgid "YouCantDeleteOtherUsers"
 msgstr "Вы не можете удалять других пользователей"
 
-#: task_manager/views.py:94
+#: task_manager/views.py:96
 msgid "UserLoggedInMessage"
 msgstr "Вы залогинены"
 
-#: task_manager/views.py:101
+#: task_manager/views.py:103
 msgid "UserLoggedOutMessage"
 msgstr "Вы разлогинены"
 
-#: task_manager/views.py:145
+#: task_manager/views.py:147
 msgid "Status successfully created"
 msgstr "Статус успешно создан"
 
-#: task_manager/views.py:208
+#: task_manager/views.py:210
 msgid "Task successfully сreated"
 msgstr "Задача успешно создана"
 
-#: task_manager/views.py:286
+#: task_manager/views.py:288
 msgid "Label successfully created"
 msgstr "Метка успешно создана"

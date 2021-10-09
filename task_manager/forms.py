@@ -26,7 +26,7 @@ class CreateUserForm(UserCreationForm):
                 'class': 'form-control',
             }
         )
-        self.fields['password1'].help_text = _('<li>Password should contain 8 symbols at least</li>')
+        self.fields['password1'].help_text = _('<li>Password should contain at least 8 characters</li>')
         self.fields['password2'].widget = forms.PasswordInput(
             attrs={
                 'placeholder': _('Password confirmation'),
