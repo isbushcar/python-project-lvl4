@@ -10,6 +10,7 @@ from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views import generic, View
 from django_filters.views import FilterView
+from django.contrib.auth import update_session_auth_hash
 
 from task_manager.user_testers import UserIsUserHimselfOrAdmin, UserIsAuthorOrAdmin
 from task_manager.filters import TaskFilter
@@ -71,7 +72,8 @@ class UpdateUserView(UserIsUserHimselfOrAdmin, generic.UpdateView):
     no_access_redirect_url = reverse_lazy('users_list')
 
     def get_success_url(self):
-        messages.add_message(self.request, messages.INFO, f"{_('User')} {_('successfullyUpdated')}")
+        update_session_auth_hash(self.request, *get_user_model().objects.filter(pk=self.request.user.pk))
+        messages.add_message(self.request, messages.INFO, _('User successfully updated'))
         return reverse('users_list')
 
 

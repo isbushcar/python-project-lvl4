@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-09 12:49+1000\n"
+"POT-Creation-Date: 2021-10-09 12:52+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -352,6 +352,10 @@ msgstr "Пользователь успешно зарегистрирован"
 #: task_manager/views.py:71
 msgid "YouCantUpdateOtherUsers"
 msgstr "Вы не можете изменять других пользователей"
+
+#: task_manager/views.py:76
+msgid "User successfully updated"
+msgstr "Пользователь успешно изменён"
 
 #: task_manager/views.py:83
 msgid "YouCantDeleteOtherUsers"
