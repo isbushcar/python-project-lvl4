@@ -352,7 +352,7 @@ msgstr "Вы залогинены"
 
 #: task_manager/views.py:101
 msgid "UserLoggedOutMessage"
-msgstr "Вы вышли"
+msgstr "Вы разлогинены"
 
 #: task_manager/views.py:145
 msgid "Status successfully created"
