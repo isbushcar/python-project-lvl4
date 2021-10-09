@@ -58,14 +58,12 @@
         {% for task in filter.qs %}
             <tr>
                 <td>{{ task.id }}</td>
-                <td>{{ task.name }}</td>
+                <td><a href={% url 'task_detail' task.id %}>{{ task.name }}</a></td>
                 <td>{{ task.status }}</td>
                 <td>{{ task.author }}</td>
                 <td>{{ task.executor }}</td>
                 <td>{{ task.creation_date }}</td>
                 <td>
-                    <a href={% url 'task_detail' task.id %}>{% trans "Details" %}</a>
-                    <br>
                     <a href={% url 'update_task' task.id %}>{% trans "Edit" %}</a>
                     <br>
                     <a href={% url 'delete_task' task.id %}>{% trans "Delete" %}</a>
