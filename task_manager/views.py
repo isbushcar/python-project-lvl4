@@ -11,7 +11,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views import generic, View
 from django_filters.views import FilterView
 
-from task_manager.custom_helper_classes import UserIsUserHimselfOrAdmin, UserIsAuthorOrAdmin
+from task_manager.user_testers import UserIsUserHimselfOrAdmin, UserIsAuthorOrAdmin
 from task_manager.filters import TaskFilter
 from task_manager.forms import CreateUserForm, UpdateUserForm, CreateStatusForm, CreateTaskForm, UpdateTaskForm, \
     CreateLabelForm, UserAuthenticationForm
