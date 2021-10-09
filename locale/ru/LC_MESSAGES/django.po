@@ -343,7 +343,7 @@ msgstr "Попробуйте сначала войти"
 
 #: task_manager/views.py:50
 msgid "User successfully created"
-msgstr "Пользователь успешно создан"
+msgstr "Пользователь успешно зарегистрирован"
 
 #: task_manager/views.py:70
 msgid "YouCantUpdateOtherUsers"
