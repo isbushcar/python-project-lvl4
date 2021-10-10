@@ -27,7 +27,10 @@ class TestViewingTasks(TestCase):
 
 
 class TestAddingTask(TestCase):
-    fixtures = ['task_manager/tests/fixtures/users.json', 'task_manager/tests/fixtures/statuses.json']
+    fixtures = [
+        'task_manager/tests/fixtures/users.json',
+        'task_manager/tests/fixtures/statuses.json',
+    ]
     task = {
         'name': 'task1',
         'description': '',

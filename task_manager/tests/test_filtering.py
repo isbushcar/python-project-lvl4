@@ -42,13 +42,19 @@ class TestFiltering(TestCase):
         self.assertNotContains(response, 'Task 3')
         self.assertNotContains(response, 'Task 99')
 
-        response = self.client.get(reverse('tasks'), {'status': '1', 'executor': '1', 'labels': '1'})
+        response = self.client.get(
+            reverse('tasks'),
+            {'status': '1', 'executor': '1', 'labels': '1'},
+        )
         self.assertNotContains(response, 'Task 1')
         self.assertNotContains(response, 'Task 2')
         self.assertNotContains(response, 'Task 3')
         self.assertContains(response, 'Task 99')
 
-        response = self.client.get(reverse('tasks'), {'status': '1', 'executor': '1', 'labels': '2'})
+        response = self.client.get(
+            reverse('tasks'),
+            {'status': '1', 'executor': '1', 'labels': '2'},
+        )
         self.assertNotContains(response, 'Task 1')
         self.assertNotContains(response, 'Task 2')
         self.assertNotContains(response, 'Task 3')

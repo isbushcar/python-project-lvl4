@@ -62,7 +62,10 @@ class TestSignUpForm(TestCase):
         self.client.post(self.target_url, USER)
         self.assertEqual(User.objects.all().count(), 1)
 
-        self.client.post(reverse('login'), {'username': USER['username'], 'password': USER['password1']})
+        self.client.post(
+            reverse('login'),
+            {'username': USER['username'], 'password': USER['password1']},
+        )
 
         second_user = USER.copy()
         second_user.update({'username': 'John', 'first_name': 'John'})
