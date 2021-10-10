@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'task_manager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': os.environ.get('ENGINE', 'django.db.backends.sqlite3'),
-        'NAME': os.environ.get('DATABASE_NAME', 'db.sqlite3'),
+        'NAME': os.environ.get('DATABASE_NAME', BASE_DIR / 'db.sqlite3'),
         'HOST': os.getenv('PSQL_HOST', ''),
         'USER': os.getenv('PSQL_USER', ''),
         'PASSWORD': os.getenv('PSQL_PASSWORD', ''),
@@ -147,7 +147,7 @@ LOCALE_PATHS = (
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 ROLLBAR = {
-    'access_token': os.environ.get('ROLLBAR_TOKEN', 'no_token'),
+    'access_token': os.environ.get('ROLLBAR_TOKEN'),
     'environment': 'development' if DEBUG else 'production',
     'root': BASE_DIR,
 }
