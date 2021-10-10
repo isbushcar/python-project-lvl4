@@ -147,7 +147,7 @@ LOCALE_PATHS = (
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 ROLLBAR = {
-    'access_token': os.environ.get('ROLLBAR_TOKEN'),
+    'access_token': os.environ.get('ROLLBAR_TOKEN', 'no_token'),
     'environment': 'development' if DEBUG else 'production',
     'root': BASE_DIR,
 }
