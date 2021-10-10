@@ -4,7 +4,7 @@ from django.shortcuts import reverse
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
-LOGIN_SANSA = (reverse_lazy('login'), {"username": "SansaStark", "password": "aaa12345"})
+LOGIN_SANSA = (reverse_lazy('login'), {'username': 'SansaStark', 'password': 'aaa12345'})
 
 
 class TestViewingLabels(TestCase):
@@ -22,6 +22,7 @@ class TestViewingLabels(TestCase):
         self.assertContains(response, _('Create'))
 
         self.assertTemplateUsed(response, 'task_manager/labels/labels.html')
+
 
 class TestAddingLabel(TestCase):
     fixtures = ['task_manager/tests/fixtures/users.json']
@@ -43,15 +44,15 @@ class TestAddingLabel(TestCase):
 
         response = self.client.post(self.target_url, self.new_label)  # same name
         self.assertEqual(response.status_code, 200)
-        self.assertFormError(response, 'form', 'name', [_("LabelAlreadyExists")])
+        self.assertFormError(response, 'form', 'name', [_('LabelAlreadyExists')])
         self.assertEqual(Label.objects.all().count(), 1)
 
-        response = self.client.post(self.target_url, {"name": ""})  # empty name
+        response = self.client.post(self.target_url, {'name': ''})  # empty name
         self.assertEqual(response.status_code, 200)
         self.assertFormError(response, 'form', 'name', ['Обязательное поле.'])
         self.assertEqual(Label.objects.all().count(), 1)
 
-        response = self.client.post(self.target_url, {"name": "Any_second_name"})
+        response = self.client.post(self.target_url, {'name': 'Any_second_name'})
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Label.objects.all().count(), 2)
 
@@ -63,14 +64,14 @@ class TestEditingLabels(TestCase):
     fixtures = ['task_manager/tests/fixtures/labels.json', 'task_manager/tests/fixtures/users.json']
 
     def test_changing_label_without_being_authorized(self):
-        response = self.client.post(reverse('update_label', args=[1]), {"name": "new_name"}, follow=True)
+        response = self.client.post(reverse('update_label', args=[1]), {'name': 'new_name'}, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, _('NeedToLogInFirst'))
         self.assertEqual(Label.objects.filter(id=1)[0].name, 'Label 1')
 
     def test_changing_label(self):
         self.client.post(*LOGIN_SANSA)
-        response = self.client.post(reverse('update_label', args=[1]), {"name": "new_name"})
+        response = self.client.post(reverse('update_label', args=[1]), {'name': 'new_name'})
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Label.objects.filter(id=1)[0].name, 'new_name')
 

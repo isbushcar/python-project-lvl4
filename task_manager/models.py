@@ -1,6 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+# Change default user __str__ method
+User.add_to_class('__str__', lambda self: f'{self.first_name} {self.last_name}')
+
+
 class Status(models.Model):
     name = models.CharField(max_length=100, unique=True)
     creation_date = models.DateTimeField(auto_now_add=True)
@@ -22,15 +27,13 @@ class Task(models.Model):
     description = models.TextField(blank=True)
     status = models.ForeignKey(Status, on_delete=models.PROTECT)
     author = models.ForeignKey(User, on_delete=models.PROTECT)
-    executor = models.ForeignKey(User, on_delete=models.PROTECT, related_name='executor_foreign_key')
+    executor = models.ForeignKey(
+        User,
+        on_delete=models.PROTECT,
+        related_name='executor_foreign_key',
+    )
     creation_date = models.DateTimeField(auto_now_add=True)
     labels = models.ManyToManyField(Label)
 
     def __str__(self):
         return self.name
-
-
-def show_user_full_name(self):
-    return f'{self.first_name} {self.last_name}'
-
-User.add_to_class("__str__", show_user_full_name)

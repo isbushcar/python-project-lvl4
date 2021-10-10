@@ -36,9 +36,6 @@ class UsersView(generic.ListView):
     context_object_name = 'users_list'
 
     def get_queryset(self):
-        """
-        Return list with all users.
-        """
         model = get_user_model()
         return model.objects.all()
 
@@ -66,7 +63,10 @@ class UpdateUserView(UserIsUserHimselfOrAdmin, generic.UpdateView):
     no_access_redirect_url = reverse_lazy('users_list')
 
     def get_success_url(self):
-        update_session_auth_hash(self.request, *get_user_model().objects.filter(pk=self.request.user.pk))
+        update_session_auth_hash(
+            self.request,
+            *get_user_model().objects.filter(pk=self.request.user.pk),
+        )
         messages.add_message(self.request, messages.INFO, _('User successfully updated'))
         return reverse('users_list')
 
@@ -159,7 +159,10 @@ class DeleteStatusView(LoginRequiredMixin, generic.DeleteView):
         try:
             self.object.delete()
         except ProtectedError:
-            messages.add_message(self.request, messages.INFO, _('YouCantDeleteStatusThatIsUsedInTask'))
+            messages.add_message(
+                self.request,
+                messages.INFO, _('YouCantDeleteStatusThatIsUsedInTask'),
+            )
             return redirect(reverse('statuses'))
         success_url = self.get_success_url()
         return redirect(success_url)
@@ -298,6 +301,9 @@ class DeleteLabelView(LoginRequiredMixin, generic.DeleteView):
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
         if Task.objects.filter(labels=self.kwargs['pk']):
-            messages.add_message(self.request, messages.INFO, _('YouCantDeleteLabelThatIsUsedInTask'))
+            messages.add_message(
+                self.request,
+                messages.INFO, _('YouCantDeleteLabelThatIsUsedInTask'),
+            )
             return redirect(reverse('labels'))
         return super(DeleteLabelView, self).delete(request, *args, **kwargs)

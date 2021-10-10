@@ -1,12 +1,8 @@
-from django.contrib.auth.models import User
 from django.shortcuts import reverse
 from django.test import TestCase
 from django.urls import reverse_lazy
 
-import time
-from task_manager.models import Status, Task
-
-LOGIN_SANSA = (reverse_lazy('login'), {"username": "SansaStark", "password": "aaa12345"})
+LOGIN_SANSA = (reverse_lazy('login'), {'username': 'SansaStark', 'password': 'aaa12345'})
 
 
 class TestFiltering(TestCase):

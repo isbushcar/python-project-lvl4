@@ -1,7 +1,6 @@
 import django_filters
 from django import forms
-from django.db import models
-from django_filters import BooleanFilter, ModelChoiceFilter, ModelMultipleChoiceFilter
+from django_filters import BooleanFilter, ModelChoiceFilter
 
 from task_manager.models import Label, Status, Task, User
 
@@ -15,17 +14,17 @@ class TaskFilter(django_filters.FilterSet):
     status = ModelChoiceFilter(
         field_name='status',
         queryset=Status.objects.all(),
-        widget=forms.Select(attrs={"class": "form-control"})
+        widget=forms.Select(attrs={'class': 'form-control'})
     )
     executor = ModelChoiceFilter(
         field_name='executor',
         queryset=User.objects.all(),
-        widget=forms.Select(attrs={"class": "form-control"})
+        widget=forms.Select(attrs={'class': 'form-control'})
     )
     labels = ModelChoiceFilter(
         field_name='labels',
         queryset=Label.objects.all(),
-        widget=forms.Select(attrs={"class": "form-control"})
+        widget=forms.Select(attrs={'class': 'form-control'})
     )
 
     class Meta:

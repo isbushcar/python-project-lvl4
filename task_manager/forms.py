@@ -11,7 +11,7 @@ from task_manager.fields import UsernameFieldWithPlaceholder
 class CreateUserForm(UserCreationForm):
     first_name = forms.CharField(
         label=_('First name'),
-        widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': _('First name')}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('First name')}),
     )
     last_name = forms.CharField(
         label=_('Last name'),
@@ -26,7 +26,9 @@ class CreateUserForm(UserCreationForm):
                 'class': 'form-control',
             }
         )
-        self.fields['password1'].help_text = _('<li>Password should contain at least 8 characters</li>')
+        self.fields['password1'].help_text = _(
+            '<li>Password should contain at least 8 characters</li>'
+        )
         self.fields['password2'].widget = forms.PasswordInput(
             attrs={
                 'placeholder': _('Password confirmation'),
@@ -43,9 +45,9 @@ class CreateUserForm(UserCreationForm):
 
 class CreateStatusForm(ModelForm):
     name = forms.CharField(
-        label=_("Name"),
-        error_messages={'unique': _("StatusAlreadyExists")},
-        widget=forms.TextInput(attrs={"class": "form-control", 'placeholder': _("Name")}),
+        label=_('Name'),
+        error_messages={'unique': _('StatusAlreadyExists')},
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Name')}),
     )
 
     def __init__(self, *args, **kwargs):
@@ -59,40 +61,40 @@ class CreateStatusForm(ModelForm):
 
 class CreateTaskForm(ModelForm):
     name = forms.CharField(
-        label=_("Name"),
-        error_messages={'unique': _("TaskAlreadyExists")},
-        widget=forms.TextInput(attrs={"class":"form-control", 'placeholder': _("Name")}),
+        label=_('Name'),
+        error_messages={'unique': _('TaskAlreadyExists')},
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Name')}),
     )
     description = forms.CharField(
         widget=forms.Textarea(
             attrs={
-                'label': _("Description"),
+                'label': _('Description'),
                 'rows': 10,
                 'cols': 40,
-                "class": "form-control",
-                'placeholder': _("Description"),
+                'class': 'form-control',
+                'placeholder': _('Description'),
             },
         ),
         required=False,
     )
     status = forms.ModelChoiceField(
         queryset=Status.objects.all(),
-        label=_("Status"),
-        widget=forms.Select(attrs={"class": "form-control"}),
+        label=_('Status'),
+        widget=forms.Select(attrs={'class': 'form-control'}),
         required=True,
-        empty_label=_("ChooseStatus"),
+        empty_label=_('ChooseStatus'),
     )
     executor = forms.ModelChoiceField(
         queryset=User.objects.all(),
-        label=_("Executor"),
-        widget=forms.Select(attrs={"class": "form-control"}),
+        label=_('Executor'),
+        widget=forms.Select(attrs={'class': 'form-control'}),
         required=True,
-        empty_label=_("ChooseExecutor"),
+        empty_label=_('ChooseExecutor'),
     )
     labels = forms.ModelMultipleChoiceField(
         queryset=Label.objects.all(),
-        label=_("Labels"),
-        widget=forms.SelectMultiple(attrs={"class": "form-control"}),
+        label=_('Labels'),
+        widget=forms.SelectMultiple(attrs={'class': 'form-control'}),
         required=False,
     )
 
@@ -121,9 +123,9 @@ class UpdateTaskForm(CreateTaskForm):
 
 class CreateLabelForm(ModelForm):
     name = forms.CharField(
-        label=_("Name"),
-        error_messages={'unique': _("LabelAlreadyExists")},
-        widget=forms.TextInput(attrs={"class": "form-control", 'placeholder': _("Name")}),
+        label=_('Name'),
+        error_messages={'unique': _('LabelAlreadyExists')},
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Name')}),
     )
 
     def __init__(self, *args, **kwargs):
@@ -136,10 +138,13 @@ class CreateLabelForm(ModelForm):
 
 
 class UserAuthenticationForm(AuthenticationForm):
-    
+
     def __init__(self, request=None, *args, **kwargs):
         super(UserAuthenticationForm, self).__init__(request=request, *args, **kwargs)
-        self.fields['username'].widget = forms.TextInput(attrs={'autofocus': True, 'placeholder': _('UserName')})
+        self.fields['username'].widget = forms.TextInput(attrs={
+            'autofocus': True,
+            'placeholder': _('UserName'),
+        })
         self.fields['password'].widget = forms.PasswordInput(
             attrs={
                 'autocomplete': 'current-password',

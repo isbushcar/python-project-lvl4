@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 
 from task_manager.models import Status, Task
 
-LOGIN_SANSA = (reverse_lazy('login'), {"username": "SansaStark", "password": "aaa12345"})
+LOGIN_SANSA = (reverse_lazy('login'), {'username': 'SansaStark', 'password': 'aaa12345'})
 
 
 class TestViewingTasks(TestCase):
@@ -31,9 +31,9 @@ class TestAddingTask(TestCase):
     task = {
         'name': 'task1',
         'description': '',
-        'status': "1",
-        'executor': "1",
-        'author': "1",
+        'status': '1',
+        'executor': '1',
+        'author': '1',
     }
     target_url = reverse_lazy('create_task')
 
@@ -52,7 +52,7 @@ class TestAddingTask(TestCase):
 
         response = self.client.post(self.target_url, self.task)  # same task
         self.assertEqual(response.status_code, 200)
-        self.assertFormError(response, 'form', 'name', [_("TaskAlreadyExists")])
+        self.assertFormError(response, 'form', 'name', [_('TaskAlreadyExists')])
         self.assertEqual(Task.objects.all().count(), 1)
 
         task_that_has_no_name = self.task.copy()

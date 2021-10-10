@@ -5,15 +5,15 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 
 USER = {
-    "username": "Brann",
-    "first_name": "Brann",
-    "last_name": "Stark",
-    "password1": "aaa12345",
-    "password2": "aaa12345",
+    'username': 'Brann',
+    'first_name': 'Brann',
+    'last_name': 'Stark',
+    'password1': 'aaa12345',
+    'password2': 'aaa12345',
 }
 
-LOGIN_SANSA = (reverse_lazy('login'), {"username": "SansaStark", "password": "aaa12345"})
-LOGIN_SUPERUSER = (reverse_lazy('login'), {"username": "KingJoffrey", "password": "aaa12345"})
+LOGIN_SANSA = (reverse_lazy('login'), {'username': 'SansaStark', 'password': 'aaa12345'})
+LOGIN_SUPERUSER = (reverse_lazy('login'), {'username': 'KingJoffrey', 'password': 'aaa12345'})
 
 
 class TestViewingStatus(TestCase):
@@ -36,7 +36,6 @@ class TestSignUpForm(TestCase):
         response = self.client.post(self.target_url, USER)  # use same username
         self.assertEqual(response.status_code, 200)
         self.assertEqual(User.objects.all().count(), 1)
-
 
         second_user = USER.copy()
         second_user.update({'username': 'John', 'first_name': 'John'})  # second user
@@ -81,11 +80,11 @@ class TestEditingUsers(TestCase):
         response = self.client.post(
             reverse('update_user', args=[1]),
             {
-                "username": "Sansa",
-                "first_name": "Sansa",
-                "last_name": "Stark",
-                "password1": "aaa12345",
-                "password2": "aaa12345",
+                'username': 'Sansa',
+                'first_name': 'Sansa',
+                'last_name': 'Stark',
+                'password1': 'aaa12345',
+                'password2': 'aaa12345',
             },
             follow=True,
         )
@@ -98,11 +97,11 @@ class TestEditingUsers(TestCase):
         response = self.client.post(
             reverse('update_user', args=[1]),
             {
-                "username": "Sansa",
-                "first_name": "Sansa",
-                "last_name": "Stark",
-                "password1": "aaa12345",
-                "password2": "aaa12345",
+                'username': 'Sansa',
+                'first_name': 'Sansa',
+                'last_name': 'Stark',
+                'password1': 'aaa12345',
+                'password2': 'aaa12345',
             }
         )
         self.assertEqual(response.status_code, 302)
@@ -113,11 +112,11 @@ class TestEditingUsers(TestCase):
         response = self.client.post(
             reverse('update_user', args=[1]),
             {
-                "username": "Sansa",
-                "first_name": "Sansa",
-                "last_name": "Stark",
-                "password1": "aaa12345",
-                "password2": "aaa12345",
+                'username': 'Sansa',
+                'first_name': 'Sansa',
+                'last_name': 'Stark',
+                'password1': 'aaa12345',
+                'password2': 'aaa12345',
             }
         )
         self.assertEqual(response.status_code, 302)
@@ -128,11 +127,11 @@ class TestEditingUsers(TestCase):
         self.client.post(
             reverse('update_user', args=[2]),
             {
-                "username": "Tirion_the_Halfman",
-                "first_name": "Tiriol",
-                "last_name": "Lannister",
-                "password1": "aaa12345",
-                "password2": "aaa12345",
+                'username': 'Tirion_the_Halfman',
+                'first_name': 'Tiriol',
+                'last_name': 'Lannister',
+                'password1': 'aaa12345',
+                'password2': 'aaa12345',
             },
         )
         self.assertEqual(User.objects.filter(id=2)[0].username, 'Tirion')
@@ -142,11 +141,11 @@ class TestEditingUsers(TestCase):
         self.client.post(
             reverse('update_user', args=[1]),
             {
-                "username": "Sansa",
-                "first_name": "",
-                "last_name": "Stark",
-                "password1": "aaa12345",
-                "password2": "aaa12345",
+                'username': 'Sansa',
+                'first_name': '',
+                'last_name': 'Stark',
+                'password1': 'aaa12345',
+                'password2': 'aaa12345',
             },
         )
         self.assertEqual(User.objects.filter(id=1)[0].username, 'SansaStark')
@@ -154,11 +153,11 @@ class TestEditingUsers(TestCase):
         self.client.post(
             reverse('update_user', args=[1]),
             {
-                "username": "Sansa",
-                "first_name": "Sansa",
-                "last_name": "",
-                "password1": "aaa12345",
-                "password2": "aaa12345",
+                'username': 'Sansa',
+                'first_name': 'Sansa',
+                'last_name': '',
+                'password1': 'aaa12345',
+                'password2': 'aaa12345',
             }
         )
         self.assertEqual(User.objects.filter(id=1)[0].username, 'SansaStark')
