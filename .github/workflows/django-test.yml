@@ -1,0 +1,36 @@
+name: django-test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: test django app
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - run: pip install poetry
+    - run: poetry install
+    - run: make test
+    - run: make lint
+  coverage:
+    name: check coverage
+    needs: [ test ]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+    - run: pip install poetry
+    - run: poetry install
+    - uses: paambaati/codeclimate-action@v3.0.0
+      env:
+        CC_TEST_REPORTER_ID: 99b9272657a2d54201d2f2ba3a79503c8153829b664da6318e2550261b7c46ed
+      with:
+        coverageCommand: make coverage
