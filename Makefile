@@ -15,3 +15,9 @@ makemessages:
 
 compilemessages:
 	poetry run django-admin compilemessages
+
+lint:
+	poetry run flake8 task_manager
+
+coverage:
+	poetry run coverage run --source='task_manager' manage.py test task_manager
