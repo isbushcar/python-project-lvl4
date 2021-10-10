@@ -21,3 +21,4 @@ lint:
 
 coverage:
 	poetry run coverage run --source='task_manager' manage.py test task_manager
+	poetry run coverage xml
