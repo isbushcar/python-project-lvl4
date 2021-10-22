@@ -1,5 +1,5 @@
 from django.test import TestCase
-from task_manager.models import Label, Status
+from task_manager.models import Label
 from django.shortcuts import reverse
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
@@ -33,7 +33,7 @@ class TestAddingLabel(TestCase):
         response = self.client.post(self.target_url, self.new_label, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, _('NeedToLogInFirst'))
-        self.assertEqual(Status.objects.all().count(), 0)
+        self.assertEqual(Label.objects.all().count(), 0)
 
     def test_adding(self):
         self.client.post(*LOGIN_SANSA)
