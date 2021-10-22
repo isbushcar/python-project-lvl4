@@ -11,5 +11,3 @@ class IndexView(View):  # TODO: rework
             'page_title': 'Hello, world!',
         }
         return HttpResponse(template.render(context, request))
-
-
