@@ -28,10 +28,6 @@ urlpatterns = [
     path('login/', views.UserLoginView.as_view(), name='login'),
     path('logout/', views.UserLogoutView.as_view(), name='logout'),
     path('statuses/', include('task_manager.apps.statuses.urls')),
-    path('tasks/', views.TasksView.as_view(), name='tasks'),
-    path('tasks/create/', views.CreateTaskView.as_view(), name='create_task'),
-    path('tasks/<int:pk>/update/', views.UpdateTaskView.as_view(), name='update_task'),
-    path('tasks/<int:pk>/delete/', views.DeleteTaskView.as_view(), name='delete_task'),
-    path('tasks/<int:pk>/', views.DetailTaskView.as_view(), name='task_detail'),
+    path('tasks/', include('task_manager.apps.tasks.urls')),
     path('labels/', include('task_manager.apps.labels.urls')),
 ]
