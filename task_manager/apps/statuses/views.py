@@ -15,7 +15,7 @@ from django.contrib.auth import update_session_auth_hash
 from task_manager.user_testers import UserIsUserHimselfOrAdmin, UserIsAuthorOrAdmin
 from task_manager.filters import TaskFilter
 from task_manager.apps.statuses.forms import CreateStatusForm
-from task_manager.models import Label, Status, Task
+from task_manager.models import Status, Task
 
 
 class StatusesView(LoginRequiredMixin, generic.ListView):

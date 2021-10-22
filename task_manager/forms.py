@@ -105,22 +105,6 @@ class UpdateTaskForm(CreateTaskForm):
         fields = ('name', 'description', 'status', 'executor', 'labels')
 
 
-class CreateLabelForm(ModelForm):
-    name = forms.CharField(
-        label=_('Name'),
-        error_messages={'unique': _('LabelAlreadyExists')},
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Name')}),
-    )
-
-    def __init__(self, *args, **kwargs):
-        super(CreateLabelForm, self).__init__(*args, **kwargs)
-        self.label_suffix = ''
-
-    class Meta:
-        model = Label
-        fields = ('name', )
-
-
 class UserAuthenticationForm(AuthenticationForm):
 
     def __init__(self, request=None, *args, **kwargs):
