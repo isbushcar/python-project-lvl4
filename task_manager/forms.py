@@ -43,22 +43,6 @@ class CreateUserForm(UserCreationForm):
         field_classes = {'username': UsernameFieldWithPlaceholder}
 
 
-class CreateStatusForm(ModelForm):
-    name = forms.CharField(
-        label=_('Name'),
-        error_messages={'unique': _('StatusAlreadyExists')},
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Name')}),
-    )
-
-    def __init__(self, *args, **kwargs):
-        super(CreateStatusForm, self).__init__(*args, **kwargs)
-        self.label_suffix = ''
-
-    class Meta:
-        model = Status
-        fields = ('name', )
-
-
 class CreateTaskForm(ModelForm):
     name = forms.CharField(
         label=_('Name'),
