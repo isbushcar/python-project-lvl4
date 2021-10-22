@@ -1,9 +1,8 @@
 from django import forms
-from django.contrib.auth.models import User
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
 
-from task_manager.models import Label, Status, Task
+from task_manager.models import Label, Status, Task, User
 
 
 class CreateTaskForm(ModelForm):
