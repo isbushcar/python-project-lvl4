@@ -8,7 +8,7 @@ from django_filters.views import FilterView
 from task_manager.apps.tasks.forms import CreateTaskForm, UpdateTaskForm
 from task_manager.filters import TaskFilter
 from task_manager.models import Task
-from task_manager.user_testers import UserIsAuthorOrAdmin
+from task_manager.apps.users.user_testers import UserIsAuthorOrAdmin
 
 
 class TasksView(LoginRequiredMixin, FilterView):
