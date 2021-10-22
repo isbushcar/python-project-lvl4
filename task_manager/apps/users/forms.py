@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from task_manager.apps.users.fields import UsernameFieldWithPlaceholder
 from task_manager.apps.users.models import User
 
+
 class CreateUserForm(UserCreationForm):
     first_name = forms.CharField(
         label=_('First name'),
