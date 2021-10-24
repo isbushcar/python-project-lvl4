@@ -1,8 +1,5 @@
 {% extends "task_manager/base_generic.html" %}
-<!DOCTYPE html>
 {% load i18n %}
-{% get_current_language as LANGUAGE_CODE %}
-<html lang="en">
 {% block content %}
     <h1 class="my-4">{% trans "Tasks" %}</h1>
     <div class="card mb-3">
@@ -73,4 +70,3 @@
         </tbody>
     </table>
 {% endblock content %}
-</html>

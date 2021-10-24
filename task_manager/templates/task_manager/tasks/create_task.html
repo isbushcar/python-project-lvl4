@@ -1,8 +1,5 @@
 {% extends "task_manager/base_generic.html" %}
-<!DOCTYPE html>
 {% load i18n %}
-{% get_current_language as LANGUAGE_CODE %}
-<html lang="en">
 {% block content %}
     <h1 class="my-4">{% trans "Create" %} {% trans "[to do] task" %}</h1>
     {{ form.non_field_errors }}
@@ -39,4 +36,3 @@
         <button class="btn btn-secondary mt-2" type="submit">{% trans "Create" %}</button>
     </form>
 {% endblock content %}
-</html>

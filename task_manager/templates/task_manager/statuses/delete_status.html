@@ -1,8 +1,5 @@
 {% extends "task_manager/base_generic.html" %}
-<!DOCTYPE html>
 {% load i18n %}
-{% get_current_language as LANGUAGE_CODE %}
-<html lang="en">
 {% block content %}
     <h1 class="my-4">{% trans "Delete" %} {% trans "[to do] status" %}</h1>
     <form method="post">{% csrf_token %}
@@ -10,4 +7,3 @@
         <button class="btn btn-danger" type="submit" value="Confirm">{% trans "Delete confirmation" %}</button>
     </form>
 {% endblock content %}
-</html>

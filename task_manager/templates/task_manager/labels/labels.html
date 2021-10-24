@@ -1,8 +1,5 @@
 {% extends "task_manager/base_generic.html" %}
-<!DOCTYPE html>
 {% load i18n %}
-{% get_current_language as LANGUAGE_CODE %}
-<html lang="en">
 {% block content %}
     <h1 class="my-4">{% trans "Labels" %}</h1>
     <a type="button" class="btn btn-light mb-3" href={% url 'create_label' %}>{% trans "Create label" %}</a>
@@ -30,4 +27,3 @@
         </tbody>
     </table>
 {% endblock content %}
-</html>
