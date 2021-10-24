@@ -1,13 +1,12 @@
-from django.contrib import messages
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
 from django_filters.views import FilterView
 
 from task_manager.apps.tasks.forms import CreateTaskForm, UpdateTaskForm
+from task_manager.apps.users.user_testers import UserIsAuthorOrAdmin
 from task_manager.filters import TaskFilter
 from task_manager.models import Task
-from task_manager.apps.users.user_testers import UserIsAuthorOrAdmin
 from task_manager.shared_mixin_classes import CustomLoginRequiredMixin, MessageSender
 
 
@@ -36,7 +35,12 @@ class CreateTaskView(CustomLoginRequiredMixin, MessageSender, generic.CreateView
         return kwargs
 
 
-class DeleteTaskView(CustomLoginRequiredMixin, UserIsAuthorOrAdmin, MessageSender, generic.DeleteView):
+class DeleteTaskView(
+    CustomLoginRequiredMixin,
+    UserIsAuthorOrAdmin,
+    MessageSender,
+    generic.DeleteView,
+):
     template_name = 'task_manager/tasks/delete_task.html'
     model = Task
     no_access_message = _('TaskCanOnlyBeDeletedByItsOwner')
