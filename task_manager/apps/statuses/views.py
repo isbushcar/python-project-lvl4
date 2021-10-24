@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
@@ -38,12 +37,10 @@ class DeleteStatusView(CustomLoginRequiredMixin, MessageSender, generic.DeleteVi
     success_message = _('Status successfully deleted')
 
     def delete(self, request, *args, **kwargs):
-        self.object = self.get_object()
         if Task.objects.filter(status=self.kwargs['pk']):
-            messages.add_message(
-                self.request,
-                messages.INFO, _('YouCantDeleteStatusThatIsUsedInTask'),
-            )
-            return redirect(self.object.get_absolute_url())
-        self.object.delete()
-        return redirect(self.object.get_absolute_url())
+            self.success_message = _('YouCantDeleteStatusThatIsUsedInTask')
+            success_url = self.get_success_url()
+            return redirect(success_url)
+        success_url = self.get_success_url()
+        self.get_object().delete()
+        return redirect(success_url)

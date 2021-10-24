@@ -15,4 +15,6 @@ class MessageSender:
 
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, self.success_message)
-        return self.object.get_absolute_url()
+        if hasattr(self, 'object'):
+            return self.object.get_absolute_url()
+        return self.get_object().get_absolute_url()

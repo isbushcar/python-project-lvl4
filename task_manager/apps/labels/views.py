@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
 from django.views import generic
@@ -32,18 +31,16 @@ class CreateLabelView(CustomLoginRequiredMixin, MessageSender, generic.CreateVie
     success_message = _('Label successfully created')
 
 
-class DeleteLabelView(CustomLoginRequiredMixin, generic.DeleteView):
+class DeleteLabelView(CustomLoginRequiredMixin, MessageSender, generic.DeleteView):
     template_name = 'task_manager/labels/delete_label.html'
     model = Label
     success_message = _('Label successfully deleted')
 
     def delete(self, request, *args, **kwargs):
-        self.object = self.get_object()
         if Task.objects.filter(labels=self.kwargs['pk']):
-            messages.add_message(
-                self.request,
-                messages.INFO, _('YouCantDeleteLabelThatIsUsedInTask'),
-            )
-            return redirect(self.object.get_absolute_url())
-        self.object.delete()
-        return redirect(self.object.get_absolute_url())
+            self.success_message = _('YouCantDeleteLabelThatIsUsedInTask')
+            success_url = self.get_success_url()
+            return redirect(success_url)
+        success_url = self.get_success_url()
+        self.get_object().delete()
+        return redirect(success_url)
