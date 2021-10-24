@@ -11,7 +11,7 @@ class CustomLoginRequiredMixin(LoginRequiredMixin):
         return reverse('login')
 
 
-class MessageSender:
+class SendMessageMixin:
 
     def get_success_url(self):
         messages.add_message(self.request, messages.INFO, self.success_message)

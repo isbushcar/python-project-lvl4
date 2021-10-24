@@ -7,7 +7,7 @@ from task_manager.apps.tasks.forms import CreateTaskForm, UpdateTaskForm
 from task_manager.apps.users.user_testers import UserIsAuthorOrAdmin
 from task_manager.filters import TaskFilter
 from task_manager.models import Task
-from task_manager.shared_mixin_classes import CustomLoginRequiredMixin, MessageSender
+from task_manager.shared_mixin_classes import CustomLoginRequiredMixin, SendMessageMixin
 
 
 class TasksView(CustomLoginRequiredMixin, FilterView):
@@ -16,14 +16,14 @@ class TasksView(CustomLoginRequiredMixin, FilterView):
     filterset_class = TaskFilter
 
 
-class UpdateTaskView(CustomLoginRequiredMixin, MessageSender, generic.UpdateView):
+class UpdateTaskView(CustomLoginRequiredMixin, SendMessageMixin, generic.UpdateView):
     form_class = UpdateTaskForm
     template_name = 'task_manager/tasks/update_task.html'
     model = Task
     success_message = _('Task successfully updated')
 
 
-class CreateTaskView(CustomLoginRequiredMixin, MessageSender, generic.CreateView):
+class CreateTaskView(CustomLoginRequiredMixin, SendMessageMixin, generic.CreateView):
     form_class = CreateTaskForm
     template_name = 'task_manager/tasks/create_task.html'
     model = Task
@@ -38,7 +38,7 @@ class CreateTaskView(CustomLoginRequiredMixin, MessageSender, generic.CreateView
 class DeleteTaskView(
     CustomLoginRequiredMixin,
     UserIsAuthorOrAdmin,
-    MessageSender,
+    SendMessageMixin,
     generic.DeleteView,
 ):
     template_name = 'task_manager/tasks/delete_task.html'

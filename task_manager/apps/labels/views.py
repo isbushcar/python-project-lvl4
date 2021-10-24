@@ -4,7 +4,7 @@ from django.views import generic
 
 from task_manager.apps.labels.forms import CreateLabelForm
 from task_manager.models import Label, Status, Task
-from task_manager.shared_mixin_classes import CustomLoginRequiredMixin, MessageSender
+from task_manager.shared_mixin_classes import CustomLoginRequiredMixin, SendMessageMixin
 
 
 class LabelsView(CustomLoginRequiredMixin, generic.ListView):
@@ -17,21 +17,21 @@ class LabelsView(CustomLoginRequiredMixin, generic.ListView):
         return model.objects.all()
 
 
-class UpdateLabelView(CustomLoginRequiredMixin, MessageSender, generic.UpdateView):
+class UpdateLabelView(CustomLoginRequiredMixin, SendMessageMixin, generic.UpdateView):
     form_class = CreateLabelForm
     template_name = 'task_manager/labels/update_label.html'
     model = Label
     success_message = _('Label successfully updated')
 
 
-class CreateLabelView(CustomLoginRequiredMixin, MessageSender, generic.CreateView):
+class CreateLabelView(CustomLoginRequiredMixin, SendMessageMixin, generic.CreateView):
     form_class = CreateLabelForm
     template_name = 'task_manager/labels/create_label.html'
     model = Status
     success_message = _('Label successfully created')
 
 
-class DeleteLabelView(CustomLoginRequiredMixin, MessageSender, generic.DeleteView):
+class DeleteLabelView(CustomLoginRequiredMixin, SendMessageMixin, generic.DeleteView):
     template_name = 'task_manager/labels/delete_label.html'
     model = Label
     success_message = _('Label successfully deleted')

@@ -4,7 +4,7 @@ from django.views import generic
 
 from task_manager.apps.statuses.forms import CreateStatusForm
 from task_manager.models import Status, Task
-from task_manager.shared_mixin_classes import CustomLoginRequiredMixin, MessageSender
+from task_manager.shared_mixin_classes import CustomLoginRequiredMixin, SendMessageMixin
 
 
 class StatusesView(CustomLoginRequiredMixin, generic.ListView):
@@ -17,21 +17,21 @@ class StatusesView(CustomLoginRequiredMixin, generic.ListView):
         return model.objects.all()
 
 
-class UpdateStatusView(CustomLoginRequiredMixin, MessageSender, generic.UpdateView):
+class UpdateStatusView(CustomLoginRequiredMixin, SendMessageMixin, generic.UpdateView):
     form_class = CreateStatusForm
     template_name = 'task_manager/statuses/update_status.html'
     model = Status
     success_message = _('Status successfully updated')
 
 
-class CreateStatusView(CustomLoginRequiredMixin, MessageSender, generic.CreateView):
+class CreateStatusView(CustomLoginRequiredMixin, SendMessageMixin, generic.CreateView):
     form_class = CreateStatusForm
     template_name = 'task_manager/statuses/create_status.html'
     model = Status
     success_message = _('Status successfully created')
 
 
-class DeleteStatusView(CustomLoginRequiredMixin, MessageSender, generic.DeleteView):
+class DeleteStatusView(CustomLoginRequiredMixin, SendMessageMixin, generic.DeleteView):
     template_name = 'task_manager/statuses/delete_status.html'
     model = Status
     success_message = _('Status successfully deleted')
