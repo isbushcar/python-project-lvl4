@@ -25,7 +25,7 @@ class CreateUserForm(UserCreationForm):
             }
         )
         self.fields['password1'].help_text = _(
-            '<li>Password should contain at least 8 characters</li>'
+            'Password should contain at least 8 characters'
         )
         self.fields['password2'].widget = forms.PasswordInput(
             attrs={

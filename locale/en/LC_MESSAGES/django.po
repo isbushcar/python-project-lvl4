@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-24 12:54+1000\n"
+"POT-Creation-Date: 2021-10-24 13:43+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,14 +36,14 @@ msgstr "Label already exists"
 
 #: task_manager/apps/labels/tests.py:16 task_manager/apps/labels/tests.py:35
 #: task_manager/apps/labels/tests.py:73 task_manager/apps/labels/tests.py:97
-#: task_manager/apps/labels/views.py:15 task_manager/apps/statuses/tests.py:16
+#: task_manager/apps/labels/views.py:13 task_manager/apps/statuses/tests.py:16
 #: task_manager/apps/statuses/tests.py:35
 #: task_manager/apps/statuses/tests.py:76
 #: task_manager/apps/statuses/tests.py:99
-#: task_manager/apps/statuses/views.py:16 task_manager/apps/tasks/tests.py:19
+#: task_manager/apps/statuses/views.py:13 task_manager/apps/tasks/tests.py:19
 #: task_manager/apps/tasks/tests.py:47 task_manager/apps/tasks/tests.py:115
 #: task_manager/apps/tasks/tests.py:142 task_manager/apps/tasks/tests.py:175
-#: task_manager/apps/tasks/views.py:50 task_manager/shared_mixin_classes.py:10
+#: task_manager/apps/tasks/views.py:54 task_manager/shared_mixin_classes.py:10
 msgid "NeedToLogInFirst"
 msgstr "You need to login first"
 
@@ -58,19 +58,19 @@ msgstr "You need to login first"
 msgid "Create"
 msgstr "Create"
 
-#: task_manager/apps/labels/tests.py:112 task_manager/apps/labels/views.py:46
+#: task_manager/apps/labels/tests.py:112 task_manager/apps/labels/views.py:41
 msgid "YouCantDeleteLabelThatIsUsedInTask"
 msgstr "You can't delete label that is used in task"
 
-#: task_manager/apps/labels/views.py:26
+#: task_manager/apps/labels/views.py:24
 msgid "Label successfully updated"
 msgstr "Label successfully updated"
 
-#: task_manager/apps/labels/views.py:33
+#: task_manager/apps/labels/views.py:31
 msgid "Label successfully created"
 msgstr "Label successfully created"
 
-#: task_manager/apps/labels/views.py:39
+#: task_manager/apps/labels/views.py:37
 msgid "Label successfully deleted"
 msgstr "Label successfully deleted"
 
@@ -80,19 +80,19 @@ msgid "StatusAlreadyExists"
 msgstr "Status already exists"
 
 #: task_manager/apps/statuses/tests.py:114
-#: task_manager/apps/statuses/views.py:47
+#: task_manager/apps/statuses/views.py:41
 msgid "YouCantDeleteStatusThatIsUsedInTask"
 msgstr "You can't delete status that is used in task"
 
-#: task_manager/apps/statuses/views.py:27
+#: task_manager/apps/statuses/views.py:24
 msgid "Status successfully updated"
 msgstr "Status successfully updated"
 
-#: task_manager/apps/statuses/views.py:34
+#: task_manager/apps/statuses/views.py:31
 msgid "Status successfully created"
 msgstr "Status successfully created"
 
-#: task_manager/apps/statuses/views.py:40
+#: task_manager/apps/statuses/views.py:37
 msgid "Status successfully deleted"
 msgstr "Status successfully deleted"
 
@@ -141,19 +141,19 @@ msgstr "Choose executor"
 msgid "Labels"
 msgstr "Labels"
 
-#: task_manager/apps/tasks/tests.py:161 task_manager/apps/tasks/views.py:42
+#: task_manager/apps/tasks/tests.py:161 task_manager/apps/tasks/views.py:46
 msgid "TaskCanOnlyBeDeletedByItsOwner"
 msgstr "Task can only be deleted by its owner"
 
-#: task_manager/apps/tasks/views.py:24
+#: task_manager/apps/tasks/views.py:23
 msgid "Task successfully updated"
 msgstr "Task successfully updated"
 
-#: task_manager/apps/tasks/views.py:31
+#: task_manager/apps/tasks/views.py:30
 msgid "Task successfully сreated"
 msgstr "Task successfully сreated"
 
-#: task_manager/apps/tasks/views.py:44
+#: task_manager/apps/tasks/views.py:48
 msgid "Task successfully deleted"
 msgstr "Task successfully deleted"
 
@@ -174,8 +174,8 @@ msgid "Password"
 msgstr "Password"
 
 #: task_manager/apps/users/forms.py:28
-msgid "<li>Password should contain at least 8 characters</li>"
-msgstr "<li>Password should contain at least 8 characters</li>"
+msgid "Password should contain at least 8 characters"
+msgstr "Password should contain at least 8 characters"
 
 #: task_manager/apps/users/forms.py:32
 msgid "Password confirmation"
@@ -283,7 +283,7 @@ msgstr "label"
 #: task_manager/templates/task_manager/tasks/delete_task.html:4
 #: task_manager/templates/task_manager/tasks/task_detail.html:14
 #: task_manager/templates/task_manager/tasks/tasks.html:66
-#: task_manager/templates/task_manager/users/delete_user.html:7
+#: task_manager/templates/task_manager/users/delete_user.html:4
 #: task_manager/templates/task_manager/users/users.html:27
 msgid "Delete"
 msgstr "Delete"
@@ -291,14 +291,14 @@ msgstr "Delete"
 #: task_manager/templates/task_manager/labels/delete_label.html:7
 #: task_manager/templates/task_manager/statuses/delete_status.html:7
 #: task_manager/templates/task_manager/tasks/delete_task.html:7
-#: task_manager/templates/task_manager/users/delete_user.html:9
+#: task_manager/templates/task_manager/users/delete_user.html:7
 msgid "DeleteConfirmationQuestion"
 msgstr "Are you sure you want to delete"
 
 #: task_manager/templates/task_manager/labels/delete_label.html:11
 #: task_manager/templates/task_manager/statuses/delete_status.html:11
 #: task_manager/templates/task_manager/tasks/delete_task.html:11
-#: task_manager/templates/task_manager/users/delete_user.html:10
+#: task_manager/templates/task_manager/users/delete_user.html:11
 msgid "Delete confirmation"
 msgstr "Confirm deletion"
 
@@ -328,7 +328,7 @@ msgstr "Edit"
 #: task_manager/templates/task_manager/statuses/update_status.html:11
 #: task_manager/templates/task_manager/tasks/update_task.html:4
 #: task_manager/templates/task_manager/tasks/update_task.html:35
-#: task_manager/templates/task_manager/users/update_user.html:7
+#: task_manager/templates/task_manager/users/update_user.html:4
 #: task_manager/templates/task_manager/users/update_user.html:11
 msgid "Update"
 msgstr "Update"
@@ -390,7 +390,7 @@ msgstr "Search"
 msgid "Create task"
 msgstr "Create task"
 
-#: task_manager/templates/task_manager/users/create_user.html:7
+#: task_manager/templates/task_manager/users/create_user.html:4
 msgid "Registration"
 msgstr "Registration"
 
@@ -398,8 +398,8 @@ msgstr "Registration"
 msgid "SignUpButton"
 msgstr "Sign up"
 
-#: task_manager/templates/task_manager/users/delete_user.html:7
-#: task_manager/templates/task_manager/users/update_user.html:7
+#: task_manager/templates/task_manager/users/delete_user.html:4
+#: task_manager/templates/task_manager/users/update_user.html:4
 msgid "[to do] user"
 msgstr "user"
 

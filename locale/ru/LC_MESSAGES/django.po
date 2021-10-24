@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-24 12:54+1000\n"
+"POT-Creation-Date: 2021-10-24 13:43+1000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,14 +38,14 @@ msgstr "Метка уже существует"
 
 #: task_manager/apps/labels/tests.py:16 task_manager/apps/labels/tests.py:35
 #: task_manager/apps/labels/tests.py:73 task_manager/apps/labels/tests.py:97
-#: task_manager/apps/labels/views.py:15 task_manager/apps/statuses/tests.py:16
+#: task_manager/apps/labels/views.py:13 task_manager/apps/statuses/tests.py:16
 #: task_manager/apps/statuses/tests.py:35
 #: task_manager/apps/statuses/tests.py:76
 #: task_manager/apps/statuses/tests.py:99
-#: task_manager/apps/statuses/views.py:16 task_manager/apps/tasks/tests.py:19
+#: task_manager/apps/statuses/views.py:13 task_manager/apps/tasks/tests.py:19
 #: task_manager/apps/tasks/tests.py:47 task_manager/apps/tasks/tests.py:115
 #: task_manager/apps/tasks/tests.py:142 task_manager/apps/tasks/tests.py:175
-#: task_manager/apps/tasks/views.py:50 task_manager/shared_mixin_classes.py:10
+#: task_manager/apps/tasks/views.py:54 task_manager/shared_mixin_classes.py:10
 msgid "NeedToLogInFirst"
 msgstr "Вам нужно сначала войти"
 
@@ -60,19 +60,19 @@ msgstr "Вам нужно сначала войти"
 msgid "Create"
 msgstr "Создать"
 
-#: task_manager/apps/labels/tests.py:112 task_manager/apps/labels/views.py:46
+#: task_manager/apps/labels/tests.py:112 task_manager/apps/labels/views.py:41
 msgid "YouCantDeleteLabelThatIsUsedInTask"
 msgstr "Вы не можете удалить метку, связанную с задачей"
 
-#: task_manager/apps/labels/views.py:26
+#: task_manager/apps/labels/views.py:24
 msgid "Label successfully updated"
 msgstr "Метка успешно изменена"
 
-#: task_manager/apps/labels/views.py:33
+#: task_manager/apps/labels/views.py:31
 msgid "Label successfully created"
 msgstr "Метка успешно создана"
 
-#: task_manager/apps/labels/views.py:39
+#: task_manager/apps/labels/views.py:37
 msgid "Label successfully deleted"
 msgstr "Метка успешно удалена"
 
@@ -82,19 +82,19 @@ msgid "StatusAlreadyExists"
 msgstr "Статус уже существует"
 
 #: task_manager/apps/statuses/tests.py:114
-#: task_manager/apps/statuses/views.py:47
+#: task_manager/apps/statuses/views.py:41
 msgid "YouCantDeleteStatusThatIsUsedInTask"
 msgstr "Вы не можете удалить статус, связанный с задачей"
 
-#: task_manager/apps/statuses/views.py:27
+#: task_manager/apps/statuses/views.py:24
 msgid "Status successfully updated"
 msgstr "Статус успешно изменён"
 
-#: task_manager/apps/statuses/views.py:34
+#: task_manager/apps/statuses/views.py:31
 msgid "Status successfully created"
 msgstr "Статус успешно создан"
 
-#: task_manager/apps/statuses/views.py:40
+#: task_manager/apps/statuses/views.py:37
 msgid "Status successfully deleted"
 msgstr "Статус успешно удалён"
 
@@ -143,19 +143,19 @@ msgstr "Выберите исполнителя"
 msgid "Labels"
 msgstr "Метки"
 
-#: task_manager/apps/tasks/tests.py:161 task_manager/apps/tasks/views.py:42
+#: task_manager/apps/tasks/tests.py:161 task_manager/apps/tasks/views.py:46
 msgid "TaskCanOnlyBeDeletedByItsOwner"
 msgstr "Задача может быть удалена только её создателем"
 
-#: task_manager/apps/tasks/views.py:24
+#: task_manager/apps/tasks/views.py:23
 msgid "Task successfully updated"
 msgstr "Задача успешно изменена"
 
-#: task_manager/apps/tasks/views.py:31
+#: task_manager/apps/tasks/views.py:30
 msgid "Task successfully сreated"
 msgstr "Задача успешно создана"
 
-#: task_manager/apps/tasks/views.py:44
+#: task_manager/apps/tasks/views.py:48
 msgid "Task successfully deleted"
 msgstr "Задача успешно удалена"
 
@@ -176,7 +176,7 @@ msgid "Password"
 msgstr "Пароль"
 
 #: task_manager/apps/users/forms.py:28
-msgid "<li>Password should contain at least 8 characters</li>"
+msgid "Password should contain at least 8 characters"
 msgstr "Ваш пароль должен содержать как минимум 8 символов"
 
 #: task_manager/apps/users/forms.py:32
@@ -285,7 +285,7 @@ msgstr "метку"
 #: task_manager/templates/task_manager/tasks/delete_task.html:4
 #: task_manager/templates/task_manager/tasks/task_detail.html:14
 #: task_manager/templates/task_manager/tasks/tasks.html:66
-#: task_manager/templates/task_manager/users/delete_user.html:7
+#: task_manager/templates/task_manager/users/delete_user.html:4
 #: task_manager/templates/task_manager/users/users.html:27
 msgid "Delete"
 msgstr "Удалить"
@@ -293,14 +293,14 @@ msgstr "Удалить"
 #: task_manager/templates/task_manager/labels/delete_label.html:7
 #: task_manager/templates/task_manager/statuses/delete_status.html:7
 #: task_manager/templates/task_manager/tasks/delete_task.html:7
-#: task_manager/templates/task_manager/users/delete_user.html:9
+#: task_manager/templates/task_manager/users/delete_user.html:7
 msgid "DeleteConfirmationQuestion"
 msgstr "Вы уверены, что хотите удалить"
 
 #: task_manager/templates/task_manager/labels/delete_label.html:11
 #: task_manager/templates/task_manager/statuses/delete_status.html:11
 #: task_manager/templates/task_manager/tasks/delete_task.html:11
-#: task_manager/templates/task_manager/users/delete_user.html:10
+#: task_manager/templates/task_manager/users/delete_user.html:11
 msgid "Delete confirmation"
 msgstr "Да, удалить"
 
@@ -330,7 +330,7 @@ msgstr "Изменить"
 #: task_manager/templates/task_manager/statuses/update_status.html:11
 #: task_manager/templates/task_manager/tasks/update_task.html:4
 #: task_manager/templates/task_manager/tasks/update_task.html:35
-#: task_manager/templates/task_manager/users/update_user.html:7
+#: task_manager/templates/task_manager/users/update_user.html:4
 #: task_manager/templates/task_manager/users/update_user.html:11
 msgid "Update"
 msgstr "Изменить"
@@ -392,7 +392,7 @@ msgstr "Показать"
 msgid "Create task"
 msgstr "Создать задачу"
 
-#: task_manager/templates/task_manager/users/create_user.html:7
+#: task_manager/templates/task_manager/users/create_user.html:4
 msgid "Registration"
 msgstr "Регистрация"
 
@@ -400,8 +400,8 @@ msgstr "Регистрация"
 msgid "SignUpButton"
 msgstr "Зарегистрировать"
 
-#: task_manager/templates/task_manager/users/delete_user.html:7
-#: task_manager/templates/task_manager/users/update_user.html:7
+#: task_manager/templates/task_manager/users/delete_user.html:4
+#: task_manager/templates/task_manager/users/update_user.html:4
 msgid "[to do] user"
 msgstr "пользователя"
 
