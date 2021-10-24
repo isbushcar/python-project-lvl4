@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views import generic
 
 from task_manager.apps.statuses.forms import CreateStatusForm
-from task_manager.models import Status
+from task_manager.models import Status, Task
 from task_manager.shared_mixin_classes import CustomLoginRequiredMixin, MessageSender
 
 
@@ -41,13 +41,11 @@ class DeleteStatusView(CustomLoginRequiredMixin, MessageSender, generic.DeleteVi
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
-        try:
-            self.object.delete()
-        except ProtectedError:
+        if Task.objects.filter(status=self.kwargs['pk']):
             messages.add_message(
                 self.request,
                 messages.INFO, _('YouCantDeleteStatusThatIsUsedInTask'),
             )
-            return redirect(reverse('statuses'))
-        success_url = self.get_success_url()
-        return redirect(success_url)
+            return redirect(self.object.get_absolute_url())
+        self.object.delete()
+        return redirect(self.object.get_absolute_url())
