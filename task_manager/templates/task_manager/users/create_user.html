@@ -1,14 +1,12 @@
-{% extends "task_manager/base_generic.html" %}
-<!DOCTYPE html>
+{% extends "layouts/form.html" %}
 {% load i18n %}
-{% get_current_language as LANGUAGE_CODE %}
-<html lang="en">
-{% block content %}
-    <h1 class="my-4">{% trans "Registration" %}</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-secondary mt-2" type="submit">{% trans "SignUpButton" %}</button>
-    </form>
-{% endblock content %}
-</html>
+
+{% block header %}{% trans "Registration" %}{% endblock header %}
+
+{% block form %}
+    {{ form.as_p }}
+{% endblock form %}
+
+{% block button %}
+    <button class="btn btn-secondary mt-2" type="submit">{% trans "SignUpButton" %}</button>
+{% endblock button %}

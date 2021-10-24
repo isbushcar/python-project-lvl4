@@ -1,10 +1,12 @@
-{% extends "task_manager/base_generic.html" %}
+{% extends "layouts/form.html" %}
 {% load i18n %}
-{% block content %}
-    <h1 class="my-4">{% trans "Update" %} {% trans "[to do] label" %}</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">{% trans "Update" %}</button>
-    </form>
-{% endblock content %}
+
+{% block header %}{% trans "Update" %} {% trans "[to do] label" %}{% endblock header %}
+
+{% block form %}
+    {{ form.as_p }}
+{% endblock form %}
+
+{% block button %}
+    <button type="submit">{% trans "Update" %}</button>
+{% endblock button %}

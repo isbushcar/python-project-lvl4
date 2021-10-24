@@ -1,9 +1,12 @@
-{% extends "task_manager/base_generic.html" %}
+{% extends "layouts/form.html" %}
 {% load i18n %}
-{% block content %}
-    <h1 class="my-4">{% trans "Delete" %} {% trans "[to do] label" %}</h1>
-    <form method="post">{% csrf_token %}
-        <p>{% trans "DeleteConfirmationQuestion" %} "{{ object.name }}"?</p>
-        <button class="btn btn-danger" type="submit" value="Confirm">{% trans "Delete confirmation" %}</button>
-    </form>
-{% endblock content %}
+
+{% block header %}{% trans "Delete" %} {% trans "[to do] label" %}{% endblock header %}
+
+{% block form %}
+    <p>{% trans "DeleteConfirmationQuestion" %} "{{ object.name }}"?</p>
+{% endblock form %}
+
+{% block button %}
+    <button class="btn btn-danger" type="submit" value="Confirm">{% trans "Delete confirmation" %}</button>
+{% endblock button %}
