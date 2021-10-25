@@ -37,7 +37,7 @@ class DeleteStatusView(CustomLoginRequiredMixin, SendMessageMixin, generic.Delet
     success_message = _('Status successfully deleted')
 
     def delete(self, request, *args, **kwargs):
-        if Task.objects.filter(status=self.kwargs['pk']):
+        if Task.objects.filter(status=self.kwargs['pk']).exists():
             self.success_message = _('YouCantDeleteStatusThatIsUsedInTask')
             success_url = self.get_success_url()
             return redirect(success_url)

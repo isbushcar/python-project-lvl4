@@ -37,7 +37,7 @@ class DeleteLabelView(CustomLoginRequiredMixin, SendMessageMixin, generic.Delete
     success_message = _('Label successfully deleted')
 
     def delete(self, request, *args, **kwargs):
-        if Task.objects.filter(labels=self.kwargs['pk']):
+        if Task.objects.filter(labels=self.kwargs['pk']).exists():
             self.success_message = _('YouCantDeleteLabelThatIsUsedInTask')
             success_url = self.get_success_url()
             return redirect(success_url)
